@@ -1,4 +1,4 @@
-import { EmptyProps } from "../types";
+import { EmptyProps } from "../../components/types";
 import styles from "./not-found.module.scss";
 
 const NotFoundPage: React.FC<EmptyProps> = (): JSX.Element => {

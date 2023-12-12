@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Context } from "../../contexts";
 import { LangContext } from "../../contexts/types";
-import { EmptyProps } from "../types";
+import { EmptyProps } from "../../components/types";
 
-const WelcomePage: React.FC<EmptyProps> = (): JSX.Element => {
+const Welcome: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: { welcomeTitle },
@@ -16,4 +16,4 @@ const WelcomePage: React.FC<EmptyProps> = (): JSX.Element => {
   );
 };
 
-export default WelcomePage;
+export default Welcome;

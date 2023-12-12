@@ -3,8 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { useAppSelector } from "../../store/hooks";
 import { Layout } from ".";
-import Main from "../main";
-import { NotFoundPage, WelcomePage } from "../pages";
+import { MainPage, NotFoundPage, WelcomePage } from "../../pages";
 
 import { EmptyProps } from "../types";
 
@@ -17,7 +16,7 @@ const AppRouter: React.FC<EmptyProps> = (): JSX.Element => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Main />} />
+        <Route index element={<MainPage />} />
         <Route path="welcome" element={<WelcomePage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
