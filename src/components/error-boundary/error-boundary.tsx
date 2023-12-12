@@ -3,7 +3,7 @@ import { Component } from "react";
 import ErrorMessage from "../error-message";
 import { WithChildrenProps, ErrorState } from "../types";
 
-export default class ErrorBoundry extends Component<
+export default class ErrorBoundary extends Component<
   WithChildrenProps,
   ErrorState
 > {
