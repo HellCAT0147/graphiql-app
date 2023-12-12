@@ -5,10 +5,13 @@ import { EmptyProps } from "../types";
 
 const WelcomePage: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
+  const {
+    lang: { welcomeTitle },
+  } = context;
 
   return (
     <div className="welcome">
-      <h1 className="text-info">{context.lang.welcomeTitle}</h1>
+      <h1 className="text-info">{welcomeTitle}</h1>
     </div>
   );
 };

@@ -6,6 +6,8 @@ export const EN: Languages = {
   welcomeTitle: "Welcome Page",
   mainLink: "Main",
   welcomeLink: "Welcome",
+  errorTitle: "Oops!",
+  errorMessageText: "Please reload the page.",
 };
 
 export const RU: Languages = {
@@ -14,4 +16,6 @@ export const RU: Languages = {
   welcomeTitle: "Страница приветствия",
   mainLink: "Главная",
   welcomeLink: "Приветствие",
+  errorTitle: "Ой!",
+  errorMessageText: "Пожалуйста перезагрузите страницу.",
 };

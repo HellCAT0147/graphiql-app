@@ -5,9 +5,11 @@ import { EmptyProps } from "../types";
 
 const Main: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
-  return (
-    <section className="main container-fluid">{context.lang.mainTitle}</section>
-  );
+  const {
+    lang: { mainTitle },
+  } = context;
+
+  return <section className="main container-fluid">{mainTitle}</section>;
 };
 
 export default Main;

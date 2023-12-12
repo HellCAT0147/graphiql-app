@@ -7,6 +7,9 @@ import { EN, RU } from "../../contexts/languages";
 
 const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
+  const {
+    lang: { mainLink, welcomeLink, lang },
+  } = context;
 
   function onToggleLang() {
     if (context.lang.lang === "en") context.setLang(RU);
@@ -25,7 +28,7 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
                 }
                 to={"/"}
               >
-                {context.lang.mainLink}
+                {mainLink}
               </NavLink>
             </li>
             <li className="nav-item">
@@ -35,7 +38,7 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
                   isActive ? "nav-link active" : "nav-link"
                 }
               >
-                {context.lang.welcomeLink}
+                {welcomeLink}
               </NavLink>
             </li>
           </ul>
@@ -44,7 +47,7 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
             className="btn btn-secondary"
             onClick={onToggleLang}
           >
-            {context.lang.lang}
+            {lang}
           </button>
         </div>
       </div>
