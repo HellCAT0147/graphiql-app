@@ -1,11 +1,11 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 
-import { Context, useCreateContext } from "../../contexts";
-import { LangContext } from "../../contexts/types";
-import ErrorBoundary from "../error-boundary";
-import { AppRouter } from "../../router";
+import { Context, useCreateContext } from '../../contexts';
+import { LangContext } from '../../contexts/types';
+import ErrorBoundary from '../error-boundary';
+import { AppRouter } from '../../router';
 
-import { EmptyProps } from "../types";
+import { EmptyProps } from '../types';
 
 const App: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useCreateContext();

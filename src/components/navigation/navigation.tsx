@@ -1,9 +1,9 @@
-import { NavLink } from "react-router-dom";
-import { EmptyProps } from "../types";
-import { Context } from "../../contexts";
-import { LangContext } from "../../contexts/types";
-import { useContext } from "react";
-import { EN, RU } from "../../contexts/languages";
+import { NavLink } from 'react-router-dom';
+import { EmptyProps } from '../types';
+import { Context } from '../../contexts';
+import { LangContext } from '../../contexts/types';
+import { useContext } from 'react';
+import { EN, RU } from '../../contexts/languages';
 
 const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -12,12 +12,12 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
   } = context;
 
   function onToggleLang() {
-    if (context.lang.lang === "en") {
+    if (context.lang.lang === 'en') {
       context.setLang(RU);
-      localStorage.setItem("currentLangApp", "ru");
-    } else if (context.lang.lang === "ru") {
+      localStorage.setItem('currentLangApp', 'ru');
+    } else if (context.lang.lang === 'ru') {
       context.setLang(EN);
-      localStorage.setItem("currentLangApp", "en");
+      localStorage.setItem('currentLangApp', 'en');
     }
   }
 
@@ -29,18 +29,18 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
             <li className="nav-item">
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
+                  isActive ? 'nav-link active' : 'nav-link'
                 }
-                to={"/"}
+                to={'/'}
               >
                 {mainLink}
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
-                to={"/welcome"}
+                to={'/welcome'}
                 className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
+                  isActive ? 'nav-link active' : 'nav-link'
                 }
               >
                 {welcomeLink}

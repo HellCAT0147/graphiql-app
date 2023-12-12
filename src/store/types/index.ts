@@ -1,3 +1,3 @@
-import { RootState } from "../store";
+import { RootState } from '../store';
 
 export type SelectString = (state: RootState) => string;

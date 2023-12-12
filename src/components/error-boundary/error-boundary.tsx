@@ -1,7 +1,7 @@
-import { Component } from "react";
+import { Component } from 'react';
 
-import ErrorMessage from "../error-message";
-import { WithChildrenProps, ErrorState } from "../types";
+import ErrorMessage from '../error-message';
+import { WithChildrenProps, ErrorState } from '../types';
 
 export default class ErrorBoundary extends Component<
   WithChildrenProps,
@@ -9,7 +9,7 @@ export default class ErrorBoundary extends Component<
 > {
   public state: ErrorState = {
     hasError: false,
-    messageError: "",
+    messageError: '',
   };
 
   public componentDidCatch(err: Error): void {

@@ -1,23 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { ActionCreatorWithPayload, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
-import { SelectString } from "../types";
+import { createSlice } from '@reduxjs/toolkit';
+import type { ActionCreatorWithPayload, PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from '../store';
+import { SelectString } from '../types';
 
 interface MessageState {
   error: string;
 }
 
 export interface MessageSlice {
-  set: ActionCreatorWithPayload<string, "message/setMessage">;
+  set: ActionCreatorWithPayload<string, 'message/setMessage'>;
   select: SelectString;
 }
 
 const initialState: MessageState = {
-  error: "",
+  error: '',
 };
 
 export const MessageSlice = createSlice({
-  name: "message",
+  name: 'message',
   initialState,
   reducers: {
     setMessage: (state, action: PayloadAction<string>) => {
