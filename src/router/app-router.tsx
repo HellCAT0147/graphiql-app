@@ -1,11 +1,11 @@
-import { Message } from "../../store/reducers/message-slice";
+import { Message } from "../store/reducers/message-slice";
 import { Route, Routes } from "react-router-dom";
 
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "../store/hooks";
 import { Layout } from ".";
-import { MainPage, NotFoundPage, WelcomePage } from "../../pages";
+import { MainPage, NotFoundPage, WelcomePage } from "../pages";
 
-import { EmptyProps } from "../types";
+import { EmptyProps } from "../components/types";
 
 const AppRouter: React.FC<EmptyProps> = (): JSX.Element => {
   const messageError: string = useAppSelector(Message.select);

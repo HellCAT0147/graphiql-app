@@ -12,8 +12,13 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
   } = context;
 
   function onToggleLang() {
-    if (context.lang.lang === "en") context.setLang(RU);
-    else if (context.lang.lang === "ru") context.setLang(EN);
+    if (context.lang.lang === "en") {
+      context.setLang(RU);
+      localStorage.setItem("currentLangApp", "ru");
+    } else if (context.lang.lang === "ru") {
+      context.setLang(EN);
+      localStorage.setItem("currentLangApp", "en");
+    }
   }
 
   return (

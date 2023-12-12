@@ -8,6 +8,8 @@ export const EN: Languages = {
   welcomeLink: "Welcome",
   errorTitle: "Oops!",
   errorMessageText: "Please reload the page.",
+  notFoundTitle: "Page not found",
+  notFoundText: "please check the URL",
 };
 
 export const RU: Languages = {
@@ -18,4 +20,6 @@ export const RU: Languages = {
   welcomeLink: "Приветствие",
   errorTitle: "Ой!",
   errorMessageText: "Пожалуйста перезагрузите страницу.",
+  notFoundTitle: "Страница не найдена",
+  notFoundText: "проверьте пожалуйста URL",
 };

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
-import { EmptyProps } from "../types";
-import Navigation from "../navigation";
+import { EmptyProps } from "../components/types";
+import Navigation from "../components/navigation";
 
 const Layout: React.FC<EmptyProps> = (): JSX.Element => {
   return (

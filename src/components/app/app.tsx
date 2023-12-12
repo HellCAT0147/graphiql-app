@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Context, useCreateContext } from "../../contexts";
 import { LangContext } from "../../contexts/types";
 import ErrorBoundary from "../error-boundary";
-import { AppRouter } from "../router";
+import { AppRouter } from "../../router";
 
 import { EmptyProps } from "../types";
 
