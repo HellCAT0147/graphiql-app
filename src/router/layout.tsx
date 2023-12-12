@@ -4,10 +4,10 @@ import Navigation from '../components/navigation';
 
 const Layout: React.FC<EmptyProps> = (): JSX.Element => {
   return (
-    <div className="app">
+    <section className="layout">
       <Navigation />
       <Outlet />
-    </div>
+    </section>
   );
 };
 

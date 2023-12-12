@@ -11,10 +11,10 @@ const NotFoundPage: React.FC<EmptyProps> = (): JSX.Element => {
   } = context;
 
   return (
-    <div className={styles.notFound}>
+    <section className={styles.notFound}>
       <h1 className="text-warning">{notFoundTitle}</h1>
       <p className="text-warning">{`(${notFoundText})`}</p>
-    </div>
+    </section>
   );
 };
 

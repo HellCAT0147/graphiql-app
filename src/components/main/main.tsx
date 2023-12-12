@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
-import { useGetDataQuery } from '../../store/reducers/api-slice';
+// import { useGetDataQuery } from '../../store/reducers/api-slice'; //TODO uncommented this line if you want to get data
 
 const Main: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -12,7 +12,7 @@ const Main: React.FC<EmptyProps> = (): JSX.Element => {
 
   const [page, setPage] = useState<string>('1');
 
-  const { data } = useGetDataQuery({ term: '', limit: '3', page });
+  // const { data } = useGetDataQuery({ term: '', limit: '3', page }); //TODO uncommented this line if you want to get data
 
   function onGetData() {
     setPage(`${+page + 1}`);
@@ -28,7 +28,8 @@ const Main: React.FC<EmptyProps> = (): JSX.Element => {
       >
         Get Data
       </button>
-      <p>{data && JSON.stringify(data)}</p>
+      {/* {//TODO uncommented next line if you want to show data} */}
+      {/* <p>{data && JSON.stringify(data)}</p> */}
     </main>
   );
 };

@@ -10,9 +10,9 @@ const Welcome: React.FC<EmptyProps> = (): JSX.Element => {
   } = context;
 
   return (
-    <div className="welcome">
+    <section className="welcome">
       <h1 className="text-info">{welcomeTitle}</h1>
-    </div>
+    </section>
   );
 };
 
