@@ -11,6 +11,7 @@ export const EN: Languages = {
   notFoundTitle: 'Page not found',
   notFoundText: 'please check the URL',
 
+  welcomeMain: 'To Main',
   welcomeSignIn: 'Sign In',
   welcomeSignUp: 'Sign Up',
   welcomeTeamTitle: 'HAQ team',
@@ -67,6 +68,7 @@ export const RU: Languages = {
   notFoundTitle: 'Страница не найдена',
   notFoundText: 'проверьте пожалуйста URL',
 
+  welcomeMain: 'На главную',
   welcomeSignIn: 'Вход',
   welcomeSignUp: 'Регистрация',
   welcomeTeamTitle: 'Команда HAQ',
