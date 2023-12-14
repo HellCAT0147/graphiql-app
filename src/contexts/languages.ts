@@ -59,7 +59,7 @@ export const EN: Languages = {
 export const RU: Languages = {
   lang: 'ru',
   mainTitle: 'Главный контейнер',
-  welcomeTitle: 'Страница приветствия',
+  welcomeTitle: 'Давайте знакомиться!',
   mainLink: 'Главная',
   welcomeLink: 'Приветствие',
   errorTitle: 'Ой!',
