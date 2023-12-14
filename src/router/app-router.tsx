@@ -6,6 +6,7 @@ import { Layout } from '.';
 import { MainPage, NotFoundPage, WelcomePage } from '../pages';
 
 import { EmptyProps } from '../components/types';
+import LoginPage from '../pages/login';
 
 const AppRouter: React.FC<EmptyProps> = (): JSX.Element => {
   const messageError: string = useAppSelector(Message.select);
@@ -18,6 +19,7 @@ const AppRouter: React.FC<EmptyProps> = (): JSX.Element => {
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="welcome" element={<WelcomePage />} />
+        <Route path="login" element={<LoginPage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

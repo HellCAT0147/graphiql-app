@@ -23,7 +23,6 @@ import {
   Query,
   QuerySnapshot,
 } from 'firebase/firestore';
-import { isError } from '../utils/typeguards';
 
 interface FirebaseConfig {
   apiKey: string;
@@ -66,7 +65,7 @@ const signInWithGoogle = async (): Promise<void> => {
       });
     }
   } catch (err) {
-    if (isError(err)) alert(err.message);
+    // TODO: handle error
   }
 };
 
@@ -77,7 +76,7 @@ const logInWithEmailAndPassword = async (
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    if (isError(err)) alert(err.message);
+    // TODO: handle error
   }
 };
 
@@ -100,16 +99,16 @@ const registerWithEmailAndPassword = async (
       email,
     });
   } catch (err) {
-    if (isError(err)) alert(err.message);
+    // TODO: handle error
   }
 };
 
 const sendPasswordReset = async (email: string): Promise<void> => {
   try {
     await sendPasswordResetEmail(auth, email);
-    alert('Password reset link sent!');
+    // TODO: show message 'Password reset link sent!'
   } catch (err) {
-    if (isError(err)) alert(err.message);
+    // TODO: handle error
   }
 };
 

@@ -4,7 +4,7 @@ import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../../components/types';
 import styles from './not-found.module.scss';
 
-const NotFoundPage: React.FC<EmptyProps> = (): JSX.Element => {
+const NotFound: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: { notFoundTitle, notFoundText },
@@ -18,4 +18,4 @@ const NotFoundPage: React.FC<EmptyProps> = (): JSX.Element => {
   );
 };
 
-export default NotFoundPage;
+export default NotFound;

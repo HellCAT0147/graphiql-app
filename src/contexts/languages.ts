@@ -10,6 +10,8 @@ export const EN: Languages = {
   errorMessageText: 'Please reload the page.',
   notFoundTitle: 'Page not found',
   notFoundText: 'please check the URL',
+  loginTitle: 'SignIn',
+  loginText: 'Form',
 };
 
 export const RU: Languages = {
@@ -22,4 +24,6 @@ export const RU: Languages = {
   errorMessageText: 'Пожалуйста перезагрузите страницу.',
   notFoundTitle: 'Страница не найдена',
   notFoundText: 'проверьте пожалуйста URL',
+  loginTitle: 'Вход',
+  loginText: 'Форма',
 };
