@@ -62,7 +62,7 @@ const Main: React.FC<EmptyProps> = (): JSX.Element => {
     setPage(`${+page + 1}`);
   }
 
-  return (
+  return user ? (
     <main className="main container-fluid">
       <h1>{`${mainGreeting} ${name}`}</h1>
       {mainTitle}
@@ -76,6 +76,8 @@ const Main: React.FC<EmptyProps> = (): JSX.Element => {
       {/* {//TODO uncomment next line if you want to show data} */}
       {/* <p>{data && JSON.stringify(data)}</p> */}
     </main>
+  ) : (
+    <></>
   );
 };
 

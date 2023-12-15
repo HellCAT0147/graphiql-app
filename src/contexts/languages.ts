@@ -13,6 +13,7 @@ export const EN: Languages = {
   notFoundText: 'please check the URL',
   loginTitle: 'SignIn',
   registerTitle: 'SignUp',
+  signOut: 'Sign Out',
 };
 
 export const RU: Languages = {
@@ -28,4 +29,5 @@ export const RU: Languages = {
   notFoundText: 'проверьте пожалуйста URL',
   loginTitle: 'Вход',
   registerTitle: 'Регистрация',
+  signOut: 'Выйти',
 };
