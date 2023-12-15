@@ -1,8 +1,15 @@
 import {
   auth,
-  logInWithEmailAndPassword,
+  loginWithEmailAndPassword,
   signInWithGoogle,
   logout,
+  registerWithEmailAndPassword,
 } from './firebase';
 
-export { auth, logInWithEmailAndPassword, signInWithGoogle, logout };
+export {
+  auth,
+  loginWithEmailAndPassword,
+  signInWithGoogle,
+  logout,
+  registerWithEmailAndPassword,
+};

@@ -69,7 +69,7 @@ const signInWithGoogle = async (): Promise<void> => {
   }
 };
 
-const logInWithEmailAndPassword = async (
+const loginWithEmailAndPassword = async (
   email: string,
   password: string
 ): Promise<void> => {
@@ -120,7 +120,7 @@ export {
   auth,
   db,
   signInWithGoogle,
-  logInWithEmailAndPassword,
+  loginWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,

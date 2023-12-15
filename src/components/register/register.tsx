@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
-import styles from './login.module.scss';
+import styles from './register.module.scss';
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,20 +10,32 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   auth,
-  loginWithEmailAndPassword,
+  registerWithEmailAndPassword,
   signInWithGoogle,
 } from '../../firebase';
 
-const Login: React.FC<EmptyProps> = (): JSX.Element => {
+const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { loginTitle },
+    lang: { registerTitle },
   } = context;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
+
+  const handleSignUp = (): void => {
+    // TODO: loading & validation
+    registerWithEmailAndPassword(name, email, password);
+  };
+
+  useEffect(() => {
+    // TODO: add loading
+    if (loading) return;
+    if (user) navigate('/', { replace: true });
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (error) throwError(error);
@@ -34,23 +46,16 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
     // TODO: tostify error
   };
 
-  const handleSignIn = (): void => {
-    // TODO: show loading indicator
-    loginWithEmailAndPassword(email, password);
-  };
-
-  useEffect(() => {
-    if (loading) {
-      // TODO: show loading indicator
-      return;
-    }
-    if (user) navigate('/');
-  }, [user, loading, navigate]);
-
   return (
-    <section className={styles.login}>
+    <section className={styles.register}>
       <div className={styles.container}>
-        <h1 className="text-info">{loginTitle}</h1>
+        <h1 className="text-info">{registerTitle}</h1>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Full Name"
+        />
         <input
           type="text"
           value={email}
@@ -63,19 +68,16 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button onClick={handleSignIn}>Login</button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
+        <button className="register__btn" onClick={handleSignUp}>
+          Register
         </button>
+        <button onClick={signInWithGoogle}>Register with Google</button>
         <div>
-          <Link to="/reset">Forgot Password</Link>
-        </div>
-        <div>
-          Don&apos;t have an account? <Link to="/register">Register</Link> now.
+          Already have an account? <Link to="/login">Login</Link> now.
         </div>
       </div>
     </section>
   );
 };
 
-export default Login;
+export default Register;

@@ -11,7 +11,7 @@ export const EN: Languages = {
   notFoundTitle: 'Page not found',
   notFoundText: 'please check the URL',
   loginTitle: 'SignIn',
-  loginText: 'Form',
+  registerTitle: 'SignUp',
 };
 
 export const RU: Languages = {
@@ -25,5 +25,5 @@ export const RU: Languages = {
   notFoundTitle: 'Страница не найдена',
   notFoundText: 'проверьте пожалуйста URL',
   loginTitle: 'Вход',
-  loginText: 'Форма',
+  registerTitle: 'Регистрация',
 };
