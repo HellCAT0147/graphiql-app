@@ -10,6 +10,7 @@ export const EN: Languages = {
   errorMessageText: 'Please reload the page.',
   notFoundTitle: 'Page not found',
   notFoundText: 'please check the URL',
+  queryEditorTitle: 'Query Editor',
 };
 
 export const RU: Languages = {
@@ -22,4 +23,5 @@ export const RU: Languages = {
   errorMessageText: 'Пожалуйста перезагрузите страницу.',
   notFoundTitle: 'Страница не найдена',
   notFoundText: 'проверьте пожалуйста URL',
+  queryEditorTitle: 'Редактор запросов',
 };
