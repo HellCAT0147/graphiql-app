@@ -4,6 +4,7 @@ import {
   signInWithGoogle,
   logout,
   registerWithEmailAndPassword,
+  db,
 } from './firebase';
 
 export {
@@ -12,4 +13,5 @@ export {
   signInWithGoogle,
   logout,
   registerWithEmailAndPassword,
+  db,
 };

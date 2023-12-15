@@ -3,6 +3,7 @@ import { Languages } from './types';
 export const EN: Languages = {
   lang: 'en',
   mainTitle: 'Main Container',
+  mainGreeting: 'Hello,',
   welcomeTitle: 'Welcome Page',
   mainLink: 'Main',
   welcomeLink: 'Welcome',
@@ -17,6 +18,7 @@ export const EN: Languages = {
 export const RU: Languages = {
   lang: 'ru',
   mainTitle: 'Главный контейнер',
+  mainGreeting: 'Здравствуй,',
   welcomeTitle: 'Страница приветствия',
   mainLink: 'Главная',
   welcomeLink: 'Приветствие',
