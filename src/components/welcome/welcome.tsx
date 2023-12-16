@@ -54,18 +54,24 @@ const Welcome: React.FC<EmptyProps> = (): JSX.Element => {
       <div className="d-flex flex-row justify-content-end my-3 mx-3">
         {tokenMissing ? (
           <>
-            <button className="btn btn-secondary my-2 my-sm-0 mx-3">
-              {welcomeSignIn}
-            </button>
-            <button className="btn btn-secondary my-2 my-sm-0 mx-3">
-              {welcomeSignUp}
-            </button>
+            <a href={'/login'}>
+              <button className="btn btn-secondary my-2 my-sm-0 mx-3">
+                {welcomeSignIn}
+              </button>
+            </a>
+            <a href={'/registration'}>
+              <button className="btn btn-secondary my-2 my-sm-0 mx-3">
+                {welcomeSignUp}
+              </button>
+            </a>
           </>
         ) : (
           <>
-            <button className="btn btn-secondary my-2 my-sm-0 mx-3">
-              {welcomeMain}
-            </button>
+            <a href={'/'}>
+              <button className="btn btn-secondary my-2 my-sm-0 mx-3">
+                {welcomeMain}
+              </button>
+            </a>
           </>
         )}
       </div>
