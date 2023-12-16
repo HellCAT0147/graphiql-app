@@ -83,9 +83,9 @@ const Welcome: React.FC<EmptyProps> = (): JSX.Element => {
         </div>
         <div className="d-flex flex-column align-items-center justify-content-center text-center ">
           <a href="https://rs.school/">
-            <img src="/public/logo-rs.svg" alt="logo"></img>
+            <img src="/logo-rs.svg" alt="logo"></img>
           </a>
-          <div className="text-danger fs-2 "> & RS School</div>
+          <div className="text-secondary fs-2 "> & RS School</div>
         </div>
       </div>
       <div className="d-flex flex-row m-15 justify-content-center align-items-center p-4">
@@ -151,10 +151,10 @@ const Welcome: React.FC<EmptyProps> = (): JSX.Element => {
           <div className="d-flex justify-content-between mb-3">
             <div>
               <a className="icon-link" href="">
-                <img src="/public/icon-gh.svg" alt="GitHub"></img>
+                <img src="/icon-gh.svg" alt="GitHub"></img>
               </a>
               <a className="icon-link" href="">
-                <img src="/public/icon-mail.svg" alt="GitHub"></img>
+                <img src="/icon-mail.svg" alt="GitHub"></img>
               </a>
             </div>
             <div>{welcomeBioLocation1}</div>
@@ -173,10 +173,10 @@ const Welcome: React.FC<EmptyProps> = (): JSX.Element => {
           <div className="d-flex justify-content-between mb-3">
             <div>
               <a className="icon-link" href="">
-                <img src="/public/icon-gh.svg" alt="GitHub"></img>
+                <img src="/icon-gh.svg" alt="GitHub"></img>
               </a>
               <a className="icon-link" href="">
-                <img src="/public/icon-mail.svg" alt="GitHub"></img>
+                <img src="/icon-mail.svg" alt="GitHub"></img>
               </a>
             </div>
             <div>{welcomeBioLocation2}</div>
@@ -195,10 +195,10 @@ const Welcome: React.FC<EmptyProps> = (): JSX.Element => {
           <div className="d-flex justify-content-between mb-3">
             <div>
               <a className="icon-link" href="">
-                <img src="/public/icon-gh.svg" alt="GitHub"></img>
+                <img src="/icon-gh.svg" alt="GitHub"></img>
               </a>
               <a className="icon-link" href="">
-                <img src="/public/icon-mail.svg" alt="GitHub"></img>
+                <img src="/icon-mail.svg" alt="GitHub"></img>
               </a>
             </div>
             <div>{welcomeBioLocation3}</div>
