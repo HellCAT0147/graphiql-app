@@ -1,12 +1,9 @@
-import { useContext } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
 import styles from './register.module.scss';
-
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   auth,
