@@ -64,9 +64,7 @@ const Welcome: React.FC<EmptyProps> = (): JSX.Element => {
             <Button text={welcomeSignUp} link={'/registration'} />
           </>
         ) : (
-          <>
-            <Button text={welcomeMain} link={'/'} />
-          </>
+          <Button text={welcomeMain} link={'/'} />
         )}
       </div>
       <h1 className="text-info text-center">{welcomeTitle}</h1>
