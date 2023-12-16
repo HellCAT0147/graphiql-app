@@ -38,7 +38,7 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
   };
 
   return (
-    <div className="card border-primary mb-3">
+    <div className="card mb-3 mt-3">
       <div className="card-header d-flex justify-content-between">
         <h5>{queryEditorTitle}</h5>
         <form
@@ -91,10 +91,10 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
         </div>
         <button
           type="button"
-          className="btn btn-outline-primary position-absolute top-50 start-50 translate-middle"
+          className="btn btn-secondary position-absolute top-50 start-50 translate-middle"
           onClick={() => setQuery(queryInput)}
         >
-          Get Data
+          {'\u25BA'}
         </button>
       </div>
     </div>

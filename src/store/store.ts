@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import messageReducer from './reducers/message-slice';
+import queryReducer from './reducers/query-slice';
 import { apiSlice } from './reducers/api-slice';
 
 export const store = configureStore({
   reducer: {
     message: messageReducer,
+    query: queryReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

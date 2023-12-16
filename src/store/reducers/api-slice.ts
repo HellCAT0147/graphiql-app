@@ -3,17 +3,7 @@ import {
   createApi,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
-
-export type SearchQuery = {
-  url: string;
-  method: string;
-  headers: string;
-  body: string;
-};
-
-export interface ResponseApi {
-  data: string;
-}
+import { ResponseApi } from '../types';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
