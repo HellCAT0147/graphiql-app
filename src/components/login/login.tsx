@@ -47,7 +47,9 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
     if (user) navigate('/');
   }, [user, loading, navigate]);
 
-  return (
+  return loading || user ? (
+    <h1>Loading...</h1> // TODO: add appropriate loader
+  ) : (
     <section className={`${styles.login} container d-flex flex-column mb-3`}>
       <h1 className="text-info text-center">{loginTitle}</h1>
       <div className="row row-cols-auto justify-content-center">

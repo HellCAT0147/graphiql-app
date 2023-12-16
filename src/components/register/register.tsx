@@ -47,35 +47,43 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   };
 
   return (
-    <section className={styles.register}>
-      <div className={styles.container}>
-        <h1 className="text-info">{registerTitle}</h1>
+    <section className={`${styles.register} container d-flex flex-column mb-3`}>
+      <h1 className="text-info text-center">{registerTitle}</h1>
+      <div className="row row-cols-auto justify-content-center">
         <input
+          className="col mx-1"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
         />
         <input
+          className="col mx-1"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
         <input
+          className="col mx-1"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button className="register__btn" onClick={handleSignUp}>
+        <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
           Register
         </button>
-        <button onClick={signInWithGoogle}>Register with Google</button>
-        <div>
-          Already have an account? <Link to="/login">Login</Link> now.
-        </div>
       </div>
+      <button
+        className="p-2 mt-3 mx-auto btn btn-info"
+        onClick={signInWithGoogle}
+      >
+        Register with Google
+      </button>
+      <p className="text-center mt-2">
+        Already have an account? <Link to="/login">Login</Link> now.
+      </p>
     </section>
   );
 };
