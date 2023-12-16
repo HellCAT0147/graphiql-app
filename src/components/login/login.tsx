@@ -48,32 +48,39 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
   }, [user, loading, navigate]);
 
   return (
-    <section className={styles.login}>
-      <div className={styles.container}>
-        <h1 className="text-info">{loginTitle}</h1>
+    <section className={`${styles.login} container d-flex flex-column mb-3`}>
+      <h1 className="text-info text-center">{loginTitle}</h1>
+      <div className="row row-cols-auto justify-content-center">
         <input
+          className="col mx-1"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
         <input
+          className="col mx-1"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button onClick={handleSignIn}>Login</button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
+        <button onClick={handleSignIn} className="col mx-1 btn btn-success">
+          Login
         </button>
-        <div>
-          <Link to="/reset">Forgot Password</Link>
-        </div>
-        <div>
-          Don&apos;t have an account? <Link to="/register">Register</Link> now.
-        </div>
       </div>
+      <button
+        className="p-2 mt-3 mx-auto btn btn-info"
+        onClick={signInWithGoogle}
+      >
+        Login with Google
+      </button>
+      <Link className="text-center mt-2" to="/reset">
+        Forgot Password
+      </Link>
+      <p className="text-center">
+        Don&apos;t have an account? <Link to="/register">Register</Link> now.
+      </p>
     </section>
   );
 };
