@@ -11,6 +11,7 @@ export const EN: Languages = {
   notFoundTitle: 'Page not found',
   notFoundText: 'please check the URL',
   queryEditorTitle: 'Query Editor',
+  responseViewerHeader: 'Response',
 };
 
 export const RU: Languages = {
@@ -24,4 +25,5 @@ export const RU: Languages = {
   notFoundTitle: 'Страница не найдена',
   notFoundText: 'проверьте пожалуйста URL',
   queryEditorTitle: 'Редактор запросов',
+  responseViewerHeader: 'Ответ',
 };
