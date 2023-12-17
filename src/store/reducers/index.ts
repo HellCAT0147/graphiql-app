@@ -1,3 +1,3 @@
-import { Query } from './query-slice';
+import { Options } from './options-slice';
 
-export { Query };
+export { Options };

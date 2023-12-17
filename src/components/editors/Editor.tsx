@@ -1,12 +1,12 @@
 import { FormEvent, useContext, useState } from 'react';
-import { Context } from '../../../contexts';
-import { LangContext } from '../../../contexts/types';
-import { EmptyProps } from '../../types';
-import { useAppDispatch } from '../../../store/hooks';
-import { Options } from '../../../store/reducers';
-import { ResponseViewer } from '../../viewers';
+import { Context } from '../../contexts';
+import { LangContext } from '../../contexts/types';
+import { EmptyProps } from '../types';
+import { useAppDispatch } from '../../store/hooks';
+import { Options } from '../../store/reducers';
+import { ResponseViewer } from '../viewers';
 
-const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
+const Editor: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: { queryEditorTitle },
@@ -79,4 +79,4 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
   );
 };
 
-export default QueryEditor;
+export default Editor;

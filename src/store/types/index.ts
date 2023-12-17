@@ -1,15 +1,15 @@
 import { RootState } from '../store';
 
-export type QueryMethod = string | undefined;
-export type QueryHeaders =
+export type OptionsMethod = string | undefined;
+export type OptionsHeaders =
   | Headers
   | string[][]
   | Record<string, string | undefined>
   | undefined;
 
 export type SelectString = (state: RootState) => string;
-export type SelectHeaders = (state: RootState) => QueryHeaders;
-export type SelectMethod = (state: RootState) => QueryMethod;
+export type SelectHeaders = (state: RootState) => OptionsHeaders;
+export type SelectMethod = (state: RootState) => OptionsMethod;
 
 export interface ResponseApi {
   data: string;

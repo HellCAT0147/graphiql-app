@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 import {
-  QueryHeaders,
+  OptionsHeaders,
   SelectHeaders,
   SelectMethod,
   SelectString,
@@ -16,8 +16,8 @@ const initialState: FetchArgs = {
   body: '',
 };
 
-export const QuerySlice = createSlice({
-  name: 'query',
+export const OptionsSlice = createSlice({
+  name: 'options',
   initialState,
   reducers: {
     setUrl: (state, action: PayloadAction<string>) => {
@@ -26,7 +26,7 @@ export const QuerySlice = createSlice({
     setMethod: (state, action: PayloadAction<string>) => {
       state.method = action.payload;
     },
-    setHeaders: (state, action: PayloadAction<QueryHeaders>) => {
+    setHeaders: (state, action: PayloadAction<OptionsHeaders>) => {
       state.headers = { ...state.headers, ...action.payload };
     },
     setBody: (state, action: PayloadAction<string>) => {
@@ -35,18 +35,19 @@ export const QuerySlice = createSlice({
   },
 });
 
-const { setUrl, setMethod, setHeaders, setBody } = QuerySlice.actions;
+const { setUrl, setMethod, setHeaders, setBody } = OptionsSlice.actions;
 
-export const selectUrl: SelectString = (state: RootState) => state.query.url;
+export const selectUrl: SelectString = (state: RootState) => state.options.url;
 export const selectMethod: SelectMethod = (state: RootState) =>
-  state.query.method;
+  state.options.method;
 export const selectHeaders: SelectHeaders = (state: RootState) =>
-  state.query.headers;
-export const selectBody: SelectString = (state: RootState) => state.query.body;
+  state.options.headers;
+export const selectBody: SelectString = (state: RootState) =>
+  state.options.body;
 
-export default QuerySlice.reducer;
+export default OptionsSlice.reducer;
 
-export const Query = {
+export const Options = {
   url: {
     set: setUrl,
     select: selectUrl,

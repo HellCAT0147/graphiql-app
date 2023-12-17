@@ -1,3 +1,4 @@
-import QueryEditor from './query-editor/QueryEditor';
+import Editor from './Editor';
+import QueryEditor from './query-editor';
 
-export { QueryEditor };
+export { Editor, QueryEditor };

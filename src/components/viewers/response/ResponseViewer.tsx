@@ -4,7 +4,7 @@ import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
 import { useGetDataQuery } from '../../../store/reducers/api-slice';
 import { useAppSelector } from '../../../store/hooks';
-import { Query } from '../../../store/reducers';
+import { Options } from '../../../store/reducers';
 
 const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -12,10 +12,10 @@ const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
     lang: { responseViewerHeader },
   } = context;
 
-  const url = useAppSelector(Query.url.select);
-  const method = useAppSelector(Query.method.select);
-  const headers = useAppSelector(Query.headers.select);
-  const body = useAppSelector(Query.body.select);
+  const url = useAppSelector(Options.url.select);
+  const method = useAppSelector(Options.method.select);
+  const headers = useAppSelector(Options.headers.select);
+  const body = useAppSelector(Options.body.select);
 
   const options = {
     url: url,
