@@ -1,9 +1,10 @@
 import { FormEvent, useContext } from 'react';
-import { Context } from '../../../contexts';
-import { LangContext } from '../../../contexts/types';
-import { EmptyProps } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Options } from '../../../store/reducers';
+import { Context } from '../../../contexts';
+
+import { LangContext } from '../../../contexts/types';
+import { EmptyProps } from '../../types';
 
 const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);

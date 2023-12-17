@@ -1,3 +1,3 @@
-import ResponseViewer from './response';
+import ResponseViewer from './response-viewer';
 
 export { ResponseViewer };

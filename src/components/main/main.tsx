@@ -1,10 +1,10 @@
 import { EmptyProps } from '../types';
-import { Editor } from '../editors';
+import GraphiQl from '../graphiql';
 
 const Main: React.FC<EmptyProps> = (): JSX.Element => {
   return (
     <main className="main container-fluid">
-      <Editor />
+      <GraphiQl />
     </main>
   );
 };

@@ -1,11 +1,12 @@
-import { EmptyProps } from '../types';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Inputs, Options } from '../../store/reducers';
-import { ResponseViewer } from '../viewers';
-import QueryEditor from './query-editor';
-import UrlEditor from './url-editor';
 
-const Editor: React.FC<EmptyProps> = (): JSX.Element => {
+import { ResponseViewer } from '../viewers';
+import { QueryEditor, UrlEditor } from '../editors';
+
+import { EmptyProps } from '../types';
+
+const GraphiQl: React.FC<EmptyProps> = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const queryInput = useAppSelector(Inputs.query.select);
 
@@ -36,4 +37,4 @@ const Editor: React.FC<EmptyProps> = (): JSX.Element => {
   );
 };
 
-export default Editor;
+export default GraphiQl;
