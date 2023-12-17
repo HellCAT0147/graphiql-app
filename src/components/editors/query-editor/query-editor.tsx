@@ -3,39 +3,46 @@ import { Context } from '../../../contexts';
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
 import { useGetDataQuery } from '../../../store/reducers/api-slice';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { Query } from '../../../store/reducers';
 
 const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
-  const [urlApi, setUrlApi] = useState('');
-  const [urlApiInput, setUrlApiInput] = useState('');
-  const [query, setQuery] = useState('');
-  const [queryInput, setQueryInput] = useState('');
   const {
     lang: { queryEditorTitle },
   } = context;
 
-  const headers = {
-    'content-type': 'application/json',
-    Authorization: '<token>',
-  };
+  const dispatch = useAppDispatch();
+  const url = useAppSelector(Query.url.select);
+  const method = useAppSelector(Query.method.select);
+  const headers = useAppSelector(Query.headers.select);
+  const body = useAppSelector(Query.body.select);
 
-  const graphqlQuery = {
-    query: query,
-    variables: {},
-  };
+  const [urlApiInput, setUrlApiInput] = useState('');
+  const [queryInput, setQueryInput] = useState('');
+
   const options = {
-    url: urlApi,
-    method: 'POST',
+    url: url,
+    method: method,
     headers: headers,
-    body: JSON.stringify(graphqlQuery),
+    body: body,
   };
 
-  const { data } = useGetDataQuery({ ...options });
+  const { data } = useGetDataQuery({ ...options }, { skip: !body });
 
   const onSetApiURL = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setUrlApi(urlApiInput);
+    dispatch(Query.url.set(urlApiInput));
   };
+
+  function onGetData() {
+    const newBody = JSON.stringify({
+      query: queryInput,
+      variables: {},
+    });
+
+    dispatch(Query.body.set(newBody));
+  }
 
   return (
     <div className="card mb-3 mt-3">
@@ -74,8 +81,8 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
         </div>
         <div className="card border-light mb-3" style={{ width: '45%' }}>
           <div className="card-header d-flex justify-content-between">
-            <p>Response</p>
-            <p>{urlApi}</p>
+            <p className="mb-0">Response</p>
+            <p className="mb-0">{url}</p>
           </div>
           <div className="card-body">
             <div className="form-group">
@@ -92,7 +99,7 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
         <button
           type="button"
           className="btn btn-secondary position-absolute top-50 start-50 translate-middle"
-          onClick={() => setQuery(queryInput)}
+          onClick={onGetData}
         >
           {'\u25BA'}
         </button>
