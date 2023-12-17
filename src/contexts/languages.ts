@@ -13,6 +13,7 @@ export const EN: Languages = {
   queryEditorTitle: 'Query Editor',
   responseViewerHeader: 'Response',
   setApi: 'set Api',
+  placeholderUrl: 'enter the URL...',
 };
 
 export const RU: Languages = {
@@ -28,4 +29,5 @@ export const RU: Languages = {
   queryEditorTitle: 'Редактор запросов',
   responseViewerHeader: 'Ответ',
   setApi: 'задать Api',
+  placeholderUrl: 'введите URL...',
 };

@@ -9,7 +9,7 @@ import { EmptyProps } from '../../types';
 const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { setApi },
+    lang: { setApi, placeholderUrl },
   } = context;
 
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
   };
 
   return (
-    <div className="card-header d-flex justify-content-between">
+    <section className="card-header d-flex justify-content-between">
       <h5>{urlApi}</h5>
       <form
         className="input-group mb-3"
@@ -32,7 +32,7 @@ const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
         <input
           type="text"
           className="form-control"
-          placeholder="enter the URL..."
+          placeholder={placeholderUrl}
           onChange={(e) => dispatch(Inputs.url.set(e.target.value))}
           value={url}
         />
@@ -40,7 +40,7 @@ const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
           {setApi}
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

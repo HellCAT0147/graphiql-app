@@ -23,10 +23,10 @@ const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
   );
 
   return (
-    <div className="card border-light mb-3" style={{ width: '45%' }}>
-      <div className="card-header d-flex justify-content-between">
+    <section className="card border-light mb-3" style={{ width: '45%' }}>
+      <h6 className="card-header d-flex justify-content-between">
         {responseViewerHeader}
-      </div>
+      </h6>
       <div className="card-body">
         <div className="form-group">
           <textarea
@@ -38,7 +38,7 @@ const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
           ></textarea>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

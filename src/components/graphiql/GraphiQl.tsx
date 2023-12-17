@@ -20,9 +20,9 @@ const GraphiQl: React.FC<EmptyProps> = (): JSX.Element => {
   }
 
   return (
-    <div className="card mb-3 mt-3">
+    <article className="card mb-3 mt-3">
       <UrlEditor />
-      <div className="card-body d-flex justify-content-between">
+      <section className="card-body d-flex justify-content-between">
         <QueryEditor />
         <ResponseViewer />
         <button
@@ -32,8 +32,8 @@ const GraphiQl: React.FC<EmptyProps> = (): JSX.Element => {
         >
           {'\u25BA'}
         </button>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 };
 

@@ -16,8 +16,8 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="card border-secondary mb-3" style={{ width: '45%' }}>
-      <div className="card-header">{queryEditorTitle}</div>
+    <section className="card border-secondary mb-3" style={{ width: '45%' }}>
+      <h6 className="card-header">{queryEditorTitle}</h6>
       <div className="card-body">
         <div className="form-group">
           <textarea
@@ -29,7 +29,7 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
           ></textarea>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
