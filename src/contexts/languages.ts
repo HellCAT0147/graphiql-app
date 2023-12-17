@@ -10,7 +10,6 @@ export const EN: Languages = {
   errorMessageText: 'Please reload the page.',
   notFoundTitle: 'Page not found',
   notFoundText: 'please check the URL',
-
   welcomeMain: 'To Main',
   welcomeSignIn: 'Sign In',
   welcomeSignUp: 'Sign Up',
@@ -55,6 +54,10 @@ export const EN: Languages = {
   welcomeMentorRole: 'Mentor',
   welcomeMentorDescription:
     "Our mentors played a far from insignificant role in the creation of this app. LoremIpsum is a master of his craft, a virtuoso of the front-end, friendly and attentive to detail. Throughout the whole mentorship, he tried to keep abreast of his mentee's affairs, his interviews; when contacting him, he always tried to get in touch as soon as possible and help to solve the issue. LoremIpsum is a fullstack developer, a GitHub sorcerer, capable of destroying your code problems and your self-esteem with one breath. These awesome guys guided our young inexperienced team through the thorns to stardom. Thank you!!",
+  queryEditorTitle: 'Query Editor',
+  responseViewerHeader: 'Response',
+  setApi: 'set Api',
+  placeholderUrl: 'enter the URL...',
 };
 
 export const RU: Languages = {
@@ -67,7 +70,6 @@ export const RU: Languages = {
   errorMessageText: 'Пожалуйста перезагрузите страницу.',
   notFoundTitle: 'Страница не найдена',
   notFoundText: 'проверьте пожалуйста URL',
-
   welcomeMain: 'На главную',
   welcomeSignIn: 'Вход',
   welcomeSignUp: 'Регистрация',
@@ -112,4 +114,8 @@ export const RU: Languages = {
   welcomeMentorRole: 'Ментор',
   welcomeMentorDescription:
     'Наши наставники сыграли далеко не последнюю роль в создании этого приложения. LoremIpsum - мастер своего дела, виртуоз фронтенда, дружелюбный и внимательный к деталям. На протяжении всего менторства он старался быть в курсе дел своего подопечного, его интервью; при обращении к нему он всегда старался как можно быстрее связаться и помочь решить вопрос. LoremIpsum - fullstack-разработчик, волшебник GitHub, способный на одном дыхании уничтожить ваши проблемы с кодом и вашу самооценку. Эти потрясающие ребята провели нашу молодую неопытную команду через тернии к звездам. Спасибо!!!',
+  queryEditorTitle: 'Редактор запросов',
+  responseViewerHeader: 'Ответ',
+  setApi: 'задать Api',
+  placeholderUrl: 'введите URL...',
 };

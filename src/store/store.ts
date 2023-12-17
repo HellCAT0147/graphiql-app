@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import messageReducer from './reducers/message-slice';
+import { messageReducer, optionsReducer, inputsReducer } from './reducers';
 import { apiSlice } from './reducers/api-slice';
 
 export const store = configureStore({
   reducer: {
     message: messageReducer,
+    options: optionsReducer,
+    inputs: inputsReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
