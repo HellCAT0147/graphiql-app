@@ -3,7 +3,7 @@ import { members } from '../../../constants';
 import { Context } from '../../../contexts';
 
 import { LangContext } from '../../../contexts/types';
-import PersonCard from '../personCard';
+import PersonCard from '../person-card';
 
 const MemberList = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
