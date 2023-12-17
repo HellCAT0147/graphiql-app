@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Context } from '../../../contexts';
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
-import { useAppDispatch } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs } from '../../../store/reducers';
 
 const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
@@ -11,6 +11,7 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
     lang: { queryEditorTitle },
   } = context;
 
+  const queryInput = useAppSelector(Inputs.query.select);
   const dispatch = useAppDispatch();
 
   return (
@@ -23,6 +24,7 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
             id="queryTextarea"
             rows={10}
             onChange={(e) => dispatch(Inputs.query.set(e.target.value))}
+            value={queryInput}
           ></textarea>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { InputsStore, SelectString } from '../types';
 
 const initialState: InputsStore = {
   url: '',
-  query: '',
+  query: '{ __schema { types { name } } }',
 };
 
 export const InputsSlice = createSlice({
