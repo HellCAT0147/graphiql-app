@@ -49,9 +49,9 @@ export const EN: Languages = {
   welcomeCollaborationDescription:
     'The developers of our team met here at the RSS course. Kamilla and Ilya first met while discussing the GIT test in the thematic Discord channel, and later, while working on the OOP test and developing the Minesweeper, they met Alexander. Ilya and Alexander immediately agreed on code cleanliness and neatness of development, while Kamilla took a supporting role and search for quick solutions. The team stayed in touch almost around the clock, immediately responding to problems arising during development. Every idea and subsequent solution was discussed with the entire team beforehand, and no pull-request was merged without the approval of the entire team. During the development HAQ faced various difficulties, which were mainly due to the inexperience of the team members. Mentors Aleksei and Andrei were immediately coming to the rescue, who, with their impressive experience in IT, could tell us exactly in which direction to look for a solution to a problem that arose. During the development of the project, the team members became friends and hope to continue their cooperation, or at least maintain contact, in the future.',
   welcomeThanksTitle: 'Special Thanks',
-  welcomeMentorName1: 'Lorem',
-  welcomeMentorName2: 'Ipsum',
-  welcomeMentorName3: 'Olge',
+  welcomeMentorName4: 'Lorem',
+  welcomeMentorName5: 'Ipsum',
+  welcomeMentorName6: 'Olge',
   welcomeMentorRole: 'Mentor',
   welcomeMentorDescription:
     "Our mentors played a far from insignificant role in the creation of this app. LoremIpsum is a master of his craft, a virtuoso of the front-end, friendly and attentive to detail. Throughout the whole mentorship, he tried to keep abreast of his mentee's affairs, his interviews; when contacting him, he always tried to get in touch as soon as possible and help to solve the issue. LoremIpsum is a fullstack developer, a GitHub sorcerer, capable of destroying your code problems and your self-esteem with one breath. These awesome guys guided our young inexperienced team through the thorns to stardom. Thank you!!",
@@ -106,9 +106,9 @@ export const RU: Languages = {
   welcomeCollaborationDescription:
     'Разработчики нашей команды познакомились здесь, на курсе RSS. Камилла и Илья впервые встретились при обсуждении GIT-теста в тематическом Discord-канале, а позже, во время работы над ООП-тестом и разработки Minesweeper, они познакомились с Александром. Илья и Александр сразу сошлись на чистоте кода и аккуратности разработки, а Камилла взяла на себя вспомогательную роль и поиск быстрых решений. Команда оставалась на связи практически круглосуточно, мгновенно реагируя на возникающие в процессе разработки проблемы. Каждая идея и последующее решение обсуждались со всей командой заранее, и ни один pull-request не объединялся без одобрения всей команды. В процессе разработки HAQ столкнулся с различными трудностями, которые в основном были связаны с неопытностью членов команды. На помощь сразу же приходили наставники Алексей и Андрей, которые, обладая внушительным опытом работы в IT, могли подсказать, в каком направлении искать решение возникшей проблемы. За время работы над проектом члены команды подружились и надеемся продолжить сотрудничество или хотя бы поддерживать контакт в будущем.',
   welcomeThanksTitle: 'Особое спасибо',
-  welcomeMentorName1: 'Иван',
-  welcomeMentorName2: 'Иван',
-  welcomeMentorName3: 'Иван',
+  welcomeMentorName4: 'Иван',
+  welcomeMentorName5: 'Иван',
+  welcomeMentorName6: 'Иван',
   welcomeMentorRole: 'Ментор',
   welcomeMentorDescription:
     'Наши наставники сыграли далеко не последнюю роль в создании этого приложения. LoremIpsum - мастер своего дела, виртуоз фронтенда, дружелюбный и внимательный к деталям. На протяжении всего менторства он старался быть в курсе дел своего подопечного, его интервью; при обращении к нему он всегда старался как можно быстрее связаться и помочь решить вопрос. LoremIpsum - fullstack-разработчик, волшебник GitHub, способный на одном дыхании уничтожить ваши проблемы с кодом и вашу самооценку. Эти потрясающие ребята провели нашу молодую неопытную команду через тернии к звездам. Спасибо!!!',

@@ -1,10 +1,16 @@
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
+import { Context } from '../../../contexts';
+import { LangContext } from '../../../contexts/types';
 
-function Collab({ title, text }: { title: string; text: string }): ReactNode {
+function Collab(): ReactNode {
+  const context: LangContext = useContext<LangContext>(Context);
+  const {
+    lang: { welcomeCollaborationTitle, welcomeCollaborationDescription },
+  } = context;
   return (
     <div className="d-flex flex-column justify-content-center align-items-center px-3">
-      <h2 className="text-info"> {title}</h2>
-      <div>{text}</div>
+      <h2 className="text-info"> {welcomeCollaborationTitle}</h2>
+      <div>{welcomeCollaborationDescription}</div>
     </div>
   );
 }
