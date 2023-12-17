@@ -15,6 +15,11 @@ export interface ResponseApi {
   data: string;
 }
 
-export interface MessageState {
+export interface MessageStore {
   error: string;
+}
+
+export interface InputsStore {
+  url: string;
+  query: string;
 }

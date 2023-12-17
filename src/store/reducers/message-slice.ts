@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
-import { MessageState, SelectString } from '../types';
+import { MessageStore, SelectString } from '../types';
 
-const initialState: MessageState = {
+const initialState: MessageStore = {
   error: '',
 };
 

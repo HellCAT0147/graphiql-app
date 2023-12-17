@@ -12,6 +12,7 @@ export const EN: Languages = {
   notFoundText: 'please check the URL',
   queryEditorTitle: 'Query Editor',
   responseViewerHeader: 'Response',
+  setApi: 'set Api',
 };
 
 export const RU: Languages = {
@@ -26,4 +27,5 @@ export const RU: Languages = {
   notFoundText: 'проверьте пожалуйста URL',
   queryEditorTitle: 'Редактор запросов',
   responseViewerHeader: 'Ответ',
+  setApi: 'задать Api',
 };

@@ -17,20 +17,15 @@ const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
   const headers = useAppSelector(Options.headers.select);
   const body = useAppSelector(Options.body.select);
 
-  const options = {
-    url: url,
-    method: method,
-    headers: headers,
-    body: body,
-  };
-
-  const { data } = useGetDataQuery({ ...options }, { skip: !body });
+  const { data } = useGetDataQuery(
+    { url, method, headers, body },
+    { skip: !body }
+  );
 
   return (
     <div className="card border-light mb-3" style={{ width: '45%' }}>
       <div className="card-header d-flex justify-content-between">
-        <p className="mb-0">{responseViewerHeader}</p>
-        <p className="mb-0">{url}</p>
+        {responseViewerHeader}
       </div>
       <div className="card-body">
         <div className="form-group">
