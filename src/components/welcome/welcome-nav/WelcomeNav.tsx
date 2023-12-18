@@ -19,7 +19,7 @@ const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
       {tokenMissing ? (
         <>
           <Button text={welcomeSignIn} link={'/login'} />
-          <Button text={welcomeSignUp} link={'/registration'} />
+          <Button text={welcomeSignUp} link={'/register'} />
         </>
       ) : (
         <Button text={welcomeMain} link={'/'} />
