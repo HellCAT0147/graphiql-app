@@ -14,7 +14,17 @@ import {
 const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { registerTitle },
+    lang: {
+      registerTitle,
+      namePlaceholder,
+      emailPlaceholder,
+      passwordPlaceholder,
+      registerButtonText,
+      googleButtonText,
+      accountPositiveText,
+      loginButtonText,
+      accountSupportText,
+    },
   } = context;
 
   const [email, setEmail] = useState('');
@@ -52,34 +62,35 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
+          placeholder={namePlaceholder}
         />
         <input
           className="col mx-1"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          placeholder={emailPlaceholder}
         />
         <input
           className="col mx-1"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder={passwordPlaceholder}
         />
         <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
-          Register
+          {registerButtonText}
         </button>
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
         onClick={signInWithGoogle}
       >
-        Register with Google
+        {googleButtonText}
       </button>
       <p className="text-center mt-2">
-        Already have an account? <Link to="/login">Login</Link> now.
+        {accountPositiveText} <Link to="/login">{loginButtonText}</Link>
+        {` ${accountSupportText}`}
       </p>
     </section>
   );

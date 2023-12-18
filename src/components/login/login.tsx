@@ -14,7 +14,17 @@ import {
 const Login: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { loginTitle },
+    lang: {
+      loginTitle,
+      emailPlaceholder,
+      passwordPlaceholder,
+      loginButtonText,
+      googleButtonText,
+      resetPasswordText,
+      accountNegativeText,
+      registerLink,
+      accountSupportText,
+    },
   } = context;
 
   const [email, setEmail] = useState('');
@@ -55,30 +65,31 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          placeholder={emailPlaceholder}
         />
         <input
           className="col mx-1"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder={passwordPlaceholder}
         />
         <button onClick={handleSignIn} className="col mx-1 btn btn-success">
-          Login
+          {loginButtonText}
         </button>
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
         onClick={signInWithGoogle}
       >
-        Login with Google
+        {googleButtonText}
       </button>
       <Link className="text-center mt-2" to="/reset">
-        Forgot Password
+        {resetPasswordText}
       </Link>
       <p className="text-center">
-        Don&apos;t have an account? <Link to="/register">Register</Link> now.
+        {accountNegativeText} <Link to="/register">{registerLink}</Link>
+        {` ${accountSupportText}`}
       </p>
     </section>
   );

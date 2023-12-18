@@ -11,7 +11,14 @@ import { auth } from '../../firebase';
 const Reset: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { resetTitle },
+    lang: {
+      resetTitle,
+      emailPlaceholder,
+      resetButtonText,
+      accountNegativeText,
+      registerLink,
+      accountSupportText,
+    },
   } = context;
 
   const [email, setEmail] = useState('');
@@ -42,17 +49,18 @@ const Reset: React.FC<EmptyProps> = (): JSX.Element => {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          placeholder={emailPlaceholder}
         />
         <button
           className="col mx-1 btn btn-success"
           onClick={() => sendPasswordResetEmail(auth, email)}
         >
-          Send password reset email
+          {resetButtonText}
         </button>
       </div>
       <p className="text-center mt-2">
-        Don&apos;t have an account? <Link to="/register">Register</Link> now.
+        {accountNegativeText} <Link to="/register">{registerLink}</Link>
+        {` ${accountSupportText}`}.
       </p>
     </section>
   );
