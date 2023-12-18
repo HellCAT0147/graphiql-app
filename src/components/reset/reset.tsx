@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
-import styles from './reset.module.scss';
+import styles from './Reset.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { sendPasswordResetEmail } from 'firebase/auth';
