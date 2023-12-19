@@ -1,3 +1,3 @@
-import PersonCard from './PersonCard.tsx';
+import PersonCard from './PersonCard';
 
 export default PersonCard;

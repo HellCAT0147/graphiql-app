@@ -1,3 +1,3 @@
-import Collab from './Collab.tsx';
+import Collab from './Collab';
 
 export default Collab;

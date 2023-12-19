@@ -1,3 +1,3 @@
-import TeamIntro from './TeamIntro.tsx';
+import TeamIntro from './TeamIntro';
 
 export default TeamIntro;

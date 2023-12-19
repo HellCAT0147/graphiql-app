@@ -1,3 +1,3 @@
-import Bio from './Bio.tsx';
+import Bio from './Bio';
 
 export default Bio;

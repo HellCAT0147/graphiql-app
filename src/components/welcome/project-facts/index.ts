@@ -1,3 +1,3 @@
-import ProjectFacts from './ProjectFacts.tsx';
+import ProjectFacts from './ProjectFacts';
 
 export default ProjectFacts;

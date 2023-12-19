@@ -1,3 +1,3 @@
-import WelcomeNav from './WelcomeNav.tsx';
+import WelcomeNav from './WelcomeNav';
 
 export default WelcomeNav;

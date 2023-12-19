@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
-import { EmptyProps } from '../../components/types';
-import styles from './not-found.module.scss';
+import { EmptyProps } from '../types';
+import styles from './NotFound.module.scss';
 
 const NotFound: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);

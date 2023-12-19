@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../store/hooks';
 import { Message } from '../../store/reducers/message-slice';
 import { ErrorProps } from '../types';
 
-import styles from './error-message.module.scss';
+import styles from './ErrorMessage.module.scss';
 
 const ErrorMessage: React.FC<ErrorProps> = (props: ErrorProps): JSX.Element => {
   const dispatch = useAppDispatch();
