@@ -1,7 +1,8 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode, useContext, useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../firebase';
 import { Context } from '../../../contexts';
 import { LangContext } from '../../../contexts/types';
-
 import { EmptyProps } from '../../types';
 import Button from '../button';
 
@@ -11,15 +12,23 @@ const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
     lang: { welcomeMain, welcomeSignIn, welcomeSignUp },
   } = context;
 
-  const tokenMissing = true;
-  //TODO:: change 'tokenMissing' to let or to context or state
+  const [user, , error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (error) throwError(error);
+  }, [error]);
+
+  const throwError = (error: Error) => {
+    error;
+    // TODO: tostify error
+  };
 
   return (
     <div className="d-flex flex-row justify-content-end my-3 mx-3">
-      {tokenMissing ? (
+      {!user ? (
         <>
           <Button text={welcomeSignIn} link={'/login'} />
-          <Button text={welcomeSignUp} link={'/registration'} />
+          <Button text={welcomeSignUp} link={'/register'} />
         </>
       ) : (
         <Button text={welcomeMain} link={'/'} />

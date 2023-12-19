@@ -4,12 +4,16 @@ import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { useContext } from 'react';
 import { EN, RU } from '../../contexts/languages';
+import { auth, logout } from '../../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { mainLink, welcomeLink, lang },
+    lang: { mainLink, welcomeLink, lang, signOut },
   } = context;
+
+  const [user] = useAuthState(auth);
 
   function onToggleLang() {
     if (context.lang.lang === 'en') {
@@ -52,8 +56,19 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
             className="btn btn-secondary"
             onClick={onToggleLang}
           >
-            {lang}
+            {lang.toUpperCase()}
           </button>
+          {user ? (
+            <button
+              type="button"
+              className="btn btn-secondary mx-2"
+              onClick={logout}
+            >
+              {signOut}
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </nav>
