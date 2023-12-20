@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { Context } from '../../../contexts';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { Visibility } from '../../../store/reducers';
 
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
@@ -10,6 +12,17 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
     lang: { headersButtonName, variablesButtonName },
   } = context;
 
+  const isToolsVisible = useAppSelector(Visibility.tools.select);
+  const dispatch = useAppDispatch();
+
+  function onToggleToolsVisible() {
+    dispatch(Visibility.tools.set(!isToolsVisible));
+  }
+
+  function setVisibilityTools() {
+    if (!isToolsVisible) dispatch(Visibility.tools.set(true));
+  }
+
   return (
     <section className="editor-tools">
       <div className="px-3 d-flex justify-content-between">
@@ -19,6 +32,7 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
             className="btn-check"
             name="request-options"
             id="variables-radio"
+            onClick={setVisibilityTools}
           />
           <label className="btn btn-outline-primary" htmlFor="variables-radio">
             {variablesButtonName}
@@ -28,18 +42,29 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
             className="btn-check"
             name="request-options"
             id="headers-radio"
+            onClick={setVisibilityTools}
           />
           <label className="btn btn-outline-primary" htmlFor="headers-radio">
             {headersButtonName}
           </label>
         </div>
-        <button type="button" className="btn btn-dark">
-          <i className="px-1 fa-sharp fa-solid fa-caret-down" />
+        <button
+          type="button"
+          className="btn btn-dark"
+          onClick={onToggleToolsVisible}
+        >
+          <i
+            className={`px-1 fa-sharp fa-solid fa-caret-${
+              isToolsVisible ? 'down' : 'up'
+            }`}
+          />
         </button>
       </div>
       <div className="card-body">
         <div className="form-group">
-          <textarea className="form-control" id="queryTextarea"></textarea>
+          {isToolsVisible && (
+            <textarea className="form-control" id="queryTextarea"></textarea>
+          )}
         </div>
       </div>
     </section>
