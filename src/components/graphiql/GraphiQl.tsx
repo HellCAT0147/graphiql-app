@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Inputs, Options } from '../../store/reducers';
 
 import { ResponseViewer } from '../viewers';
-import { QueryEditor, UrlEditor } from '../editors';
+import { Editors, UrlEditor } from '../editors';
 
 import { EmptyProps } from '../types';
 
@@ -23,7 +23,7 @@ const GraphiQl: React.FC<EmptyProps> = (): JSX.Element => {
     <article className="card mb-3 mt-3">
       <UrlEditor />
       <section className="card-body d-flex justify-content-between">
-        <QueryEditor />
+        <Editors />
         <ResponseViewer />
         <button
           type="button"

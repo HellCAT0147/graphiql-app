@@ -6,7 +6,7 @@ import { Context } from '../../../contexts';
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
 
-const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
+const HeadersEditor: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: { queryEditorTitle },
@@ -33,4 +33,4 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
   );
 };
 
-export default QueryEditor;
+export default HeadersEditor;
