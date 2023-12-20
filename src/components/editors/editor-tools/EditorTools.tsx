@@ -12,25 +12,30 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
 
   return (
     <section className="editor-tools">
-      <div className="btn-group px-3" role="group">
-        <input
-          type="radio"
-          className="btn-check"
-          name="request-options"
-          id="variables-radio"
-        />
-        <label className="btn btn-outline-primary" htmlFor="variables-radio">
-          {variablesButtonName}
-        </label>
-        <input
-          type="radio"
-          className="btn-check"
-          name="request-options"
-          id="headers-radio"
-        />
-        <label className="btn btn-outline-primary" htmlFor="headers-radio">
-          {headersButtonName}
-        </label>
+      <div className="px-3 d-flex justify-content-between">
+        <div className="btn-group" role="group">
+          <input
+            type="radio"
+            className="btn-check"
+            name="request-options"
+            id="variables-radio"
+          />
+          <label className="btn btn-outline-primary" htmlFor="variables-radio">
+            {variablesButtonName}
+          </label>
+          <input
+            type="radio"
+            className="btn-check"
+            name="request-options"
+            id="headers-radio"
+          />
+          <label className="btn btn-outline-primary" htmlFor="headers-radio">
+            {headersButtonName}
+          </label>
+        </div>
+        <button type="button" className="btn btn-dark">
+          <i className="px-1 fa-sharp fa-solid fa-caret-down" />
+        </button>
       </div>
       <div className="card-body">
         <div className="form-group">
