@@ -77,6 +77,7 @@ export const EN: Languages = {
   resetButtonText: 'Send password reset email',
   headersButtonName: 'Headers',
   variablesButtonName: 'Variables',
+  docsHeader: 'DOCS',
 };
 
 export const RU: Languages = {
@@ -156,4 +157,5 @@ export const RU: Languages = {
   resetButtonText: 'Запросить ссылку на сброс пароля',
   headersButtonName: 'Заголовки',
   variablesButtonName: 'Переменные',
+  docsHeader: 'ДОКИ',
 };
