@@ -20,7 +20,7 @@ const GraphiQl: React.FC<EmptyProps> = (): JSX.Element => {
   }
 
   return (
-    <article className="card mb-3 mt-3">
+    <article className="card mb-3 mx-5 flex-grow-1">
       <UrlEditor />
       <section className="card-body d-flex justify-content-between">
         <Editors />

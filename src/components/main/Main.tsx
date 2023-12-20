@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import GraphiQl from '../graphiql';
+import { DocsViewer } from '../viewers';
 
 const Main: React.FC<EmptyProps> = (): JSX.Element => {
   const [user, loading, error] = useAuthState(auth);
@@ -24,7 +25,8 @@ const Main: React.FC<EmptyProps> = (): JSX.Element => {
   }, [user, loading, navigate]);
 
   return user ? (
-    <main className="main container-fluid">
+    <main className="main container-fluid d-flex py-3">
+      <DocsViewer />
       <GraphiQl />
     </main>
   ) : (

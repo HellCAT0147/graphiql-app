@@ -26,7 +26,10 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav
+      className="navbar navbar-expand-lg bg-primary sticky-top"
+      data-bs-theme="dark"
+    >
       <div className="container-fluid">
         <div className="collapse navbar-collapse" id="navbarColor02">
           <ul className="navbar-nav me-auto">
