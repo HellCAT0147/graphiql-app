@@ -5,22 +5,23 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Visibility } from '../../../store/reducers';
 
 import { LangContext } from '../../../contexts/types';
-import { EmptyProps } from '../../types';
 import { isHTMLInputElement } from '../../../utils/typeguards';
 
-const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
+const EditorTools: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: { headersButtonName, variablesButtonName },
   } = context;
 
-  const { register, resetField } = useForm({
-    mode: 'onChange',
-  });
+  const { register, resetField } = useForm();
 
   const isToolsVisible = useAppSelector(Visibility.tools.select);
   const currentTools = useAppSelector(Inputs.currentTools.select);
+  const variablesValue = useAppSelector(Inputs.variables.select);
+  const headersValue = useAppSelector(Inputs.headers.select);
   const dispatch = useAppDispatch();
+  const isVariables = currentTools === 'variables';
+  const isHeaders = currentTools === 'headers';
 
   function onToggleToolsVisible() {
     if (isToolsVisible) resetField('tools');
@@ -38,12 +39,8 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
   }
 
   function onSetToolsValue(e: ChangeEvent<HTMLTextAreaElement>) {
-    if (currentTools === 'headers') {
-      dispatch(Inputs.headers.set(e.target.value));
-    }
-    if (currentTools === 'variables') {
-      dispatch(Inputs.variables.set(e.target.value));
-    }
+    if (isVariables) dispatch(Inputs.variables.set(e.target.value));
+    if (isHeaders) dispatch(Inputs.headers.set(e.target.value));
   }
 
   return (
@@ -60,6 +57,7 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
             className="btn-check"
             id="variables-radio"
             value="variables"
+            checked={isToolsVisible && isVariables}
           />
           <label className="btn btn-outline-primary" htmlFor="variables-radio">
             {variablesButtonName}
@@ -70,6 +68,7 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
             className="btn-check"
             id="headers-radio"
             value="headers"
+            checked={isToolsVisible && isHeaders}
           />
           <label className="btn btn-outline-primary" htmlFor="headers-radio">
             {headersButtonName}
@@ -94,6 +93,7 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
               className="form-control"
               id="toolsTextarea"
               onChange={onSetToolsValue}
+              value={isVariables ? variablesValue : headersValue}
             ></textarea>
           )}
         </div>

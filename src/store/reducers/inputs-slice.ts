@@ -6,9 +6,9 @@ import { InputsStore, SelectString } from '../types';
 const initialState: InputsStore = {
   url: '',
   query: '{ __schema { types { name } } }',
-  currentTools: '',
-  headers: '',
+  currentTools: 'variables',
   variables: '',
+  headers: '',
 };
 
 export const InputsSlice = createSlice({
@@ -24,11 +24,11 @@ export const InputsSlice = createSlice({
     setCurrentTools: (state, action: PayloadAction<string>) => {
       state.currentTools = action.payload;
     },
-    setHeaders: (state, action: PayloadAction<string>) => {
-      state.headers = action.payload;
-    },
     setVariables: (state, action: PayloadAction<string>) => {
       state.variables = action.payload;
+    },
+    setHeaders: (state, action: PayloadAction<string>) => {
+      state.headers = action.payload;
     },
   },
 });
@@ -41,10 +41,10 @@ export const selectQuery: SelectString = (state: RootState) =>
   state.inputs.query;
 export const selectCurrentTools: SelectString = (state: RootState) =>
   state.inputs.currentTools;
-export const selectHeaders: SelectString = (state: RootState) =>
-  state.inputs.headers;
 export const selectVariables: SelectString = (state: RootState) =>
   state.inputs.variables;
+export const selectHeaders: SelectString = (state: RootState) =>
+  state.inputs.headers;
 
 export default InputsSlice.reducer;
 
@@ -61,12 +61,12 @@ export const Inputs = {
     set: setCurrentTools,
     select: selectCurrentTools,
   },
-  headers: {
-    set: setHeaders,
-    select: selectHeaders,
-  },
   variables: {
     set: setVariables,
     select: selectVariables,
+  },
+  headers: {
+    set: setHeaders,
+    select: selectHeaders,
   },
 };
