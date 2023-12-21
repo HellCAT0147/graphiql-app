@@ -6,6 +6,7 @@ import { Inputs, Visibility } from '../../../store/reducers';
 
 import { LangContext } from '../../../contexts/types';
 import { isHTMLInputElement } from '../../../utils/typeguards';
+import { Flags } from '../../../constants';
 
 const EditorTools: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -20,11 +21,12 @@ const EditorTools: React.FC = (): JSX.Element => {
   const variablesValue = useAppSelector(Inputs.variables.select);
   const headersValue = useAppSelector(Inputs.headers.select);
   const dispatch = useAppDispatch();
-  const isVariables = currentTools === 'variables';
-  const isHeaders = currentTools === 'headers';
+  const { tools, variables, headers, down, up } = Flags;
+  const isVariables = currentTools === variables;
+  const isHeaders = currentTools === headers;
 
   function onToggleToolsVisible() {
-    if (isToolsVisible) resetField('tools');
+    if (isToolsVisible) resetField(tools);
     dispatch(Visibility.tools.set(!isToolsVisible));
   }
 
@@ -52,25 +54,31 @@ const EditorTools: React.FC = (): JSX.Element => {
           onChange={(e) => onChangeTools(e)}
         >
           <input
-            {...register('tools')}
+            {...register(tools)}
             type="radio"
             className="btn-check"
-            id="variables-radio"
-            value="variables"
+            id={`${variables}-radio`}
+            value={variables}
             checked={isToolsVisible && isVariables}
           />
-          <label className="btn btn-outline-primary" htmlFor="variables-radio">
+          <label
+            className="btn btn-outline-primary"
+            htmlFor={`${variables}-radio`}
+          >
             {variablesButtonName}
           </label>
           <input
-            {...register('tools')}
+            {...register(tools)}
             type="radio"
             className="btn-check"
-            id="headers-radio"
-            value="headers"
+            id={`${headers}-radio`}
+            value={headers}
             checked={isToolsVisible && isHeaders}
           />
-          <label className="btn btn-outline-primary" htmlFor="headers-radio">
+          <label
+            className="btn btn-outline-primary"
+            htmlFor={`${headers}-radio`}
+          >
             {headersButtonName}
           </label>
         </form>
@@ -81,7 +89,7 @@ const EditorTools: React.FC = (): JSX.Element => {
         >
           <i
             className={`px-1 fa-sharp fa-solid fa-caret-${
-              isToolsVisible ? 'down' : 'up'
+              isToolsVisible ? down : up
             }`}
           />
         </button>
