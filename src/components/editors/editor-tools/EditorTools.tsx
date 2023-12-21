@@ -19,6 +19,7 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
   });
 
   const isToolsVisible = useAppSelector(Visibility.tools.select);
+  const currentTools = useAppSelector(Inputs.currentTools.select);
   const dispatch = useAppDispatch();
 
   function onToggleToolsVisible() {
@@ -37,8 +38,12 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
   }
 
   function onSetToolsValue(e: ChangeEvent<HTMLTextAreaElement>) {
-    e.preventDefault();
-    //TODO dispatch value to store
+    if (currentTools === 'headers') {
+      dispatch(Inputs.headers.set(e.target.value));
+    }
+    if (currentTools === 'variables') {
+      dispatch(Inputs.variables.set(e.target.value));
+    }
   }
 
   return (

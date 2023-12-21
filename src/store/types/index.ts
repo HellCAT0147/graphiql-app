@@ -24,6 +24,8 @@ export interface InputsStore {
   url: string;
   query: string;
   currentTools: string;
+  headers: string;
+  variables: string;
 }
 
 export interface VisibilityStore {
