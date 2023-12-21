@@ -6,6 +6,7 @@ import { InputsStore, SelectString } from '../types';
 const initialState: InputsStore = {
   url: '',
   query: '{ __schema { types { name } } }',
+  currentTools: '',
 };
 
 export const InputsSlice = createSlice({
@@ -18,14 +19,19 @@ export const InputsSlice = createSlice({
     setQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
     },
+    setCurrentTools: (state, action: PayloadAction<string>) => {
+      state.currentTools = action.payload;
+    },
   },
 });
 
-const { setUrl, setQuery } = InputsSlice.actions;
+const { setUrl, setQuery, setCurrentTools } = InputsSlice.actions;
 
 export const selectUrl: SelectString = (state: RootState) => state.inputs.url;
 export const selectQuery: SelectString = (state: RootState) =>
   state.inputs.query;
+export const selectCurrentTools: SelectString = (state: RootState) =>
+  state.inputs.currentTools;
 
 export default InputsSlice.reducer;
 
@@ -37,5 +43,9 @@ export const Inputs = {
   query: {
     set: setQuery,
     select: selectQuery,
+  },
+  currentTools: {
+    set: setCurrentTools,
+    select: selectCurrentTools,
   },
 };

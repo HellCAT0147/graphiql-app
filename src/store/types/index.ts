@@ -23,6 +23,7 @@ export interface MessageStore {
 export interface InputsStore {
   url: string;
   query: string;
+  currentTools: string;
 }
 
 export interface VisibilityStore {

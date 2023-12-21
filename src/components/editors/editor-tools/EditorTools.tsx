@@ -1,10 +1,12 @@
-import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { ChangeEvent, FormEvent, useContext } from 'react';
 import { Context } from '../../../contexts';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { Visibility } from '../../../store/reducers';
+import { Inputs, Visibility } from '../../../store/reducers';
 
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
+import { isHTMLInputElement } from '../../../utils/typeguards';
 
 const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -12,10 +14,15 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
     lang: { headersButtonName, variablesButtonName },
   } = context;
 
+  const { register, resetField } = useForm({
+    mode: 'onChange',
+  });
+
   const isToolsVisible = useAppSelector(Visibility.tools.select);
   const dispatch = useAppDispatch();
 
   function onToggleToolsVisible() {
+    if (isToolsVisible) resetField('tools');
     dispatch(Visibility.tools.set(!isToolsVisible));
   }
 
@@ -23,31 +30,46 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
     if (!isToolsVisible) dispatch(Visibility.tools.set(true));
   }
 
+  function onChangeTools(e: FormEvent<HTMLFormElement>) {
+    setVisibilityTools();
+    if (isHTMLInputElement(e.target))
+      dispatch(Inputs.currentTools.set(e.target.value));
+  }
+
+  function onSetToolsValue(e: ChangeEvent<HTMLTextAreaElement>) {
+    e.preventDefault();
+    //TODO dispatch value to store
+  }
+
   return (
     <section className="editor-tools">
       <div className="px-3 d-flex justify-content-between">
-        <div className="btn-group" role="group">
+        <form
+          className="btn-group"
+          role="group"
+          onChange={(e) => onChangeTools(e)}
+        >
           <input
+            {...register('tools')}
             type="radio"
             className="btn-check"
-            name="request-options"
             id="variables-radio"
-            onClick={setVisibilityTools}
+            value="variables"
           />
           <label className="btn btn-outline-primary" htmlFor="variables-radio">
             {variablesButtonName}
           </label>
           <input
+            {...register('tools')}
             type="radio"
             className="btn-check"
-            name="request-options"
             id="headers-radio"
-            onClick={setVisibilityTools}
+            value="headers"
           />
           <label className="btn btn-outline-primary" htmlFor="headers-radio">
             {headersButtonName}
           </label>
-        </div>
+        </form>
         <button
           type="button"
           className="btn btn-dark"
@@ -63,7 +85,11 @@ const EditorTools: React.FC<EmptyProps> = (): JSX.Element => {
       <div className="card-body">
         <div className="form-group">
           {isToolsVisible && (
-            <textarea className="form-control" id="queryTextarea"></textarea>
+            <textarea
+              className="form-control"
+              id="toolsTextarea"
+              onChange={onSetToolsValue}
+            ></textarea>
           )}
         </div>
       </div>
