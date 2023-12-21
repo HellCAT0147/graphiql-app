@@ -5,7 +5,16 @@ import { InputsStore, SelectString } from '../types';
 
 const initialState: InputsStore = {
   url: '',
-  query: '{ __schema { types { name } } }',
+  query: `query {
+  characters {
+    info {
+      count
+      pages
+      next
+      prev
+    }
+  }
+}`,
   currentTools: 'variables',
   variables: '',
   headers: '',

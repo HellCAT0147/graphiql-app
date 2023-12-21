@@ -12,7 +12,7 @@ import { FetchArgs } from '@reduxjs/toolkit/query';
 const initialState: FetchArgs = {
   url: 'https://rickandmortyapi.com/graphql',
   method: 'POST',
-  headers: { 'content-type': 'application/json' },
+  headers: undefined,
   body: '',
 };
 
@@ -27,7 +27,10 @@ export const OptionsSlice = createSlice({
       state.method = action.payload;
     },
     setHeaders: (state, action: PayloadAction<OptionsHeaders>) => {
-      state.headers = { ...state.headers, ...action.payload };
+      state.headers = {
+        'content-type': 'application/json',
+        ...action.payload,
+      };
     },
     setBody: (state, action: PayloadAction<string>) => {
       state.body = action.payload;

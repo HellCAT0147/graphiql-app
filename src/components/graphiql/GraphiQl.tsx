@@ -9,14 +9,17 @@ import { EmptyProps } from '../types';
 const GraphiQl: React.FC<EmptyProps> = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const queryInput = useAppSelector(Inputs.query.select);
+  const variablesInput = useAppSelector(Inputs.variables.select);
+  const headersInput = useAppSelector(Inputs.headers.select);
 
   function onGetData() {
     const newBody = JSON.stringify({
       query: queryInput,
-      variables: {},
+      variables: variablesInput,
     });
-
+    //TODO catch errors for incorrect headers or variables
     dispatch(Options.body.set(newBody));
+    dispatch(Options.headers.set(headersInput ? JSON.parse(headersInput) : {}));
   }
 
   return (
@@ -30,7 +33,7 @@ const GraphiQl: React.FC<EmptyProps> = (): JSX.Element => {
           className="btn btn-secondary position-absolute top-50 start-50 translate-middle"
           onClick={onGetData}
         >
-          {'\u25BA'}
+          <i className={`fs-2 px-1 fa-sharp fa-solid fa-caret-right`} />
         </button>
       </section>
     </article>
