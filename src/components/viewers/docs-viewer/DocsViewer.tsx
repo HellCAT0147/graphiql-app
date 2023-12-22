@@ -1,9 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Context } from '../../../contexts';
 
 import { LangContext } from '../../../contexts/types';
 import { Visibility } from '../../../store/reducers';
+
+import { useGetSchemaQuery } from '../../../store/reducers/api-slice';
+import { Options } from '../../../store/reducers';
+import { getSchemaTypes } from '../../../utils/schema-resolvers';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
+import { isSchema } from '../../../utils/typeguards';
 
 const DocsViewer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -14,9 +21,24 @@ const DocsViewer: React.FC = (): JSX.Element => {
   const isDocsVisible = useAppSelector(Visibility.docs.select);
   const dispatch = useAppDispatch();
 
-  function onToggleDocsVisible() {
+  const url = useAppSelector(Options.url.select);
+
+  const { data, error } = useGetSchemaQuery(url);
+
+  const onToggleDocsVisible = (): void => {
     dispatch(Visibility.docs.set(!isDocsVisible));
-  }
+  };
+
+  const handleError = (
+    error: FetchBaseQueryError | SerializedError | undefined
+  ): void => {
+    error; // TODO: handle error: error can be undefined if data is not "schema" like
+  };
+
+  useEffect(() => {
+    if (!error && isSchema(data)) getSchemaTypes(data);
+    else handleError(error);
+  }, [data, error]);
 
   return (
     <aside className="position-relative">

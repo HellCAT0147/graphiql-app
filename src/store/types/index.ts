@@ -1,3 +1,4 @@
+import { HistoryStep, SchemaType } from '../../components/types';
 import { RootState } from '../store';
 
 export type OptionsMethod = string | undefined;
@@ -42,4 +43,11 @@ export interface InputsGroupAttributes {
     classInput: string;
     classLabel: string;
   };
+}
+
+export interface DocsStore {
+  url: string;
+  mainData: SchemaType[];
+  currentData: SchemaType[];
+  history: HistoryStep[];
 }
