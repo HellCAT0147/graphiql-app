@@ -2,7 +2,6 @@ import { FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Visibility } from '../../../store/reducers';
 
-import { isHTMLInputElement } from '../../../utils/typeguards';
 import { InputsGroup } from '../../../constants';
 import InputGroup from '../input-group';
 
@@ -18,7 +17,7 @@ const ToolsForm: React.FC = (): JSX.Element => {
 
   function onChangeTools(e: FormEvent<HTMLFormElement>) {
     setVisibilityTools();
-    if (isHTMLInputElement(e.target))
+    if (e.target instanceof HTMLInputElement)
       dispatch(Inputs.currentTools.set(e.target.value));
   }
 
