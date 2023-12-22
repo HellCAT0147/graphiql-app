@@ -5,6 +5,7 @@ import messageReducer from './message-slice';
 import optionsReducer from './options-slice';
 import inputsReducer from './inputs-slice';
 import visibilityReducer from './visibility-slice';
+import docsReducer from './docs-slice';
 
 export {
   Options,
@@ -14,4 +15,5 @@ export {
   optionsReducer,
   inputsReducer,
   visibilityReducer,
+  docsReducer,
 };

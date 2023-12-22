@@ -78,6 +78,7 @@ export const EN: Languages = {
   headersButtonName: 'Headers',
   variablesButtonName: 'Variables',
   docsHeader: 'DOCS',
+  typesHeader: 'All Schema Types',
 };
 
 export const RU: Languages = {
@@ -157,5 +158,6 @@ export const RU: Languages = {
   resetButtonText: 'Запросить ссылку на сброс пароля',
   headersButtonName: 'Заголовки',
   variablesButtonName: 'Переменные',
-  docsHeader: 'ДОКИ',
+  docsHeader: 'ДОКА',
+  typesHeader: 'Все типы',
 };

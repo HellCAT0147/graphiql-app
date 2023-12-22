@@ -21,8 +21,7 @@ export function isSchema(obj: unknown): obj is Schema {
     typeof obj.data.__schema.types === 'object' &&
     obj.data.__schema.queryType &&
     obj.data.__schema.types &&
-    isSchemaTypes(obj.data.__schema.types) &&
-    'fuck' in obj
+    isSchemaTypes(obj.data.__schema.types)
   )
     return true;
   return false;

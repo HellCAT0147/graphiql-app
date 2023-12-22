@@ -11,11 +11,13 @@ import { getSchemaTypes } from '../../../utils/schema-resolvers';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import { isSchema } from '../../../utils/typeguards';
+import { Docs } from '../../../store/reducers/docs-slice';
+import TypeList from './type-list';
 
 const DocsViewer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { docsHeader },
+    lang: { docsHeader, typesHeader },
   } = context;
 
   const isDocsVisible = useAppSelector(Visibility.docs.select);
@@ -36,9 +38,10 @@ const DocsViewer: React.FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (!error && isSchema(data)) getSchemaTypes(data);
+    if (!error && isSchema(data))
+      dispatch(Docs.mainData.set(getSchemaTypes(data)));
     else handleError(error);
-  }, [data, error]);
+  }, [data, dispatch, error]);
 
   return (
     <aside className="position-relative">
@@ -56,11 +59,8 @@ const DocsViewer: React.FC = (): JSX.Element => {
         >
           <div className="card-header text-end">{docsHeader}</div>
           <div className="card-body">
-            <h4 className="card-title">{`Info card title`}</h4>
-            <p className="card-text">
-              {`Some quick example text to build on the card title and make up the
-            bulk of the card's content.`}
-            </p>
+            <h4 className="card-title">{typesHeader}</h4>
+            <TypeList />
           </div>
         </div>
       )}

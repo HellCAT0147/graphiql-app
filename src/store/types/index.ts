@@ -12,6 +12,7 @@ export type SelectString = (state: RootState) => string;
 export type SelectBoolean = (state: RootState) => boolean;
 export type SelectHeaders = (state: RootState) => OptionsHeaders;
 export type SelectMethod = (state: RootState) => OptionsMethod;
+export type SelectSchemaTypes = (state: RootState) => SchemaType[];
 
 export interface ResponseApi {
   data: string;
@@ -46,7 +47,6 @@ export interface InputsGroupAttributes {
 }
 
 export interface DocsStore {
-  url: string;
   mainData: SchemaType[];
   currentData: SchemaType[];
   history: HistoryStep[];

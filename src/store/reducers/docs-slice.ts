@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
-import { DocsStore, SelectString } from '../types';
+import { DocsStore, SelectSchemaTypes } from '../types';
+import { SchemaType } from '../../components/types';
 
 const initialState: DocsStore = {
-  url: '',
   mainData: [],
   currentData: [],
   history: [],
@@ -14,21 +14,29 @@ export const DocsSlice = createSlice({
   name: 'docs',
   initialState,
   reducers: {
-    setUrl: (state, action: PayloadAction<string>) => {
-      state.url = action.payload;
+    setData: (state, action: PayloadAction<SchemaType[]>) => {
+      state.currentData = action.payload;
+      if (!state.mainData.length) state.mainData = action.payload;
     },
   },
 });
 
-const { setUrl } = DocsSlice.actions;
+const { setData } = DocsSlice.actions;
 
-export const selectUrl: SelectString = (state: RootState) => state.inputs.url;
+export const selectMainData: SelectSchemaTypes = (state: RootState) =>
+  state.docs.mainData;
+export const selectCurrentData: SelectSchemaTypes = (state: RootState) =>
+  state.docs.currentData;
 
 export default DocsSlice.reducer;
 
 export const Docs = {
-  url: {
-    set: setUrl,
-    select: selectUrl,
+  currentData: {
+    set: setData,
+    select: selectCurrentData,
+  },
+  mainData: {
+    set: setData,
+    select: selectMainData,
   },
 };
