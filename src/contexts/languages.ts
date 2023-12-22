@@ -75,6 +75,9 @@ export const EN: Languages = {
   registerLink: 'Register',
   namePlaceholder: 'Name',
   resetButtonText: 'Send password reset email',
+  headersButtonName: 'Headers',
+  variablesButtonName: 'Variables',
+  docsHeader: 'DOCS',
 };
 
 export const RU: Languages = {
@@ -152,4 +155,7 @@ export const RU: Languages = {
   accountSupportText: 'сейчас.',
   namePlaceholder: 'Имя',
   resetButtonText: 'Запросить ссылку на сброс пароля',
+  headersButtonName: 'Заголовки',
+  variablesButtonName: 'Переменные',
+  docsHeader: 'ДОКИ',
 };

@@ -8,6 +8,7 @@ export type OptionsHeaders =
   | undefined;
 
 export type SelectString = (state: RootState) => string;
+export type SelectBoolean = (state: RootState) => boolean;
 export type SelectHeaders = (state: RootState) => OptionsHeaders;
 export type SelectMethod = (state: RootState) => OptionsMethod;
 
@@ -22,4 +23,23 @@ export interface MessageStore {
 export interface InputsStore {
   url: string;
   query: string;
+  currentTools: string;
+  headers: string;
+  variables: string;
+}
+
+export interface VisibilityStore {
+  tools: boolean;
+  docs: boolean;
+}
+
+export interface InputsGroupAttributes {
+  atr: {
+    id: string;
+    group: string;
+    type: string;
+    value: string;
+    classInput: string;
+    classLabel: string;
+  };
 }

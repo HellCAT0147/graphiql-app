@@ -1,5 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { messageReducer, optionsReducer, inputsReducer } from './reducers';
+import {
+  messageReducer,
+  optionsReducer,
+  inputsReducer,
+  visibilityReducer,
+} from './reducers';
 import { apiSlice } from './reducers/api-slice';
 
 export const store = configureStore({
@@ -7,6 +12,7 @@ export const store = configureStore({
     message: messageReducer,
     options: optionsReducer,
     inputs: inputsReducer,
+    visibility: visibilityReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

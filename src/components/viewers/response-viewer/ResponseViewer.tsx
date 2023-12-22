@@ -27,12 +27,11 @@ const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
       <h6 className="card-header d-flex justify-content-between">
         {responseViewerHeader}
       </h6>
-      <div className="card-body">
-        <div className="form-group">
+      <div className="card-body d-flex">
+        <div className="form-group flex-grow-1 d-flex">
           <textarea
             className="form-control"
             id="responseTextarea"
-            rows={10}
             readOnly
             value={data && JSON.stringify(data.data)}
           ></textarea>

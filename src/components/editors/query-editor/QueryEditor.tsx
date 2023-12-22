@@ -16,7 +16,7 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   return (
-    <section className="card border-secondary mb-3" style={{ width: '45%' }}>
+    <section>
       <h6 className="card-header">{queryEditorTitle}</h6>
       <div className="card-body">
         <div className="form-group">
