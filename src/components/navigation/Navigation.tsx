@@ -27,14 +27,11 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
   }
 
   const { y } = useWindowScroll();
-  const navClass =
-    y > 0
-      ? 'navbar navbar-expand-lg bg-dark sticky-top'
-      : 'navbar navbar-expand-lg bg-primary sticky-top fs-4';
+  const navClass = y > 0 ? 'bg-dark' : 'bg-primary fs-4';
 
   return (
     <nav
-      className={navClass}
+      className={`navbar navbar-expand-lg sticky-top ${navClass}`}
       data-bs-theme="dark"
       style={{ transitionDuration: '0.3s' }}
     >
