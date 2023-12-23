@@ -28,35 +28,31 @@ const ControlPanel: React.FC<EmptyProps> = (): JSX.Element => {
     let indent: number = 0;
     const space: string = ' ';
     const array = string.split('{');
-    const trimmedByOpenBracket = onTrimElement(array).join('{');
-    const arrayCloseBracket = trimmedByOpenBracket.split('}');
-    const trimmedByCloseBracket = onTrimElement(arrayCloseBracket).join('}');
-    const arraySplitBySpaces = trimmedByCloseBracket.split(' ');
-    const trimmedBySpaces = onTrimElement(arraySplitBySpaces);
-    trimmedBySpaces.filter((elem) => elem).join(' ');
-    array.forEach((element) => {
-      let elementWithIndent = `\n${space.repeat(indent)}${element}`;
-      switch (element) {
-        case '{':
-          indent += 2;
-          prettiedString += elementWithIndent;
-          break;
-        case '}':
-          indent -= 2;
-          elementWithIndent = `\n${space.repeat(indent)}${element}`;
-          prettiedString += elementWithIndent;
-          break;
+    const trimmedByOpenBracket = onTrimElement(array);
+    const openArr = trimmedByOpenBracket.slice(0, -1);
+    const countBrackets = trimmedByOpenBracket.length - 1;
+    const closeArray = trimmedByOpenBracket[countBrackets].split('}');
+    const innerArray = onTrimElement(closeArray[0].split(' ')).filter(
+      (elem) => elem
+    );
 
-        default:
-          prettiedString += elementWithIndent;
-      }
+    openArr.forEach((elem) => {
+      prettiedString += `\n${space.repeat(indent)}${elem} {`;
+      indent += 2;
     });
+    innerArray.forEach(
+      (elem) => (prettiedString += `\n${space.repeat(indent)}${elem}`)
+    );
+    for (let i = 1; i <= countBrackets; i++) {
+      prettiedString += `\n${space.repeat(indent)}}`;
+      indent -= 2;
+    }
 
-    return prettiedString;
+    return prettiedString.trim();
   }
 
   function onPrettify() {
-    onPrettifyArray(queryInput);
+    dispatch(Inputs.query.set(onPrettifyArray(queryInput)));
   }
 
   return (
