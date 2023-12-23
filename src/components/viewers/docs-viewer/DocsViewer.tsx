@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, lazy, Suspense } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Context } from '../../../contexts';
 
@@ -12,7 +12,9 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import { isSchema } from '../../../utils/typeguards';
 import { Docs } from '../../../store/reducers/docs-slice';
-import Screen from './screen';
+import Button from './button';
+import Loader from './loader';
+const DocsExplorer = lazy(() => import('./docs-explorer'));
 
 const DocsViewer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -26,10 +28,6 @@ const DocsViewer: React.FC = (): JSX.Element => {
   const url = useAppSelector(Options.url.select);
 
   const { data, error } = useGetSchemaQuery(url);
-
-  const onToggleDocsVisible = (): void => {
-    dispatch(Visibility.docs.set(!isDocsVisible));
-  };
 
   const handleError = (
     error: FetchBaseQueryError | SerializedError | undefined
@@ -45,17 +43,18 @@ const DocsViewer: React.FC = (): JSX.Element => {
 
   return (
     <aside className="position-relative">
-      <button
-        type="button"
-        className="btn btn-info position-absolute start-0 px-2 z-1"
-        onClick={onToggleDocsVisible}
-      >
-        <i className="fs-3 fa-sharp fa-solid fa-book-tanakh"></i>
-      </button>
+      {data ? (
+        <Button isLoading={false} isError={false} />
+      ) : error ? (
+        <Button isLoading={false} isError={true} />
+      ) : (
+        <Button isLoading={true} isError={false} />
+      )}
       {isDocsVisible && (
         <div
           className="card border-info mb-3"
           style={{
+            minWidth: '8rem',
             maxWidth: '15rem',
             minHeight: '90vh',
             maxHeight: '90vh',
@@ -64,7 +63,9 @@ const DocsViewer: React.FC = (): JSX.Element => {
         >
           <div className="card-header text-end">{docsHeader}</div>
           <div className="card-body">
-            <Screen />
+            <Suspense fallback={<Loader />}>
+              <DocsExplorer />
+            </Suspense>
           </div>
         </div>
       )}

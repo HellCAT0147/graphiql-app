@@ -4,7 +4,7 @@ import { isAllTypes } from '../../../../utils/typeguards';
 import MainTypeList from '../main-type-list';
 import TypeList from '../type-list';
 
-const Screen: React.FC = (): JSX.Element => {
+const DocsExplorer: React.FC = (): JSX.Element => {
   const data = useAppSelector(Docs.currentData.select);
 
   return (
@@ -20,4 +20,4 @@ const Screen: React.FC = (): JSX.Element => {
   );
 };
 
-export default Screen;
+export default DocsExplorer;

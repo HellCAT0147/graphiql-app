@@ -19,6 +19,11 @@ export type WithChildrenProps = {
   children: React.ReactNode;
 };
 
+export interface ButtonProps {
+  isLoading: boolean;
+  isError: boolean;
+}
+
 export interface MainTypeListProps {
   types: AllTypes;
 }
