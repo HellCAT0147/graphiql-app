@@ -2,10 +2,11 @@ import { NavLink } from 'react-router-dom';
 import { EmptyProps } from '../types';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { EN, RU } from '../../contexts/languages';
 import { auth, logout } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useWindowScroll } from 'react-use';
 
 const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -25,10 +26,17 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
     }
   }
 
+  const { y } = useWindowScroll();
+  const navClass =
+    y > 0
+      ? 'navbar navbar-expand-lg bg-dark sticky-top'
+      : 'navbar navbar-expand-lg bg-primary sticky-top fs-4';
+
   return (
     <nav
-      className="navbar navbar-expand-lg bg-primary sticky-top"
+      className={navClass}
       data-bs-theme="dark"
+      style={{ transitionDuration: '0.3s' }}
     >
       <div className="container-fluid">
         <div className="collapse navbar-collapse" id="navbarColor02">
