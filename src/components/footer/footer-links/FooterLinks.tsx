@@ -13,9 +13,10 @@ function FooterLinks(): ReactNode {
         return (
           <a
             href={member.gh}
-            target="blank"
+            target="_blank"
             key={member.id}
             className="fs-5 text-decoration-none"
+            rel="noreferrer"
           >
             <img src="/icon-gh.svg" alt="github icon " className="px-3" />
             {lang[`welcomeMemberName${index + 1}`]}

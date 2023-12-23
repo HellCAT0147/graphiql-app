@@ -7,7 +7,7 @@ function Footer(): ReactNode {
       <FooterLinks />
       <div> 2023 </div>
       <div>
-        <a href="https://rs.school/" target="blank">
+        <a href="https://rs.school/" target="_blank" rel="noreferrer">
           <img src="/footer__logo.svg" alt="footer-logo" />
         </a>
       </div>
