@@ -12,7 +12,7 @@ function FooterLinks(): ReactNode {
       {members.map((member, index) => {
         return (
           <a href={member.gh} key={index} className="fs-5 text-decoration-none">
-            <img src=" /icon-gh.svg" alt="github icon " className="px-3" />
+            <img src="/icon-gh.svg" alt="github icon " className="px-3" />
             {lang[`welcomeMemberName${index + 1}`]}
           </a>
         );
