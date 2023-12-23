@@ -78,7 +78,10 @@ export const EN: Languages = {
   headersButtonName: 'Headers',
   variablesButtonName: 'Variables',
   docsHeader: 'DOCS',
-  typesHeader: 'All Schema Types',
+  mainTypesHeader: 'All Schema Types',
+  typesHeader: 'Fields',
+  rootTypesHeader: 'Root Types',
+  noDescription: 'Description not available',
 };
 
 export const RU: Languages = {
@@ -159,5 +162,8 @@ export const RU: Languages = {
   headersButtonName: 'Заголовки',
   variablesButtonName: 'Переменные',
   docsHeader: 'ДОКА',
-  typesHeader: 'Все типы',
+  mainTypesHeader: 'Все типы схемы',
+  typesHeader: 'Поля',
+  rootTypesHeader: 'Корневые типы',
+  noDescription: 'Описание отсутствует',
 };

@@ -1,3 +1,5 @@
+import { AllTypes } from '../../store/types';
+
 export type HasError = boolean;
 
 export interface ErrorProps {
@@ -17,10 +19,20 @@ export type WithChildrenProps = {
   children: React.ReactNode;
 };
 
+export interface MainTypeListProps {
+  types: AllTypes;
+}
+
+export interface TypeListProps {
+  types: SchemaType[];
+  header?: string;
+  description?: string | null;
+}
+
 export interface Schema {
   data: {
     __schema: {
-      queryType: { name: string };
+      queryType: { name: string } | null;
       types: SchemaType[];
       mutationType: { name: string } | null;
     };
@@ -29,7 +41,7 @@ export interface Schema {
 
 export interface SchemaType {
   name: string;
-  description: string;
+  description: string | null;
   fields: SchemaType[];
   type?: InnerType;
 }

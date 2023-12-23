@@ -1,4 +1,5 @@
 import { Schema, SchemaType } from '../components/types';
+import { AllTypes } from '../store/types';
 
 export function isError(obj: unknown): obj is Error {
   if (obj instanceof Error) return true;
@@ -36,6 +37,12 @@ function isSchemaTypes(obj: unknown): obj is SchemaType[] {
     'description' in obj[0] &&
     'fields' in obj[0]
   )
+    return true;
+  return false;
+}
+
+export function isAllTypes(obj: unknown): obj is AllTypes {
+  if (typeof obj === 'object' && obj && 'types' in obj && 'rootTypes' in obj)
     return true;
   return false;
 }

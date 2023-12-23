@@ -12,12 +12,12 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import { isSchema } from '../../../utils/typeguards';
 import { Docs } from '../../../store/reducers/docs-slice';
-import TypeList from './type-list';
+import Screen from './screen';
 
 const DocsViewer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { docsHeader, typesHeader },
+    lang: { docsHeader },
   } = context;
 
   const isDocsVisible = useAppSelector(Visibility.docs.select);
@@ -55,12 +55,16 @@ const DocsViewer: React.FC = (): JSX.Element => {
       {isDocsVisible && (
         <div
           className="card border-info mb-3"
-          style={{ maxWidth: '15rem', minHeight: '90vh' }}
+          style={{
+            maxWidth: '15rem',
+            minHeight: '90vh',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+          }}
         >
           <div className="card-header text-end">{docsHeader}</div>
           <div className="card-body">
-            <h4 className="card-title">{typesHeader}</h4>
-            <TypeList />
+            <Screen />
           </div>
         </div>
       )}

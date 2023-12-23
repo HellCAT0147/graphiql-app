@@ -12,7 +12,7 @@ export type SelectString = (state: RootState) => string;
 export type SelectBoolean = (state: RootState) => boolean;
 export type SelectHeaders = (state: RootState) => OptionsHeaders;
 export type SelectMethod = (state: RootState) => OptionsMethod;
-export type SelectSchemaTypes = (state: RootState) => SchemaType[];
+export type SelectScreen = (state: RootState) => AllTypes | SchemaType | string;
 
 export interface ResponseApi {
   data: string;
@@ -46,8 +46,21 @@ export interface InputsGroupAttributes {
   };
 }
 
+export interface TypeProps {
+  type: SchemaType | { name: string } | null;
+  isRoot?: true;
+}
+
 export interface DocsStore {
-  mainData: SchemaType[];
-  currentData: SchemaType[];
+  mainData: AllTypes;
+  currentData: AllTypes | SchemaType | string;
   history: HistoryStep[];
+}
+
+export interface AllTypes {
+  types: SchemaType[];
+  rootTypes: {
+    query: { name: string } | null;
+    mutation: { name: string } | null;
+  };
 }
