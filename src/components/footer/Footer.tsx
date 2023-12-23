@@ -6,8 +6,8 @@ function Footer(): ReactNode {
     <footer className="d-flex justify-content-around align-items-center my-5 justify-self-end">
       <FooterLinks />
       <div> 2023 </div>
-      <div className="">
-        <a href="https://rs.school/">
+      <div>
+        <a href="https://rs.school/" target="blank">
           <img src="/footer__logo.svg" alt="footer-logo" />
         </a>
       </div>
