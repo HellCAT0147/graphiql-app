@@ -19,11 +19,21 @@ const ControlPanel: React.FC<EmptyProps> = (): JSX.Element => {
     dispatch(Options.headers.set(headersInput ? JSON.parse(headersInput) : {}));
   }
 
+  function onTrimElement(array: string[]): string[] {
+    return array.map((elem) => elem.trim());
+  }
+
   function onPrettifyArray(string: string) {
     let prettiedString = '';
     let indent: number = 0;
     const space: string = ' ';
-    const array = string.split(' ');
+    const array = string.split('{');
+    const trimmedByOpenBracket = onTrimElement(array).join('{');
+    const arrayCloseBracket = trimmedByOpenBracket.split('}');
+    const trimmedByCloseBracket = onTrimElement(arrayCloseBracket).join('}');
+    const arraySplitBySpaces = trimmedByCloseBracket.split(' ');
+    const trimmedBySpaces = onTrimElement(arraySplitBySpaces);
+    trimmedBySpaces.filter((elem) => elem).join(' ');
     array.forEach((element) => {
       let elementWithIndent = `\n${space.repeat(indent)}${element}`;
       switch (element) {
@@ -35,7 +45,6 @@ const ControlPanel: React.FC<EmptyProps> = (): JSX.Element => {
           indent -= 2;
           elementWithIndent = `\n${space.repeat(indent)}${element}`;
           prettiedString += elementWithIndent;
-
           break;
 
         default:
