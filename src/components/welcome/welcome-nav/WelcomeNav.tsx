@@ -5,6 +5,7 @@ import { Context } from '../../../contexts';
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
 import Button from '../button';
+import { toast } from 'react-toastify';
 
 const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -19,8 +20,7 @@ const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
   }, [error]);
 
   const throwError = (error: Error) => {
-    error;
-    // TODO: tostify error
+    toast.error(error.message);
   };
 
   return (
