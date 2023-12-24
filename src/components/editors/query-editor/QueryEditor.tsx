@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+import CodeMirror from '@uiw/react-codemirror';
+import { aura } from '@uiw/codemirror-theme-aura';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs } from '../../../store/reducers';
 import { Context } from '../../../contexts';
@@ -27,6 +29,7 @@ const QueryEditor: React.FC<EmptyProps> = (): JSX.Element => {
             onChange={(e) => dispatch(Inputs.query.set(e.target.value))}
             value={queryInput}
           ></textarea>
+          <CodeMirror value={queryInput} height="200px" theme={aura} />
         </div>
       </div>
     </section>

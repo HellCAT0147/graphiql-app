@@ -33,7 +33,7 @@ const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
             className="form-control"
             id="responseTextarea"
             readOnly
-            value={data && JSON.stringify(data.data)}
+            value={data && JSON.stringify(data.data, null, '\t')}
           ></textarea>
         </div>
       </div>
