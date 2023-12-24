@@ -33,16 +33,13 @@ const Reset: React.FC<EmptyProps> = (): JSX.Element => {
   }, [user, loading, navigate]);
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
 
-  const throwError = (error: Error) => {
-    toast.error(error.message);
-  };
   const handleReset = (): void => {
     // TODO: loading & validation
     sendPasswordResetEmail(auth, email).catch((error) => {
-      throwError(error);
+      toast.error(error.message);
     });
   };
 

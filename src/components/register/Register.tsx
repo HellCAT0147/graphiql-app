@@ -37,7 +37,7 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const handleSignUp = (): void => {
     // TODO: loading & validation
     registerWithEmailAndPassword(name, email, password).catch((error) => {
-      throwError(error);
+      toast.error(error.message);
     });
   };
 
@@ -48,12 +48,8 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   }, [user, loading, navigate]);
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
-
-  const throwError = (error: Error) => {
-    toast.error(error.message);
-  };
 
   return (
     <section className={`${styles.register} container d-flex flex-column mb-3`}>

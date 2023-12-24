@@ -16,12 +16,8 @@ const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
   const [user, , error] = useAuthState(auth);
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
-
-  const throwError = (error: Error) => {
-    toast.error(error.message);
-  };
 
   return (
     <div className="d-flex flex-row justify-content-end my-3 mx-3">

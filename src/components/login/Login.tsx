@@ -34,17 +34,13 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
-
-  const throwError = (error: Error) => {
-    toast.error(error.message);
-  };
 
   const handleSignIn = (): void => {
     // TODO: show loading indicator
     loginWithEmailAndPassword(email, password).catch((error) => {
-      throwError(error);
+      toast.error(error.message);
     });
   };
 
