@@ -37,8 +37,8 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
     if (error) throwError(error);
   }, [error]);
 
-  const throwError: (error?: Error) => void = (error?: Error) => {
-    toast.error(error?.message);
+  const throwError = (error: Error) => {
+    toast.error(error.message);
   };
 
   const handleSignIn = (): void => {
