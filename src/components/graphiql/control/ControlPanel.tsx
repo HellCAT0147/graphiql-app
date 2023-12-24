@@ -19,8 +19,18 @@ const ControlPanel: React.FC<EmptyProps> = (): JSX.Element => {
     dispatch(Options.headers.set(headersInput ? JSON.parse(headersInput) : {}));
   }
 
-  function onTrimElement(array: string[]): string[] {
+  function onTrimElements(array: string[]): string[] {
     return array.map((elem) => elem.trim());
+  }
+
+  function prepareElemsWithArgs(array: string[]) {
+    return array.map((elem) =>
+      onTrimElements(elem.split(''))
+        .filter((elem) => elem)
+        .join('')
+        .split(':')
+        .join(': ')
+    );
   }
 
   function onPrettifyArray(string: string) {
@@ -28,15 +38,16 @@ const ControlPanel: React.FC<EmptyProps> = (): JSX.Element => {
     let indent: number = 0;
     const space: string = ' ';
     const array = string.split('{');
-    const trimmedByOpenBracket = onTrimElement(array);
+    const trimmedByOpenBracket = onTrimElements(array);
     const openArr = trimmedByOpenBracket.slice(0, -1);
     const countBrackets = trimmedByOpenBracket.length - 1;
     const closeArray = trimmedByOpenBracket[countBrackets].split('}');
-    const innerArray = onTrimElement(closeArray[0].split(' ')).filter(
+    const innerArray = onTrimElements(closeArray[0].split(' ')).filter(
       (elem) => elem
     );
 
-    openArr.forEach((elem) => {
+    const preparedOpenArr = prepareElemsWithArgs(openArr);
+    preparedOpenArr.forEach((elem) => {
       prettiedString += `\n${space.repeat(indent)}${elem} {`;
       indent += 2;
     });
@@ -44,8 +55,8 @@ const ControlPanel: React.FC<EmptyProps> = (): JSX.Element => {
       (elem) => (prettiedString += `\n${space.repeat(indent)}${elem}`)
     );
     for (let i = 1; i <= countBrackets; i++) {
-      prettiedString += `\n${space.repeat(indent)}}`;
       indent -= 2;
+      prettiedString += `\n${space.repeat(indent)}}`;
     }
 
     return prettiedString.trim();
