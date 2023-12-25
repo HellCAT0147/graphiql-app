@@ -22,11 +22,9 @@ const DocsViewer: React.FC = (): JSX.Element => {
     lang: { docsHeader },
   } = context;
 
-  const isDocsVisible = useAppSelector(Visibility.docs.select);
+  const isDocsVisible: boolean = useAppSelector(Visibility.docs.select);
   const dispatch = useAppDispatch();
-
-  const url = useAppSelector(Options.url.select);
-
+  const url: string = useAppSelector(Options.url.select);
   const { data, error } = useGetSchemaQuery(url);
 
   const handleError = (

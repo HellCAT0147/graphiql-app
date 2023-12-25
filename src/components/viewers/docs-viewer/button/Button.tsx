@@ -3,7 +3,7 @@ import { Visibility } from '../../../../store/reducers';
 import { ButtonProps } from '../../../types';
 
 const Button: React.FC<ButtonProps> = ({ isLoading, isError }): JSX.Element => {
-  const isDocsVisible = useAppSelector(Visibility.docs.select);
+  const isDocsVisible: boolean = useAppSelector(Visibility.docs.select);
   const dispatch = useAppDispatch();
 
   const onToggleDocsVisible = (): void => {

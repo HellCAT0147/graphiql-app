@@ -1,4 +1,4 @@
-import { AllTypes } from '../../store/types';
+import { AllTypes, DocsPage } from '../../store/types';
 
 export type HasError = boolean;
 
@@ -22,6 +22,10 @@ export type WithChildrenProps = {
 export interface ButtonProps {
   isLoading: boolean;
   isError: boolean;
+}
+
+export interface BackProps {
+  prevPageName: string;
 }
 
 export interface MainTypeListProps {
@@ -57,6 +61,6 @@ export interface InnerType {
 }
 
 export interface HistoryStep {
-  step: string;
-  screen: SchemaType[];
+  name: string;
+  content: DocsPage;
 }

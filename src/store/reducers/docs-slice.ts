@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
-import { AllTypes, DocsStore, SelectScreen } from '../types';
-import { SchemaType } from '../../components/types';
+import { DocsPage, DocsStore, SelectPage, SelectSteps } from '../types';
 import { isAllTypes } from '../../utils/typeguards';
+import { HistoryStep } from '../../components/types';
 
 const initialState: DocsStore = {
   mainData: {
@@ -21,20 +21,28 @@ export const DocsSlice = createSlice({
   name: 'docs',
   initialState,
   reducers: {
-    setData: (state, action: PayloadAction<AllTypes | SchemaType | string>) => {
+    setData: (state, action: PayloadAction<DocsPage>) => {
       state.currentData = action.payload;
       if (!state.mainData.types.length && isAllTypes(action.payload))
         state.mainData = action.payload;
     },
+    addStep: (state, action: PayloadAction<HistoryStep>) => {
+      state.history.push(action.payload);
+    },
+    subtractStep: (state) => {
+      state.history.pop();
+    },
   },
 });
 
-const { setData } = DocsSlice.actions;
+const { setData, addStep, subtractStep } = DocsSlice.actions;
 
-export const selectMainData: SelectScreen = (state: RootState) =>
+export const selectMainData: SelectPage = (state: RootState) =>
   state.docs.mainData;
-export const selectCurrentData: SelectScreen = (state: RootState) =>
+export const selectCurrentData: SelectPage = (state: RootState) =>
   state.docs.currentData;
+export const selectHistory: SelectSteps = (state: RootState) =>
+  state.docs.history;
 
 export default DocsSlice.reducer;
 
@@ -46,5 +54,10 @@ export const Docs = {
   mainData: {
     set: setData,
     select: selectMainData,
+  },
+  history: {
+    add: addStep,
+    subtract: subtractStep,
+    select: selectHistory,
   },
 };

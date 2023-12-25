@@ -15,8 +15,16 @@ const MainTypeList: React.FC<MainTypeListProps> = ({ types }): JSX.Element => {
   return (
     <>
       <h4 className="card-title">{rootTypesHeader}</h4>
-      <TypeItem type={types.rootTypes.query} isRoot={true} />
-      <TypeItem type={types.rootTypes.mutation} isRoot={true} />
+      {types.rootTypes.query ? (
+        <TypeItem type={types.rootTypes.query} isRoot={true} />
+      ) : (
+        ''
+      )}
+      {types.rootTypes.mutation ? (
+        <TypeItem type={types.rootTypes.mutation} isRoot={true} />
+      ) : (
+        ''
+      )}
       <TypeList types={types.types} header={mainTypesHeader} />
     </>
   );

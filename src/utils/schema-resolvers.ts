@@ -1,5 +1,6 @@
 import { Schema, SchemaType } from '../components/types';
-import { AllTypes } from '../store/types';
+import { AllTypes, DocsPage } from '../store/types';
+import { isAllTypes } from './typeguards';
 
 export function getSchemaTypes(data: Schema): AllTypes {
   const types: SchemaType[] = [];
@@ -21,11 +22,13 @@ export function getSchemaTypes(data: Schema): AllTypes {
 }
 
 export function typePreparer(
-  type: SchemaType | { name: string } | null,
+  data: DocsPage | { name: string },
   templatePhrase: string
-): SchemaType | string {
-  if (type && 'fields' in type && type.fields) return type;
-  else if (type && 'description' in type && type.description)
-    return type.description;
+): DocsPage {
+  if (isAllTypes(data)) return data;
+  if (typeof data === 'string' || (data && 'fields' in data && data.fields))
+    return data;
+  if (data && 'description' in data && data.description)
+    return data.description;
   return templatePhrase;
 }
