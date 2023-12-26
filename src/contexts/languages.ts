@@ -79,7 +79,7 @@ export const EN: Languages = {
   variablesButtonName: 'Variables',
   docsHeader: 'DOCS',
   mainTypesHeader: 'All Schema Types',
-  typesHeader: 'Fields',
+  fieldsHeader: 'Fields',
   rootTypesHeader: 'Root Types',
   noDescription: 'Description not available',
 };
@@ -163,7 +163,7 @@ export const RU: Languages = {
   variablesButtonName: 'Переменные',
   docsHeader: 'ДОКА',
   mainTypesHeader: 'Все типы схемы',
-  typesHeader: 'Поля',
+  fieldsHeader: 'Поля',
   rootTypesHeader: 'Корневые типы',
   noDescription: 'Описание отсутствует',
 };

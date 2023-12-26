@@ -7,7 +7,7 @@ import { Visibility } from '../../../store/reducers';
 
 import { useGetSchemaQuery } from '../../../store/reducers/api-slice';
 import { Options } from '../../../store/reducers';
-import { getSchemaTypes } from '../../../utils/schema-resolvers';
+import { getSchemaItems } from '../../../utils/schema-resolvers';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import { isSchema } from '../../../utils/typeguards';
@@ -35,7 +35,7 @@ const DocsViewer: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     if (!error && isSchema(data))
-      dispatch(Docs.mainData.set(getSchemaTypes(data)));
+      dispatch(Docs.mainData.set(getSchemaItems(data)));
     else handleError(error);
   }, [data, dispatch, error]);
 

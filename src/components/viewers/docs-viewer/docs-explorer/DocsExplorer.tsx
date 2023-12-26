@@ -1,11 +1,11 @@
 import { useAppSelector } from '../../../../store/hooks';
 import { Docs } from '../../../../store/reducers/docs-slice';
 import { DocsPage } from '../../../../store/types';
-import { isAllTypes } from '../../../../utils/typeguards';
+import { isAllTypes, isSchemaItems } from '../../../../utils/typeguards';
 import { HistoryStep } from '../../../types';
 import Back from '../back';
-import MainTypeList from '../main-type-list';
-import TypeList from '../type-list';
+import MainSchemaList from '../main-schema-list';
+import SchemaList from '../schema-list';
 
 const DocsExplorer: React.FC = (): JSX.Element => {
   const data: DocsPage = useAppSelector(Docs.currentData.select);
@@ -16,13 +16,20 @@ const DocsExplorer: React.FC = (): JSX.Element => {
 
   return (
     <section className="btn-group-vertical">
-      {prevPageName ? <Back prevPageName={prevPageName} /> : ''}
+      {prevPageName && <Back prevPageName={prevPageName} />}
       {isAllTypes(data) ? (
-        <MainTypeList types={data} />
+        <MainSchemaList types={data} />
       ) : typeof data === 'string' ? (
         data
       ) : (
-        <TypeList types={data.fields} description={data.description} />
+        <>
+          <h4 className="card-title">{data.name}</h4>
+          {isSchemaItems(data.fields) && (
+            <>
+              <SchemaList data={data.fields} description={data.description} />
+            </>
+          )}
+        </>
       )}
     </section>
   );

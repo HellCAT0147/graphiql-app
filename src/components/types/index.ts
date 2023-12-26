@@ -28,12 +28,12 @@ export interface BackProps {
   prevPageName: string;
 }
 
-export interface MainTypeListProps {
+export interface MainSchemaListProps {
   types: AllTypes;
 }
 
-export interface TypeListProps {
-  types: SchemaType[];
+export interface SchemaListProps {
+  data: SchemaItem[];
   header?: string;
   description?: string | null;
 }
@@ -42,22 +42,34 @@ export interface Schema {
   data: {
     __schema: {
       queryType: { name: string } | null;
-      types: SchemaType[];
+      types: SchemaItem[];
       mutationType: { name: string } | null;
     };
   };
 }
 
-export interface SchemaType {
+export interface SchemaItem {
   name: string;
   description: string | null;
-  fields: SchemaType[];
+  fields?: SchemaItem[];
   type?: InnerType;
 }
 
-export interface InnerType {
+export interface SchemaType {
   name: string;
-  ofType: InnerType;
+  description: string | null;
+  fields: SchemaItem[];
+}
+
+export interface SchemaField {
+  name: string;
+  description: string | null;
+  type: InnerType;
+}
+
+export interface InnerType {
+  name: string | null;
+  ofType: InnerType | null;
 }
 
 export interface HistoryStep {

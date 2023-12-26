@@ -1,9 +1,9 @@
-import { Schema, SchemaType } from '../components/types';
+import { InnerType, Schema, SchemaItem } from '../components/types';
 import { AllTypes, DocsPage } from '../store/types';
 import { isAllTypes } from './typeguards';
 
-export function getSchemaTypes(data: Schema): AllTypes {
-  const types: SchemaType[] = [];
+export function getSchemaItems(data: Schema): AllTypes {
+  const types: SchemaItem[] = [];
   data.data.__schema.types.forEach((type) => {
     if (
       !type.name.includes('__') &&
@@ -21,7 +21,7 @@ export function getSchemaTypes(data: Schema): AllTypes {
   };
 }
 
-export function typePreparer(
+export function dataPreparer(
   data: DocsPage | { name: string },
   templatePhrase: string
 ): DocsPage {
@@ -30,5 +30,14 @@ export function typePreparer(
     return data;
   if (data && 'description' in data && data.description)
     return data.description;
+  return templatePhrase;
+}
+
+export function getTypeName(type: InnerType, templatePhrase: string): string {
+  const maxDepth = 7;
+  let currentDepth = 0;
+  if (type.name) return type.name;
+  else if (currentDepth++ < maxDepth && type.ofType)
+    return getTypeName(type.ofType, templatePhrase);
   return templatePhrase;
 }

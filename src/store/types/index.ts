@@ -1,4 +1,4 @@
-import { HistoryStep, SchemaType } from '../../components/types';
+import { HistoryStep, SchemaItem } from '../../components/types';
 import { RootState } from '../store';
 
 export type OptionsMethod = string | undefined;
@@ -47,8 +47,8 @@ export interface InputsGroupAttributes {
   };
 }
 
-export interface TypeProps {
-  type: SchemaType | { name: string };
+export interface SchemaItemProps {
+  data: SchemaItem | { name: string };
   isRoot?: true;
 }
 
@@ -58,10 +58,10 @@ export interface DocsStore {
   history: HistoryStep[];
 }
 
-export type DocsPage = AllTypes | SchemaType | string;
+export type DocsPage = AllTypes | SchemaItem | string;
 
 export interface AllTypes {
-  types: SchemaType[];
+  types: SchemaItem[];
   rootTypes: {
     query: { name: string } | null;
     mutation: { name: string } | null;

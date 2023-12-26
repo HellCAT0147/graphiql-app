@@ -1,4 +1,9 @@
-import { Schema, SchemaType } from '../components/types';
+import {
+  Schema,
+  SchemaField,
+  SchemaItem,
+  SchemaType,
+} from '../components/types';
 import { AllTypes } from '../store/types';
 
 export function isError(obj: unknown): obj is Error {
@@ -22,20 +27,43 @@ export function isSchema(obj: unknown): obj is Schema {
     typeof obj.data.__schema.types === 'object' &&
     obj.data.__schema.queryType &&
     obj.data.__schema.types &&
-    isSchemaTypes(obj.data.__schema.types)
+    isSchemaItems(obj.data.__schema.types)
   )
     return true;
   return false;
 }
 
-function isSchemaTypes(obj: unknown): obj is SchemaType[] {
+export function isSchemaItems(obj: unknown): obj is SchemaItem[] {
   if (
     typeof obj === 'object' &&
     obj &&
     Array.isArray(obj) &&
     'name' in obj[0] &&
-    'description' in obj[0] &&
-    'fields' in obj[0]
+    'description' in obj[0]
+  )
+    return true;
+  return false;
+}
+
+export function isType(obj: unknown): obj is SchemaType {
+  if (
+    typeof obj === 'object' &&
+    obj &&
+    'name' in obj &&
+    'description' in obj &&
+    'fields' in obj
+  )
+    return true;
+  return false;
+}
+
+export function isField(obj: unknown): obj is SchemaField {
+  if (
+    typeof obj === 'object' &&
+    obj &&
+    'name' in obj &&
+    'description' in obj &&
+    'type' in obj
   )
     return true;
   return false;
