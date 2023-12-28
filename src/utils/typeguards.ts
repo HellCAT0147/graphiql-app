@@ -51,7 +51,8 @@ export function isType(obj: unknown): obj is SchemaType {
     obj &&
     'name' in obj &&
     'description' in obj &&
-    'fields' in obj
+    'fields' in obj &&
+    'inputFields' in obj
   )
     return true;
   return false;

@@ -13,6 +13,7 @@ export type SelectBoolean = (state: RootState) => boolean;
 export type SelectHeaders = (state: RootState) => OptionsHeaders;
 export type SelectMethod = (state: RootState) => OptionsMethod;
 export type SelectPage = (state: RootState) => DocsPage;
+export type SelectMainTypes = (state: RootState) => AllTypes;
 export type SelectSteps = (state: RootState) => HistoryStep[];
 
 export interface ResponseApi {
@@ -48,7 +49,7 @@ export interface InputsGroupAttributes {
 }
 
 export interface SchemaItemProps {
-  data: SchemaItem | { name: string };
+  data: SchemaItem;
   isRoot?: true;
 }
 
@@ -58,12 +59,12 @@ export interface DocsStore {
   history: HistoryStep[];
 }
 
-export type DocsPage = AllTypes | SchemaItem | string;
+export type DocsPage = AllTypes | SchemaItem;
 
 export interface AllTypes {
   types: SchemaItem[];
   rootTypes: {
-    query: { name: string } | null;
-    mutation: { name: string } | null;
+    query: SchemaItem | null;
+    mutation: SchemaItem | null;
   };
 }

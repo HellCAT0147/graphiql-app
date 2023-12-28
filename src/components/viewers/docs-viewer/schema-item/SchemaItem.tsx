@@ -4,8 +4,8 @@ import { LangContext } from '../../../../contexts/types';
 
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { Docs } from '../../../../store/reducers/docs-slice';
-import { DocsPage, SchemaItemProps } from '../../../../store/types';
-import { dataPreparer, getTypeName } from '../../../../utils/schema-resolvers';
+import { AllTypes, DocsPage, SchemaItemProps } from '../../../../store/types';
+import { getType, getTypeName } from '../../../../utils/schema-resolvers';
 import { isAllTypes, isType, isField } from '../../../../utils/typeguards';
 
 const SchemaItem: React.FC<SchemaItemProps> = ({
@@ -14,20 +14,23 @@ const SchemaItem: React.FC<SchemaItemProps> = ({
 }): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { noDescription, docsHeader },
+    lang: { noDescription, docsHeader, undefinedItem },
   } = context;
 
   const currentData: DocsPage = useAppSelector(Docs.currentData.select);
+  const mainData: AllTypes = useAppSelector(Docs.mainData.select);
   const dispatch = useAppDispatch();
 
   const handleClick = (): void => {
     dispatch(
       Docs.history.add({
-        name: isAllTypes(currentData) ? docsHeader : data.name, // TODO: fix bug with translation
-        content: dataPreparer(currentData, noDescription),
+        name: isAllTypes(currentData) ? docsHeader : currentData.name, // TODO: fix bug with translation
+        content: currentData || noDescription,
       })
     );
-    dispatch(Docs.currentData.set(dataPreparer(data, 'null')));
+
+    const type = getType(data.name, mainData);
+    dispatch(Docs.currentData.set(type || data));
   };
 
   return (
@@ -49,10 +52,10 @@ const SchemaItem: React.FC<SchemaItemProps> = ({
           ) : isField(data) ? (
             <>
               {data.name}:{' '}
-              <span className="text-warning">{getTypeName(data.type, '')}</span>
+              <span className="text-warning">{getTypeName(data.type)}</span>
             </>
           ) : (
-            'undefined item'
+            undefinedItem
           )}
         </>
       )}

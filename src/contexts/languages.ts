@@ -81,7 +81,9 @@ export const EN: Languages = {
   mainTypesHeader: 'All Schema Types',
   fieldsHeader: 'Fields',
   rootTypesHeader: 'Root Types',
-  noDescription: 'Description not available',
+  noDescription: 'Description is not available',
+  undefinedItem: 'undefined item',
+  typeHeader: 'Type',
 };
 
 export const RU: Languages = {
@@ -166,4 +168,6 @@ export const RU: Languages = {
   fieldsHeader: 'Поля',
   rootTypesHeader: 'Корневые типы',
   noDescription: 'Описание отсутствует',
+  undefinedItem: 'неизвестный элемент',
+  typeHeader: 'Тип',
 };

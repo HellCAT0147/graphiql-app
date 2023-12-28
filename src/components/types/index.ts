@@ -33,7 +33,7 @@ export interface MainSchemaListProps {
 }
 
 export interface SchemaListProps {
-  data: SchemaItem[];
+  data: SchemaItem[] | null;
   header?: string;
   description?: string | null;
 }
@@ -41,9 +41,9 @@ export interface SchemaListProps {
 export interface Schema {
   data: {
     __schema: {
-      queryType: { name: string } | null;
+      queryType: SchemaItem | null;
       types: SchemaItem[];
-      mutationType: { name: string } | null;
+      mutationType: SchemaItem | null;
     };
   };
 }
@@ -59,6 +59,7 @@ export interface SchemaType {
   name: string;
   description: string | null;
   fields: SchemaItem[];
+  inputFields: SchemaItem[];
 }
 
 export interface SchemaField {

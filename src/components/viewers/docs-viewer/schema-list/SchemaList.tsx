@@ -18,10 +18,14 @@ const SchemaList: React.FC<SchemaListProps> = ({
   return (
     <>
       {description}
-      <h6 className="mt-3">{header ? header : fieldsHeader}</h6>
-      {data.map((item, key) => (
-        <SchemaItem key={key} data={item} />
-      ))}
+      {data && (
+        <>
+          <h6 className="mt-3">{header ? header : fieldsHeader}</h6>
+          {data.map((item, key) => (
+            <SchemaItem key={key} data={item} />
+          ))}
+        </>
+      )}
     </>
   );
 };
