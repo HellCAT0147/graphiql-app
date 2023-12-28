@@ -5,7 +5,11 @@ import { LangContext } from '../../../../contexts/types';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { Docs } from '../../../../store/reducers/docs-slice';
 import { AllTypes, DocsPage, SchemaItemProps } from '../../../../store/types';
-import { getType, getTypeName } from '../../../../utils/schema-resolvers';
+import {
+  getType,
+  getTypeName,
+  showArgsExisting,
+} from '../../../../utils/schema-resolvers';
 import { isAllTypes, isType, isField } from '../../../../utils/typeguards';
 
 const SchemaItem: React.FC<SchemaItemProps> = ({
@@ -51,7 +55,8 @@ const SchemaItem: React.FC<SchemaItemProps> = ({
             data.name
           ) : isField(data) ? (
             <>
-              {data.name}:{' '}
+              {data.name}
+              {showArgsExisting(data.args)}:{' '}
               <span className="text-warning">{getTypeName(data.type)}</span>
             </>
           ) : (

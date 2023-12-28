@@ -15,7 +15,7 @@ import SchemaList from '../schema-list';
 const DocsExplorer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { typeHeader },
+    lang: { typeHeader, fieldsHeader },
   } = context;
 
   const data: DocsPage = useAppSelector(Docs.currentData.select);
@@ -49,11 +49,12 @@ const DocsExplorer: React.FC = (): JSX.Element => {
             <SchemaList
               data={data.fields || data.inputFields}
               description={data.description}
+              header={fieldsHeader}
             />
           ) : (
             isField(data) && (
               <>
-                <SchemaList data={null} description={data.description} />
+                {data.description}
                 {handleType(data)}
               </>
             )

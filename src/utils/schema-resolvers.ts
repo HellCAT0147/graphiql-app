@@ -1,4 +1,9 @@
-import { InnerType, Schema, SchemaItem } from '../components/types';
+import {
+  InnerType,
+  Schema,
+  SchemaField,
+  SchemaItem,
+} from '../components/types';
 import { AllTypes } from '../store/types';
 
 export function getSchemaItems(data: Schema): AllTypes {
@@ -45,4 +50,9 @@ export function filterTypes(data: AllTypes): SchemaItem[] {
       type.name !== data.rootTypes.query?.name &&
       type.name !== data.rootTypes.mutation?.name
   );
+}
+
+export function showArgsExisting(args: SchemaField[] | undefined): string {
+  if (args && args.length) return '(...)';
+  return '';
 }

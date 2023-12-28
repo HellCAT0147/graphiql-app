@@ -66,6 +66,7 @@ export interface SchemaField {
   name: string;
   description: string | null;
   type: InnerType;
+  args?: SchemaField[];
 }
 
 export interface InnerType {
