@@ -5,7 +5,7 @@ import { useAppSelector } from '../../../store/hooks';
 import { Inputs, Visibility } from '../../../store/reducers';
 
 import { LangContext } from '../../../contexts/types';
-import { InputsGroupAttributes } from '../../../store/types';
+import { InputsGroupAttributes } from '../../types';
 
 const InputGroup: React.FC<InputsGroupAttributes> = ({ atr }): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);

@@ -3,18 +3,21 @@ import { okaidiaInit } from '@uiw/codemirror-theme-okaidia';
 import { tags as t } from '@lezer/highlight';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import { ReactNode } from 'react';
+import { PrettifyProps } from '../types';
+import { useAppDispatch } from '../../store/hooks';
+import { Inputs } from '../../store/reducers';
 
-const Prettify: React.FC = (): ReactNode => {
+const Prettify: React.FC<PrettifyProps> = ({ data }): ReactNode => {
+  const dispatch = useAppDispatch();
+  const { className, width, title, value, isReadOnly } = data;
   return (
-    <section className="card border-light mb-3" style={{ width: '45%' }}>
-      <h6 className="card-header d-flex justify-content-between">
-        {responseViewerHeader}
-      </h6>
+    <section className={className} style={{ width: `${width}` }}>
+      <h6 className="card-header d-flex justify-content-between">{title}</h6>
       <div className="card-body">
         <div className="form-group">
           <CodeMirror
-            value={JSON.stringify(data, null, '  ')}
-            readOnly
+            value={value}
+            readOnly={isReadOnly}
             theme={okaidiaInit({
               settings: {
                 background: '#1a0933',
@@ -24,6 +27,9 @@ const Prettify: React.FC = (): ReactNode => {
               styles: [{ tag: t.bracket, color: '#ea39b8' }],
             })}
             extensions={[langs.tsx()]}
+            onChange={(value) => {
+              dispatch(Inputs.query.set(value));
+            }}
           />
         </div>
       </div>
