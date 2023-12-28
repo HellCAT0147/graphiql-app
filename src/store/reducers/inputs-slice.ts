@@ -5,14 +5,9 @@ import { InputsStore, SelectString } from '../types';
 
 const initialState: InputsStore = {
   url: '',
-  query: `query {
-  characters {
-    info {
-      count
-      pages
-      next
-      prev
-    }
+  query: `{
+  character(id: 1) {
+    name
   }
 }`,
   currentTools: 'variables',

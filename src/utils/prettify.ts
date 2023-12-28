@@ -18,7 +18,7 @@ function prepareElemsWithArgs(array: string[]) {
 export function onPrettify(string: string) {
   let prettiedString = '';
   let indent: number = 0;
-  const space: string = ' \t';
+  const space: string = ' ';
   const trimmedByOpenBracket = onTrimElements(string.split('{'));
   const openArray = trimmedByOpenBracket.slice(0, -1);
   const countBrackets = openArray.length;
@@ -30,13 +30,13 @@ export function onPrettify(string: string) {
   const preparedOpenArray = prepareElemsWithArgs(openArray);
   preparedOpenArray.forEach((elem) => {
     prettiedString += `\n${space.repeat(indent)}${elem} {`;
-    indent += 1;
+    indent += 2;
   });
   innerArray.forEach(
     (elem) => (prettiedString += `\n${space.repeat(indent)}${elem}`)
   );
   for (let i = 1; i <= countBrackets; i++) {
-    indent -= 1;
+    indent -= 2;
     prettiedString += `\n${space.repeat(indent)}}`;
   }
 
