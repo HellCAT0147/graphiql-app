@@ -28,6 +28,14 @@ export interface InputsGroupAttributes {
   };
 }
 
+export interface ButtonAttributes {
+  atr: {
+    onClick: () => void;
+    className: string;
+    classIcon: string;
+  };
+}
+
 export interface PrettifyProps {
   data: {
     className: string;

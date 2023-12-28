@@ -2,6 +2,7 @@ import { ReactNode, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Options } from '../../../store/reducers';
 import { isValidBrackets, onPrettify } from '../../../utils/prettify';
+import ControlButton from '../control-button';
 
 const ControlPanel: React.FC = (): ReactNode => {
   const dispatch = useAppDispatch();
@@ -32,24 +33,20 @@ const ControlPanel: React.FC = (): ReactNode => {
 
   return (
     <article>
-      <button
-        type="button"
-        className="btn btn-secondary d-block mb-3"
-        onClick={onGetData}
-        style={{ minWidth: 50, minHeight: 50 }}
-      >
-        <i className={`fs-2 px-1 fa-sharp fa-solid fa-caret-right`} />
-      </button>
-      <button
-        type="button"
-        className={`btn d-block btn-outline-${
-          isValidQuery ? 'primary' : 'danger'
-        }`}
-        onClick={onPrettifyQuery}
-        style={{ minWidth: 50, minHeight: 50 }}
-      >
-        <i className={`fs-5 py-1 fa-sharp fa-solid fa-broom-ball`} />
-      </button>
+      <ControlButton
+        atr={{
+          className: 'secondary mb-3',
+          onClick: onGetData,
+          classIcon: 'fa-caret-right px-1 fs-2',
+        }}
+      />
+      <ControlButton
+        atr={{
+          className: `outline-${isValidQuery ? 'primary' : 'danger'}`,
+          onClick: onPrettifyQuery,
+          classIcon: 'fa-broom-ball py-1 fs-5',
+        }}
+      />
     </article>
   );
 };
