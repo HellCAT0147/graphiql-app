@@ -1,12 +1,15 @@
+import { ReactNode, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Options } from '../../../store/reducers';
-import { onPrettify } from '../../../utils/prettify';
+import { isValidBrackets, onPrettify } from '../../../utils/prettify';
 
-const ControlPanel: React.FC = (): JSX.Element => {
+const ControlPanel: React.FC = (): ReactNode => {
   const dispatch = useAppDispatch();
   const queryInput = useAppSelector(Inputs.query.select);
   const variablesInput = useAppSelector(Inputs.variables.select);
   const headersInput = useAppSelector(Inputs.headers.select);
+
+  const [isValidQuery, setIsValidQuery] = useState<boolean>(true);
 
   function onGetData() {
     const newBody = JSON.stringify({
@@ -19,7 +22,12 @@ const ControlPanel: React.FC = (): JSX.Element => {
   }
 
   function onPrettifyQuery() {
-    dispatch(Inputs.query.set(onPrettify(queryInput)));
+    if (isValidBrackets(queryInput)) {
+      dispatch(Inputs.query.set(onPrettify(queryInput)));
+      setIsValidQuery(true);
+    } else {
+      setIsValidQuery(false);
+    }
   }
 
   return (
@@ -34,7 +42,9 @@ const ControlPanel: React.FC = (): JSX.Element => {
       </button>
       <button
         type="button"
-        className="btn btn-outline-primary d-block"
+        className={`btn d-block btn-outline-${
+          isValidQuery ? 'primary' : 'danger'
+        }`}
         onClick={onPrettifyQuery}
         style={{ minWidth: 50, minHeight: 50 }}
       >

@@ -42,3 +42,45 @@ export function onPrettify(string: string) {
 
   return prettiedString.trim();
 }
+
+interface CloseBrackets {
+  [key: string]: string;
+}
+
+const openBrackets = ['(', '{'];
+const closeBrackets: CloseBrackets = {
+  [')']: '(',
+  ['}']: '{',
+};
+const brackets = ['(', ')', '{', '}'];
+
+function prepareBrackets(query: string): string {
+  return query
+    .split('')
+    .filter((char) => brackets.includes(char))
+    .join('');
+}
+
+export function isValidBrackets(query: string): boolean {
+  const stackBrackets: string[] = [];
+  const brackets = prepareBrackets(query);
+
+  for (const bracket of brackets) {
+    if (openBrackets.includes(bracket)) {
+      stackBrackets.push(bracket);
+    } else {
+      if (!stackBrackets.length) {
+        return false;
+      }
+
+      const lastBracket = stackBrackets[stackBrackets.length - 1];
+      if (closeBrackets[bracket] === lastBracket) {
+        stackBrackets.pop();
+      } else {
+        return false;
+      }
+    }
+  }
+
+  return !stackBrackets.length;
+}
