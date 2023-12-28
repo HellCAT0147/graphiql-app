@@ -1,7 +1,11 @@
 import { ReactNode, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Options } from '../../../store/reducers';
-import { isValidBrackets, onPrettify } from '../../../utils/prettify';
+import {
+  isValidBrackets,
+  isValidSyntax,
+  onPrettify,
+} from '../../../utils/prettify';
 import ControlButton from '../control-button';
 
 const ControlPanel: React.FC = (): ReactNode => {
@@ -23,8 +27,9 @@ const ControlPanel: React.FC = (): ReactNode => {
   }
 
   function onPrettifyQuery() {
-    if (isValidBrackets(queryInput)) {
-      dispatch(Inputs.query.set(onPrettify(queryInput)));
+    const prettiedQuery = onPrettify(queryInput);
+    if (isValidBrackets(queryInput) && isValidSyntax(prettiedQuery)) {
+      dispatch(Inputs.query.set(prettiedQuery));
       setIsValidQuery(true);
     } else {
       setIsValidQuery(false);

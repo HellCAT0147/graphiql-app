@@ -15,12 +15,13 @@ function prepareElemsWithArgs(array: string[]) {
   );
 }
 
-export function onPrettify(string: string) {
+export function onPrettify(string: string): string {
   let prettiedString = '';
   let indent: number = 0;
   const space: string = ' ';
   const trimmedByOpenBracket = onTrimElements(string.split('{'));
   const openArray = trimmedByOpenBracket.slice(0, -1);
+  if (openArray[0] === 'query') openArray.splice(0, 1, '');
   const countBrackets = openArray.length;
   const closeArray = trimmedByOpenBracket[countBrackets].split('}');
   const innerArray = filterWithoutSpaces(
@@ -83,4 +84,9 @@ export function isValidBrackets(query: string): boolean {
   }
 
   return !stackBrackets.length;
+}
+
+export function isValidSyntax(query: string): boolean {
+  //TODO if required  add options validations
+  return !query.split('{')[0];
 }
