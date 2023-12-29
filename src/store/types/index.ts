@@ -32,14 +32,3 @@ export interface VisibilityStore {
   tools: boolean;
   docs: boolean;
 }
-
-export interface InputsGroupAttributes {
-  atr: {
-    id: string;
-    group: string;
-    type: string;
-    value: string;
-    classInput: string;
-    classLabel: string;
-  };
-}
