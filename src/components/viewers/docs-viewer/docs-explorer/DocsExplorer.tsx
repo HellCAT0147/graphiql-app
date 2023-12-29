@@ -3,39 +3,26 @@ import { Context } from '../../../../contexts';
 import { LangContext } from '../../../../contexts/types';
 import { useAppSelector } from '../../../../store/hooks';
 import { Docs } from '../../../../store/reducers/docs-slice';
-import { AllTypes, DocsPage } from '../../../../store/types';
-import { getType } from '../../../../utils/schema-resolvers';
+import { DocsPage } from '../../../../store/types';
 import { isAllTypes, isField, isType } from '../../../../utils/typeguards';
-import { HistoryStep, SchemaField } from '../../../types';
+import { HistoryStep } from '../../../types';
 import Back from '../back';
 import MainSchemaList from '../main-schema-list';
-import SchemaItem from '../schema-item';
 import SchemaList from '../schema-list';
+import SchemaType from '../schema-type';
+import SchemaArgs from '../schema-args';
 
 const DocsExplorer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { typeHeader, fieldsHeader },
+    lang: { fieldsHeader },
   } = context;
 
   const data: DocsPage = useAppSelector(Docs.currentData.select);
   const history: HistoryStep[] = useAppSelector(Docs.history.select);
-  const mainData: AllTypes = useAppSelector(Docs.mainData.select);
   const prevPageName: string | null = history.length
     ? history[history.length - 1].name
     : null;
-
-  const handleType = (data: SchemaField): JSX.Element => {
-    const type = getType(data.type, mainData);
-    if (type)
-      return (
-        <>
-          <h6 className="mt-3">{typeHeader}</h6>
-          <SchemaItem data={type} />
-        </>
-      );
-    return <></>;
-  };
 
   return (
     <section className="btn-group-vertical">
@@ -55,7 +42,8 @@ const DocsExplorer: React.FC = (): JSX.Element => {
             isField(data) && (
               <>
                 {data.description}
-                {handleType(data)}
+                <SchemaType data={data} />
+                <SchemaArgs data={data} />
               </>
             )
           )}

@@ -84,6 +84,7 @@ export const EN: Languages = {
   noDescription: 'Description is not available',
   undefinedItem: 'undefined item',
   typeHeader: 'Type',
+  argsHeader: 'Arguments',
 };
 
 export const RU: Languages = {
@@ -170,4 +171,5 @@ export const RU: Languages = {
   noDescription: 'Описание отсутствует',
   undefinedItem: 'неизвестный элемент',
   typeHeader: 'Тип',
+  argsHeader: 'Аргументы',
 };

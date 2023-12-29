@@ -1,4 +1,4 @@
-import { HistoryStep, SchemaItem } from '../../components/types';
+import { HistoryStep, SchemaField, SchemaItem } from '../../components/types';
 import { RootState } from '../store';
 
 export type OptionsMethod = string | undefined;
@@ -51,6 +51,14 @@ export interface InputsGroupAttributes {
 export interface SchemaItemProps {
   data: SchemaItem;
   isRoot?: true;
+}
+
+export interface SchemaTypeProps {
+  data: SchemaField;
+}
+
+export interface SchemaArgsProps {
+  data: SchemaField;
 }
 
 export interface DocsStore {
