@@ -11,6 +11,9 @@ import {
   signInWithGoogle,
 } from '../../firebase';
 import { toast } from 'react-toastify';
+import passwordSchema from '../../utils/PasswordChecker';
+import { SafeParseReturnType } from 'zod';
+import emailSchema from '../../utils/EmailChecker';
 
 const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -31,10 +34,21 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState<
+    SafeParseReturnType<string, string> | undefined
+  >(undefined);
+  const [emailCheck, setEmailCheck] = useState<
+    SafeParseReturnType<string, string> | undefined
+  >(undefined);
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
   const handleSignUp = (): void => {
+    const passwordValid = validatePassword();
+    const emailValid = validateEmail();
+    if (!passwordValid || !emailValid) {
+      return;
+    }
     // TODO: loading & validation
     registerWithEmailAndPassword(name, email, password).catch((error) => {
       toast.error(error.message);
@@ -50,6 +64,47 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   useEffect(() => {
     if (error) toast.error(error.message);
   }, [error]);
+
+  const validatePassword: () => boolean = () => {
+    const validationStatus = passwordSchema.safeParse(password);
+    setPasswordCheck(validationStatus);
+    return validationStatus.success;
+  };
+  const validateEmail: () => boolean = () => {
+    const validationStatus = emailSchema.safeParse(email);
+    setEmailCheck(validationStatus);
+    return validationStatus.success;
+  };
+
+  let passwordErrorsElement = <></>;
+  if (passwordCheck != undefined && !passwordCheck.success) {
+    passwordErrorsElement = (
+      <div>
+        Weak password:
+        {passwordCheck.error.formErrors.formErrors.map((error) => (
+          <div key={error}>
+            <label>{error}</label>
+            <p></p>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  let emailErrorsElement = <></>;
+  if (emailCheck != undefined && !emailCheck.success) {
+    emailErrorsElement = (
+      <div>
+        Wrong email:
+        {emailCheck.error.formErrors.formErrors.map((error) => (
+          <div key={error}>
+            <label>{error}</label>
+            <p></p>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <section className={`${styles.register} container d-flex flex-column mb-3`}>
@@ -69,6 +124,7 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder={emailPlaceholder}
         />
+        {emailErrorsElement}
         <input
           className="col mx-1"
           type="password"
@@ -76,6 +132,7 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder={passwordPlaceholder}
         />
+        {passwordErrorsElement}
         <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
           {registerButtonText}
         </button>
