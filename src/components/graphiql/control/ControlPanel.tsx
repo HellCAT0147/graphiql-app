@@ -27,9 +27,9 @@ const ControlPanel: React.FC = (): ReactNode => {
   }
 
   function onPrettifyQuery() {
-    const prettiedQuery = onPrettify(queryInput);
-    if (isValidBrackets(queryInput) && isValidSyntax(prettiedQuery)) {
-      dispatch(Inputs.query.set(prettiedQuery));
+    const prettifiedQuery = onPrettify(queryInput);
+    if (isValidBrackets(queryInput) && isValidSyntax(prettifiedQuery)) {
+      dispatch(Inputs.query.set(prettifiedQuery));
       setIsValidQuery(true);
     } else {
       setIsValidQuery(false);

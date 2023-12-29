@@ -16,7 +16,7 @@ function prepareElemsWithArgs(array: string[]) {
 }
 
 export function onPrettify(string: string): string {
-  let prettiedString = '';
+  let prettifiedString = '';
   let indent: number = 0;
   const space: string = ' ';
   const trimmedByOpenBracket = onTrimElements(string.split('{'));
@@ -30,18 +30,18 @@ export function onPrettify(string: string): string {
 
   const preparedOpenArray = prepareElemsWithArgs(openArray);
   preparedOpenArray.forEach((elem) => {
-    prettiedString += `\n${space.repeat(indent)}${elem} {`;
+    prettifiedString += `\n${space.repeat(indent)}${elem} {`;
     indent += 2;
   });
   innerArray.forEach(
-    (elem) => (prettiedString += `\n${space.repeat(indent)}${elem}`)
+    (elem) => (prettifiedString += `\n${space.repeat(indent)}${elem}`)
   );
   for (let i = 1; i <= countBrackets; i++) {
     indent -= 2;
-    prettiedString += `\n${space.repeat(indent)}}`;
+    prettifiedString += `\n${space.repeat(indent)}}`;
   }
 
-  return prettiedString.trim();
+  return prettifiedString.trim();
 }
 
 interface CloseBrackets {
