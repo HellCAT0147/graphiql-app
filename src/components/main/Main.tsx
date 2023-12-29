@@ -5,19 +5,15 @@ import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import GraphiQl from '../graphiql';
 import { DocsViewer } from '../viewers';
+import { toast } from 'react-toastify';
 
 const Main: React.FC<EmptyProps> = (): JSX.Element => {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
-
-  const throwError = (error: Error) => {
-    error;
-    // TODO: tostify error
-  };
 
   useEffect(() => {
     if (loading) return;

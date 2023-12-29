@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { toast } from 'react-toastify';
 
 const Reset: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -32,12 +33,14 @@ const Reset: React.FC<EmptyProps> = (): JSX.Element => {
   }, [user, loading, navigate]);
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
 
-  const throwError = (error: Error) => {
-    error;
-    // TODO: tostify error
+  const handleReset = (): void => {
+    // TODO: loading & validation
+    sendPasswordResetEmail(auth, email).catch((error) => {
+      toast.error(error.message);
+    });
   };
 
   return (
@@ -51,10 +54,7 @@ const Reset: React.FC<EmptyProps> = (): JSX.Element => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder={emailPlaceholder}
         />
-        <button
-          className="col mx-1 btn btn-success"
-          onClick={() => sendPasswordResetEmail(auth, email)}
-        >
+        <button className="col mx-1 btn btn-success" onClick={handleReset}>
           {resetButtonText}
         </button>
       </div>

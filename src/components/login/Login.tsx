@@ -10,6 +10,7 @@ import {
   loginWithEmailAndPassword,
   signInWithGoogle,
 } from '../../firebase';
+import { toast } from 'react-toastify';
 
 const Login: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -33,17 +34,14 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
-
-  const throwError = (error: Error) => {
-    error;
-    // TODO: tostify error
-  };
 
   const handleSignIn = (): void => {
     // TODO: show loading indicator
-    loginWithEmailAndPassword(email, password);
+    loginWithEmailAndPassword(email, password).catch((error) => {
+      toast.error(error.message);
+    });
   };
 
   useEffect(() => {
