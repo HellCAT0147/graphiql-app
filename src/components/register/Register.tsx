@@ -11,9 +11,10 @@ import {
   signInWithGoogle,
 } from '../../firebase';
 import { toast } from 'react-toastify';
-import passwordSchema from '../../utils/PasswordChecker';
+import passwordSchema from '../../utils/passwordChecker.ts';
 import { SafeParseReturnType } from 'zod';
-import emailSchema from '../../utils/EmailChecker';
+import emailSchema from '../../utils/emailChecker.ts';
+import ZodError from '../zod-error';
 
 const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -49,7 +50,7 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
     if (!passwordValid || !emailValid) {
       return;
     }
-    // TODO: loading & validation
+    // TODO: loading
     registerWithEmailAndPassword(name, email, password).catch((error) => {
       toast.error(error.message);
     });
@@ -79,30 +80,14 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   let passwordErrorsElement = <></>;
   if (passwordCheck != undefined && !passwordCheck.success) {
     passwordErrorsElement = (
-      <div>
-        Weak password:
-        {passwordCheck.error.formErrors.formErrors.map((error) => (
-          <div key={error}>
-            <label>{error}</label>
-            <p></p>
-          </div>
-        ))}
-      </div>
+      <ZodError prefix="Weak password:" safeParseError={passwordCheck} />
     );
   }
 
   let emailErrorsElement = <></>;
   if (emailCheck != undefined && !emailCheck.success) {
     emailErrorsElement = (
-      <div>
-        Wrong email:
-        {emailCheck.error.formErrors.formErrors.map((error) => (
-          <div key={error}>
-            <label>{error}</label>
-            <p></p>
-          </div>
-        ))}
-      </div>
+      <ZodError prefix="Wrong email:" safeParseError={emailCheck} />
     );
   }
 
@@ -124,7 +109,6 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder={emailPlaceholder}
         />
-        {emailErrorsElement}
         <input
           className="col mx-1"
           type="password"
@@ -132,10 +116,13 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder={passwordPlaceholder}
         />
-        {passwordErrorsElement}
         <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
           {registerButtonText}
         </button>
+      </div>
+      <div>
+        {emailErrorsElement}
+        {passwordErrorsElement}
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
