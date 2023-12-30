@@ -103,17 +103,27 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           placeholder={namePlaceholder}
         />
         <input
-          className="col mx-1"
+          className={
+            emailCheck?.success !== false ? 'col mx-1' : 'col mx-1 bg-danger'
+          }
           type="text"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmailCheck(undefined);
+            setEmail(e.target.value);
+          }}
           placeholder={emailPlaceholder}
         />
         <input
-          className="col mx-1"
+          className={
+            passwordCheck?.success !== false ? 'col mx-1' : 'col mx-1 bg-danger'
+          }
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPasswordCheck(undefined);
+            setPassword(e.target.value);
+          }}
           placeholder={passwordPlaceholder}
         />
         <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
