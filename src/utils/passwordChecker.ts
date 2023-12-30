@@ -8,11 +8,11 @@ const digitalRegex = /\d/;
 
 const passwordSchema: ZodString = z
   .string()
-  .min(8)
-  .regex(letterRegex, 'letter')
-  .regex(digitalRegex, 'digit')
-  .regex(uppercaseRegex, 'uppercase')
-  .regex(lowercaseRegex, 'lowercase')
-  .regex(specialRegex, 'special');
+  .min(8, 'passwordErrorLength')
+  .regex(letterRegex, 'passwordErrorLetter')
+  .regex(digitalRegex, 'passwordErrorDigital')
+  .regex(uppercaseRegex, 'passwordErrorUppercase')
+  .regex(lowercaseRegex, 'passwordErrorLowercase')
+  .regex(specialRegex, 'passwordErrorSpecial');
 
 export default passwordSchema;

@@ -81,6 +81,7 @@ export const EN: Languages = {
   emailErrorTitle: 'Wrong email',
   emailError: 'Invalid email',
   passwordErrorTitle: 'Weak password',
+  passwordErrorLength: 'Password must contain at least 8 characters',
   passwordErrorLetter: 'Password must contain at least one letter',
   passwordErrorDigital: 'Password must contain at least one digit',
   passwordErrorUppercase: 'Password must contain at least one uppercase letter',
@@ -169,6 +170,7 @@ export const RU: Languages = {
   emailErrorTitle: 'Неправильный e-mail',
   emailError: 'Введенные данные не являются e-mail адресом',
   passwordErrorTitle: 'Слабый пароль',
+  passwordErrorLength: 'Длина пароля не должна быть менее 8 символов',
   passwordErrorLetter: 'Пароль должен содержать хотя бы одну букву',
   passwordErrorDigital: 'Пароль должен содержать хотя бы одно число',
   passwordErrorUppercase:

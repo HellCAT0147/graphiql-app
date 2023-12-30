@@ -12,35 +12,15 @@ function ZodError({
 }): ReactNode {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: {
-      emailErrorTitle,
-      emailError,
-      passwordErrorTitle,
-      passwordErrorLetter,
-      passwordErrorDigital,
-      passwordErrorUppercase,
-      passwordErrorLowercase,
-      passwordErrorSpecial,
-    },
+    lang: { emailErrorTitle, passwordErrorTitle },
   } = context;
+  const { lang } = context;
   return (
     <div className="text-danger fs-3">
       {checkName === 'email' ? emailErrorTitle : passwordErrorTitle}
       {safeParseError.error.formErrors.formErrors.map((error) => (
         <div key={error} className="fs-6">
-          <label>
-            {checkName === 'email'
-              ? emailError
-              : error === 'digit'
-                ? passwordErrorDigital
-                : error === 'uppercase'
-                  ? passwordErrorUppercase
-                  : error === 'lowercase'
-                    ? passwordErrorLowercase
-                    : error === 'special'
-                      ? passwordErrorSpecial
-                      : passwordErrorLetter}
-          </label>
+          <label>{lang[error]}</label>
           <p></p>
         </div>
       ))}
