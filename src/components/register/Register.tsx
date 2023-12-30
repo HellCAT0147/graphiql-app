@@ -2,7 +2,7 @@ import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
 import styles from './Register.module.scss';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -15,6 +15,7 @@ import passwordSchema from '../../utils/passwordChecker.ts';
 import { SafeParseReturnType } from 'zod';
 import emailSchema from '../../utils/emailChecker.ts';
 import ZodError from '../zod-error';
+import SignUpInput from './signUpInput';
 
 const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -95,61 +96,35 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
     <section className={`${styles.register} container d-flex flex-column mb-3`}>
       <h1 className="text-info text-center">{registerTitle}</h1>
       <div className="row row-cols-auto justify-content-center">
-        <div className="form-group">
-          <input
-            className="col mx-1 form-control"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder={namePlaceholder}
-          />
-        </div>
-        <div
-          className={
-            emailCheck?.success !== false
-              ? 'form-group'
-              : 'form-group has-danger'
+        <SignUpInput
+          namePlaceholder={namePlaceholder}
+          checkResult={undefined}
+          value={name}
+          callback={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setName(e.target.value)
           }
-        >
-          <input
-            className={
-              emailCheck?.success !== false
-                ? 'col mx-1 form-control'
-                : 'col mx-1 bg-danger form-control is-invalid'
-            }
-            type="text"
-            value={email}
-            onChange={(e) => {
-              setEmailCheck(undefined);
-              setEmail(e.target.value);
-            }}
-            placeholder={emailPlaceholder}
-          />
-          {emailErrorsElement}
-        </div>
-        <div
-          className={
-            passwordCheck?.success !== false
-              ? 'form-group'
-              : 'form-group has-danger'
-          }
-        >
-          <input
-            className={
-              passwordCheck?.success !== false
-                ? 'col mx-1 form-control'
-                : 'col mx-1 bg-danger form-control is-invalid'
-            }
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPasswordCheck(undefined);
-              setPassword(e.target.value);
-            }}
-            placeholder={passwordPlaceholder}
-          />
-          {passwordErrorsElement}
-        </div>
+          errorBlock={null}
+        ></SignUpInput>
+        <SignUpInput
+          namePlaceholder={emailPlaceholder}
+          checkResult={emailCheck?.success}
+          value={email}
+          callback={(e) => {
+            setEmailCheck(undefined);
+            setEmail(e.target.value);
+          }}
+          errorBlock={emailErrorsElement}
+        ></SignUpInput>
+        <SignUpInput
+          namePlaceholder={passwordPlaceholder}
+          checkResult={passwordCheck?.success}
+          value={password}
+          callback={(e) => {
+            setPasswordCheck(undefined);
+            setPassword(e.target.value);
+          }}
+          errorBlock={passwordErrorsElement}
+        ></SignUpInput>
         <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
           {registerButtonText}
         </button>
