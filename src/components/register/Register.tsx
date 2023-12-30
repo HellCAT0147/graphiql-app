@@ -95,44 +95,64 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
     <section className={`${styles.register} container d-flex flex-column mb-3`}>
       <h1 className="text-info text-center">{registerTitle}</h1>
       <div className="row row-cols-auto justify-content-center">
-        <input
-          className="col mx-1"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder={namePlaceholder}
-        />
-        <input
+        <div className="form-group">
+          <input
+            className="col mx-1 form-control"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder={namePlaceholder}
+          />
+        </div>
+        <div
           className={
-            emailCheck?.success !== false ? 'col mx-1' : 'col mx-1 bg-danger'
+            emailCheck?.success !== false
+              ? 'form-group'
+              : 'form-group has-danger'
           }
-          type="text"
-          value={email}
-          onChange={(e) => {
-            setEmailCheck(undefined);
-            setEmail(e.target.value);
-          }}
-          placeholder={emailPlaceholder}
-        />
-        <input
+        >
+          <input
+            className={
+              emailCheck?.success !== false
+                ? 'col mx-1 form-control'
+                : 'col mx-1 bg-danger form-control is-invalid'
+            }
+            type="text"
+            value={email}
+            onChange={(e) => {
+              setEmailCheck(undefined);
+              setEmail(e.target.value);
+            }}
+            placeholder={emailPlaceholder}
+          />
+          {emailErrorsElement}
+        </div>
+        <div
           className={
-            passwordCheck?.success !== false ? 'col mx-1' : 'col mx-1 bg-danger'
+            passwordCheck?.success !== false
+              ? 'form-group'
+              : 'form-group has-danger'
           }
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPasswordCheck(undefined);
-            setPassword(e.target.value);
-          }}
-          placeholder={passwordPlaceholder}
-        />
+        >
+          <input
+            className={
+              passwordCheck?.success !== false
+                ? 'col mx-1 form-control'
+                : 'col mx-1 bg-danger form-control is-invalid'
+            }
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPasswordCheck(undefined);
+              setPassword(e.target.value);
+            }}
+            placeholder={passwordPlaceholder}
+          />
+          {passwordErrorsElement}
+        </div>
         <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
           {registerButtonText}
         </button>
-      </div>
-      <div>
-        {emailErrorsElement}
-        {passwordErrorsElement}
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
