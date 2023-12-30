@@ -15,8 +15,9 @@ function ZodError({
     lang: { emailErrorTitle, passwordErrorTitle },
   } = context;
   const { lang } = context;
-  const strength = 6 - safeParseError.error.formErrors.formErrors.length;
-
+  const maxPasswordStrength = 6;
+  const strength =
+    maxPasswordStrength - safeParseError.error.formErrors.formErrors.length;
   return (
     <div className="text-danger fs-3">
       <div className="d-flex justify-content-evenly">
