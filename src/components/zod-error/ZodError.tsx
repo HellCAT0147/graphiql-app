@@ -1,19 +1,46 @@
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
 import { SafeParseError } from 'zod';
+import { LangContext } from '../../contexts/types';
+import { Context } from '../../contexts';
 
 function ZodError({
-  prefix,
+  checkName,
   safeParseError,
 }: {
-  prefix: string;
+  checkName: string;
   safeParseError: SafeParseError<string>;
 }): ReactNode {
+  const context: LangContext = useContext<LangContext>(Context);
+  const {
+    lang: {
+      emailErrorTitle,
+      emailError,
+      passwordErrorTitle,
+      passwordErrorLetter,
+      passwordErrorDigital,
+      passwordErrorUppercase,
+      passwordErrorLowercase,
+      passwordErrorSpecial,
+    },
+  } = context;
   return (
     <div className="text-danger fs-3">
-      {prefix}
+      {checkName === 'email' ? emailErrorTitle : passwordErrorTitle}
       {safeParseError.error.formErrors.formErrors.map((error) => (
         <div key={error} className="fs-6">
-          <label>{error}</label>
+          <label>
+            {checkName === 'email'
+              ? emailError
+              : error === 'digit'
+                ? passwordErrorDigital
+                : error === 'uppercase'
+                  ? passwordErrorUppercase
+                  : error === 'lowercase'
+                    ? passwordErrorLowercase
+                    : error === 'special'
+                      ? passwordErrorSpecial
+                      : passwordErrorLetter}
+          </label>
           <p></p>
         </div>
       ))}

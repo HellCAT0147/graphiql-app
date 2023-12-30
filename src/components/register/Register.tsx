@@ -80,14 +80,14 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   let passwordErrorsElement = <></>;
   if (passwordCheck != undefined && !passwordCheck.success) {
     passwordErrorsElement = (
-      <ZodError prefix="Weak password:" safeParseError={passwordCheck} />
+      <ZodError checkName="password" safeParseError={passwordCheck} />
     );
   }
 
   let emailErrorsElement = <></>;
   if (emailCheck != undefined && !emailCheck.success) {
     emailErrorsElement = (
-      <ZodError prefix="Wrong email:" safeParseError={emailCheck} />
+      <ZodError checkName="email" safeParseError={emailCheck} />
     );
   }
 

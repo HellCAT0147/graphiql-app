@@ -78,6 +78,14 @@ export const EN: Languages = {
   headersButtonName: 'Headers',
   variablesButtonName: 'Variables',
   docsHeader: 'DOCS',
+  emailErrorTitle: 'Wrong email',
+  emailError: 'Invalid email',
+  passwordErrorTitle: 'Weak password',
+  passwordErrorLetter: 'Password must contain at least one letter',
+  passwordErrorDigital: 'Password must contain at least one digit',
+  passwordErrorUppercase: 'Password must contain at least one uppercase letter',
+  passwordErrorLowercase: 'Password must contain at least one lowercase letter',
+  passwordErrorSpecial: 'Password must contain at least one special character',
 };
 
 export const RU: Languages = {
@@ -158,4 +166,13 @@ export const RU: Languages = {
   headersButtonName: 'Заголовки',
   variablesButtonName: 'Переменные',
   docsHeader: 'ДОКИ',
+  emailErrorTitle: 'Неправильный e-mail',
+  emailError: 'Введенные данные не являются e-mail адресом',
+  passwordErrorTitle: 'Слабый пароль',
+  passwordErrorLetter: 'Пароль должен содержать хотя бы одну букву',
+  passwordErrorDigital: 'Пароль должен содержать хотя бы одно число',
+  passwordErrorUppercase:
+    'Пароль должен содержать хотя бы одну заглавную букву',
+  passwordErrorLowercase: 'Пароль должен содержать хотя бы одну строчную букву',
+  passwordErrorSpecial: 'Пароль должен содержать хотя бы один символ',
 };
