@@ -125,9 +125,11 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           }}
           errorBlock={passwordErrorsElement}
         ></SignUpInput>
-        <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
-          {registerButtonText}
-        </button>
+        <div>
+          <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
+            {registerButtonText}
+          </button>
+        </div>
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
