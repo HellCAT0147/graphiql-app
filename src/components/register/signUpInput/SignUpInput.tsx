@@ -21,7 +21,7 @@ function SignUpInput({
         className={
           checkResult !== false
             ? 'col mx-1 form-control'
-            : 'col mx-1 bg-danger form-control is-invalid'
+            : 'col mx-1 form-control is-invalid'
         }
         type="text"
         value={value}

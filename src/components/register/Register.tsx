@@ -109,20 +109,14 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           namePlaceholder={emailPlaceholder}
           checkResult={emailCheck?.success}
           value={email}
-          callback={(e) => {
-            setEmailCheck(undefined);
-            setEmail(e.target.value);
-          }}
+          callback={(e) => setEmail(e.target.value)}
           errorBlock={emailErrorsElement}
         ></SignUpInput>
         <SignUpInput
           namePlaceholder={passwordPlaceholder}
           checkResult={passwordCheck?.success}
           value={password}
-          callback={(e) => {
-            setPasswordCheck(undefined);
-            setPassword(e.target.value);
-          }}
+          callback={(e) => setPassword(e.target.value)}
           errorBlock={passwordErrorsElement}
         ></SignUpInput>
         <div>
