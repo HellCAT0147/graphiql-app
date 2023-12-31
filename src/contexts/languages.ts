@@ -78,6 +78,15 @@ export const EN: Languages = {
   headersButtonName: 'Headers',
   variablesButtonName: 'Variables',
   docsHeader: 'DOCS',
+  emailErrorTitle: 'Wrong email',
+  emailError: 'Invalid email',
+  passwordErrorTitle: 'Password strength:',
+  passwordErrorLength: 'Password must contain at least 8 characters',
+  passwordErrorLetter: 'Password must contain at least one letter',
+  passwordErrorDigital: 'Password must contain at least one digit',
+  passwordErrorUppercase: 'Password must contain at least one uppercase letter',
+  passwordErrorLowercase: 'Password must contain at least one lowercase letter',
+  passwordErrorSpecial: 'Password must contain at least one special character',
 };
 
 export const RU: Languages = {
@@ -122,7 +131,7 @@ export const RU: Languages = {
   welcomeBioAbout1:
     'Илья начал этот курс со Stage-0 с базовыми знаниями HTML/CSS, все это время он пытался пробиться в топ-позиции, усердно занимался по 60 часов в неделю. На начальных этапах, когда было достаточно времени на закрытие заданий - он очень много занимался теорией, что помогло в дальнейшем на собеседованиях. Илья любит играть на гитаре, в Dota 2 и Diablo (3-4). Также ему нравится получать адреналин от скоростных гонок на автомобиле и ставить рекорды на велосипеде. В будущем он очень хочет стать тим-лидом и зарабатывать много денег.',
   welcomeBioAbout2:
-    'Камилла начала свой путь в ИТ со Stage-0 в 2022 году. До этого она была учителем, поэтому смена профессии потребовала от нее много усилий. Замужем за инженером-программистом, имеет лошадь и двух рыжих котов. Она любит Vanilla js, вышивание крестиком и 17-дюймовые ноутбуки. В свободное время она обычно ходит в лес, чтобы громко поплакать над ограничением длины функции ESLint. Предпочитает использовать switch(true) вместо цепочки if-else. Пользователь Windows (пока...).',
+    'Камилла начала свой путь в IT со Stage-0 в 2022 году. До этого она была учителем, поэтому смена профессии потребовала от нее много усилий. Замужем за инженером-программистом, имеет лошадь и двух рыжих котов. Она любит Vanilla js, вышивание крестиком и 17-дюймовые ноутбуки. В свободное время она обычно ходит в лес, чтобы громко поплакать над ограничением длины функции ESLint. Предпочитает использовать switch(true) вместо цепочки if-else. Пользователь Windows (пока...).',
   welcomeBioAbout3:
     'Как и его коллеги, Александр начал изучать JS в декабре прошлого года на базовом курсе от школы RS. В течение первых двух недель он понял, что фронтенд - это то, что он искал. Он посвятил изучению около 70 % своего времени, что позволило ему занять первое место. Его работа Minesweeper попала в список 10 лучших заданий. Одним из самых сложных заданий был "Чистый код", но именно после него он полюбил чистый код и продолжает совершенствовать этот навык. Он любит разработку и хочет, чтобы она стала его работой.',
   welcomeCollaborationTitle: 'Сотрудничество',
@@ -158,4 +167,13 @@ export const RU: Languages = {
   headersButtonName: 'Заголовки',
   variablesButtonName: 'Переменные',
   docsHeader: 'ДОКИ',
+  emailErrorTitle: 'Неправильный e-mail',
+  emailError: 'Введенные данные не являются e-mail адресом',
+  passwordErrorTitle: 'Сила пароля:',
+  passwordErrorLength: 'Длина пароля не должна быть менее 8 символов',
+  passwordErrorLetter: 'Пароль должен содержать букву',
+  passwordErrorDigital: 'Пароль должен содержать число',
+  passwordErrorUppercase: 'Пароль должен содержать заглавную букву',
+  passwordErrorLowercase: 'Пароль должен содержать строчную букву',
+  passwordErrorSpecial: 'Пароль должен содержать специальный символ',
 };
