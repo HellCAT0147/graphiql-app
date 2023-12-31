@@ -2,27 +2,25 @@ import React, { ReactNode } from 'react';
 
 function SignUpInput({
   namePlaceholder,
-  checkResult,
+  isSuccess,
   value,
   callback,
   errorBlock,
 }: {
   namePlaceholder: string;
-  checkResult: boolean | undefined;
+  isSuccess: boolean | undefined;
   value: string;
   callback: (e: React.ChangeEvent<HTMLInputElement>) => void;
   errorBlock: ReactNode | null;
 }): ReactNode {
   return (
     <div
-      className={checkResult !== false ? 'form-group' : 'form-group has-danger'}
+      className={isSuccess !== false ? 'form-group' : 'form-group has-danger'}
     >
       <input
-        className={
-          checkResult !== false
-            ? 'col mx-1 form-control'
-            : 'col mx-1 form-control is-invalid'
-        }
+        className={`col mx-1 form-control ${
+          isSuccess === false && 'is-invalid'
+        }`}
         type="text"
         value={value}
         onChange={callback}
