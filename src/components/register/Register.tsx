@@ -46,8 +46,8 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const navigate = useNavigate();
 
   const handleSignUp = (): void => {
-    const passwordValid = validatePassword();
-    const emailValid = validateEmail();
+    const passwordValid = validatePassword(password);
+    const emailValid = validateEmail(email);
     if (!passwordValid || !emailValid) {
       return;
     }
@@ -67,12 +67,12 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
     if (error) toast.error(error.message);
   }, [error]);
 
-  const validatePassword = (): boolean => {
+  const validatePassword = (password: string): boolean => {
     const validationStatus = passwordSchema.safeParse(password);
     setPasswordCheck(validationStatus);
     return validationStatus.success;
   };
-  const validateEmail = (): boolean => {
+  const validateEmail = (email: string): boolean => {
     const validationStatus = emailSchema.safeParse(email);
     setEmailCheck(validationStatus);
     return validationStatus.success;
@@ -105,14 +105,20 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           namePlaceholder={emailPlaceholder}
           isSuccess={emailCheck?.success}
           value={email}
-          callback={(e) => setEmail(e.target.value)}
+          callback={(e) => {
+            setEmail(e.target.value);
+            validateEmail(e.target.value);
+          }}
           errorBlock={emailErrorsElement}
         ></SignUpInput>
         <SignUpInput
           namePlaceholder={passwordPlaceholder}
           isSuccess={passwordCheck?.success}
           value={password}
-          callback={(e) => setPassword(e.target.value)}
+          callback={(e) => {
+            setPassword(e.target.value);
+            validatePassword(e.target.value);
+          }}
           errorBlock={passwordErrorsElement}
         ></SignUpInput>
         <div>
