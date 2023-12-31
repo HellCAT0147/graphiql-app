@@ -15,7 +15,7 @@ import passwordSchema from '../../utils/passwordChecker.ts';
 import { SafeParseReturnType } from 'zod';
 import emailSchema from '../../utils/emailChecker.ts';
 import ZodError from '../zod-error';
-import SignUpInput from './signUpInput';
+import SignUpInput from './signup-input';
 
 const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -67,30 +67,26 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
     if (error) toast.error(error.message);
   }, [error]);
 
-  const validatePassword: () => boolean = () => {
+  const validatePassword = (): boolean => {
     const validationStatus = passwordSchema.safeParse(password);
     setPasswordCheck(validationStatus);
     return validationStatus.success;
   };
-  const validateEmail: () => boolean = () => {
+  const validateEmail = (): boolean => {
     const validationStatus = emailSchema.safeParse(email);
     setEmailCheck(validationStatus);
     return validationStatus.success;
   };
 
-  let passwordErrorsElement = <></>;
-  if (passwordCheck != undefined && !passwordCheck.success) {
-    passwordErrorsElement = (
+  const passwordErrorsElement =
+    passwordCheck?.success === false ? (
       <ZodError checkName="password" safeParseError={passwordCheck} />
-    );
-  }
+    ) : null;
 
-  let emailErrorsElement = <></>;
-  if (emailCheck != undefined && !emailCheck.success) {
-    emailErrorsElement = (
+  const emailErrorsElement =
+    emailCheck?.success === false ? (
       <ZodError checkName="email" safeParseError={emailCheck} />
-    );
-  }
+    ) : null;
 
   return (
     <section className={`${styles.register} container d-flex flex-column mb-3`}>
@@ -98,7 +94,7 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
       <div className="row row-cols-auto justify-content-center">
         <SignUpInput
           namePlaceholder={namePlaceholder}
-          checkResult={undefined}
+          isSuccess={undefined}
           value={name}
           callback={(e: React.ChangeEvent<HTMLInputElement>) =>
             setName(e.target.value)
@@ -107,14 +103,14 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
         ></SignUpInput>
         <SignUpInput
           namePlaceholder={emailPlaceholder}
-          checkResult={emailCheck?.success}
+          isSuccess={emailCheck?.success}
           value={email}
           callback={(e) => setEmail(e.target.value)}
           errorBlock={emailErrorsElement}
         ></SignUpInput>
         <SignUpInput
           namePlaceholder={passwordPlaceholder}
-          checkResult={passwordCheck?.success}
+          isSuccess={passwordCheck?.success}
           value={password}
           callback={(e) => setPassword(e.target.value)}
           errorBlock={passwordErrorsElement}

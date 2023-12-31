@@ -171,10 +171,9 @@ export const RU: Languages = {
   emailError: 'Введенные данные не являются e-mail адресом',
   passwordErrorTitle: 'Сила пароля:',
   passwordErrorLength: 'Длина пароля не должна быть менее 8 символов',
-  passwordErrorLetter: 'Пароль должен содержать хотя бы одну букву',
-  passwordErrorDigital: 'Пароль должен содержать хотя бы одно число',
-  passwordErrorUppercase:
-    'Пароль должен содержать хотя бы одну заглавную букву',
-  passwordErrorLowercase: 'Пароль должен содержать хотя бы одну строчную букву',
-  passwordErrorSpecial: 'Пароль должен содержать хотя бы один символ',
+  passwordErrorLetter: 'Пароль должен содержать букву',
+  passwordErrorDigital: 'Пароль должен содержать число',
+  passwordErrorUppercase: 'Пароль должен содержать заглавную букву',
+  passwordErrorLowercase: 'Пароль должен содержать строчную букву',
+  passwordErrorSpecial: 'Пароль должен содержать специальный символ',
 };
