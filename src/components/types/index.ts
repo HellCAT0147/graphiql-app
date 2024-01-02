@@ -81,23 +81,22 @@ export interface Schema {
   };
 }
 
-export interface SchemaItem {
+interface BaseSchemaItem {
   name: string;
   description: string | null;
+}
+
+export interface SchemaItem extends BaseSchemaItem {
   fields?: SchemaItem[];
   type?: InnerType;
 }
 
-export interface SchemaType {
-  name: string;
-  description: string | null;
+export interface SchemaType extends BaseSchemaItem {
   fields: SchemaItem[];
   inputFields: SchemaItem[];
 }
 
-export interface SchemaField {
-  name: string;
-  description: string | null;
+export interface SchemaField extends BaseSchemaItem {
   type: InnerType;
   args?: SchemaField[];
 }

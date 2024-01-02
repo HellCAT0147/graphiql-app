@@ -2,9 +2,8 @@ import { useContext } from 'react';
 import { Context } from '../../../contexts';
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
-import { useGetDataQuery } from '../../../store/reducers/api-slice';
 import { useAppSelector } from '../../../store/hooks';
-import { Options } from '../../../store/reducers';
+import { Options, useGetDataQuery } from '../../../store/reducers';
 import Prettify from '../../prettify';
 
 const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {

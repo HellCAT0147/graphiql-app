@@ -1,11 +1,10 @@
 import { FormEvent, useContext } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { Inputs, Options } from '../../../store/reducers';
+import { Docs, Inputs, Options } from '../../../store/reducers';
 import { Context } from '../../../contexts';
 
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
-import { Docs } from '../../../store/reducers/docs-slice';
 import { areUrlsEqual } from '../../../utils/url-helpers';
 
 const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {

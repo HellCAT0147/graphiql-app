@@ -3,7 +3,6 @@ import { Context } from '../../../../contexts';
 import { LangContext } from '../../../../contexts/types';
 
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { Docs } from '../../../../store/reducers/docs-slice';
 import { AllTypes, DocsPage, SchemaItemProps } from '../../../../store/types';
 import {
   getType,
@@ -11,6 +10,7 @@ import {
   showArgsExisting,
 } from '../../../../utils/schema-resolvers';
 import { isAllTypes, isType, isField } from '../../../../utils/typeguards';
+import { Docs } from '../../../../store/reducers';
 
 const SchemaItem: React.FC<SchemaItemProps> = ({
   data,

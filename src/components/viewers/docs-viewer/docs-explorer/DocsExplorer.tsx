@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { Context } from '../../../../contexts';
 import { LangContext } from '../../../../contexts/types';
 import { useAppSelector } from '../../../../store/hooks';
-import { Docs } from '../../../../store/reducers/docs-slice';
 import { DocsPage } from '../../../../store/types';
 import { isAllTypes, isField, isType } from '../../../../utils/typeguards';
 import { HistoryStep } from '../../../types';
@@ -11,6 +10,7 @@ import SchemaList from '../schema-list';
 import SchemaType from '../schema-type';
 import SchemaArgs from '../schema-args';
 import MainSchemaList from '../main-schema-list';
+import { Docs } from '../../../../store/reducers';
 
 const DocsExplorer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);

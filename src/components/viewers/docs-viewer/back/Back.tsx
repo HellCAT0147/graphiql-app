@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { Docs } from '../../../../store/reducers/docs-slice';
+import { Docs } from '../../../../store/reducers';
 import { DocsPage } from '../../../../store/types';
 import { BackProps, HistoryStep } from '../../../types';
 

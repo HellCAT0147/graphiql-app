@@ -3,15 +3,13 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Context } from '../../../contexts';
 
 import { LangContext } from '../../../contexts/types';
-import { Visibility } from '../../../store/reducers';
+import { Docs, Visibility, useGetSchemaQuery } from '../../../store/reducers';
 
-import { useGetSchemaQuery } from '../../../store/reducers/api-slice';
 import { Options } from '../../../store/reducers';
 import { getSchemaItems } from '../../../utils/schema-resolvers';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import { isSchema } from '../../../utils/typeguards';
-import { Docs } from '../../../store/reducers/docs-slice';
 import Button from './button';
 import Loader from './loader';
 const DocsExplorer = lazy(() => import('./docs-explorer'));
