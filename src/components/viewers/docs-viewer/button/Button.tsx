@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({ isLoading, isError }): JSX.Element => {
       className="btn btn-info position-absolute start-0 px-2 z-1"
       onClick={onToggleDocsVisible}
     >
-      <i className="fs-3 fa-sharp fa-solid fa-book-tanakh"></i>
+      <i className="fs-3 fa-sharp fa-solid fa-book-bookmark"></i>
     </button>
   );
 };
