@@ -87,6 +87,13 @@ export const EN: Languages = {
   passwordErrorUppercase: 'Password must contain at least one uppercase letter',
   passwordErrorLowercase: 'Password must contain at least one lowercase letter',
   passwordErrorSpecial: 'Password must contain at least one special character',
+  mainTypesHeader: 'All Schema Types',
+  fieldsHeader: 'Fields',
+  rootTypesHeader: 'Root Types',
+  noDescription: 'Description is not available',
+  undefinedItem: 'Undefined item',
+  typeHeader: 'Type',
+  argsHeader: 'Arguments',
 };
 
 export const RU: Languages = {
@@ -166,7 +173,7 @@ export const RU: Languages = {
   resetButtonText: 'Запросить ссылку на сброс пароля',
   headersButtonName: 'Заголовки',
   variablesButtonName: 'Переменные',
-  docsHeader: 'ДОКИ',
+  docsHeader: 'ДОКА',
   emailErrorTitle: 'Неправильный e-mail',
   emailError: 'Введенные данные не являются e-mail адресом',
   passwordErrorTitle: 'Сила пароля:',
@@ -176,4 +183,11 @@ export const RU: Languages = {
   passwordErrorUppercase: 'Пароль должен содержать заглавную букву',
   passwordErrorLowercase: 'Пароль должен содержать строчную букву',
   passwordErrorSpecial: 'Пароль должен содержать специальный символ',
+  mainTypesHeader: 'Все типы схемы',
+  fieldsHeader: 'Поля',
+  rootTypesHeader: 'Корневые типы',
+  noDescription: 'Описание отсутствует',
+  undefinedItem: 'Неизвестный элемент',
+  typeHeader: 'Тип',
+  argsHeader: 'Аргументы',
 };

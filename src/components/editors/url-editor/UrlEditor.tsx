@@ -1,10 +1,11 @@
 import { FormEvent, useContext } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { Inputs, Options } from '../../../store/reducers';
+import { Docs, Inputs, Options } from '../../../store/reducers';
 import { Context } from '../../../contexts';
 
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
+import { areUrlsEqual } from '../../../utils/url-helpers';
 
 const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -18,6 +19,7 @@ const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
 
   const onSetUrl = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!areUrlsEqual(urlApi, url)) dispatch(Docs.mainData.reset());
     dispatch(Options.url.set(url));
   };
 

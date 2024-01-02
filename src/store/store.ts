@@ -4,6 +4,7 @@ import {
   optionsReducer,
   inputsReducer,
   visibilityReducer,
+  docsReducer,
 } from './reducers';
 import { apiSlice } from './reducers/api-slice';
 
@@ -14,6 +15,7 @@ export const store = configureStore({
     inputs: inputsReducer,
     visibility: visibilityReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
+    docs: docsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),

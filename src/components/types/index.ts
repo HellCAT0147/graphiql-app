@@ -1,3 +1,5 @@
+import { AllTypes, DocsPage } from '../../store/types';
+
 export type HasError = boolean;
 
 export interface ErrorProps {
@@ -44,4 +46,67 @@ export interface PrettifyProps {
     value: string;
     isReadOnly: boolean;
   };
+}
+
+export interface ButtonProps {
+  isLoading: boolean;
+  isError: boolean;
+}
+
+export interface BackProps {
+  prevPageName: string;
+}
+
+export interface MainSchemaListProps {
+  types: AllTypes;
+}
+
+export interface SchemaListProps {
+  data: SchemaItem[] | null;
+  header?: string;
+  description?: string | null;
+}
+
+export interface LoaderProps {
+  margin?: string;
+}
+
+export interface Schema {
+  data: {
+    __schema: {
+      queryType: SchemaItem | null;
+      types: SchemaItem[];
+      mutationType: SchemaItem | null;
+    };
+  };
+}
+
+interface BaseSchemaItem {
+  name: string;
+  description: string | null;
+}
+
+export interface SchemaItem extends BaseSchemaItem {
+  fields?: SchemaItem[];
+  type?: InnerType;
+}
+
+export interface SchemaType extends BaseSchemaItem {
+  fields: SchemaItem[];
+  inputFields: SchemaItem[];
+}
+
+export interface SchemaField extends BaseSchemaItem {
+  type: InnerType;
+  args?: SchemaField[];
+}
+
+export interface InnerType {
+  name: string | null;
+  ofType: InnerType | null;
+}
+
+export interface HistoryStep {
+  name: string;
+  content: DocsPage;
 }
