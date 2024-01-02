@@ -2,7 +2,7 @@ import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
 import styles from './Register.module.scss';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -10,6 +10,12 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from '../../firebase';
+import { toast } from 'react-toastify';
+import passwordSchema from '../../utils/passwordChecker.ts';
+import { SafeParseReturnType } from 'zod';
+import emailSchema from '../../utils/emailChecker.ts';
+import ZodError from '../zod-error';
+import SignUpInput from './signup-input';
 
 const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -30,12 +36,25 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState<
+    SafeParseReturnType<string, string> | undefined
+  >(undefined);
+  const [emailCheck, setEmailCheck] = useState<
+    SafeParseReturnType<string, string> | undefined
+  >(undefined);
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
   const handleSignUp = (): void => {
-    // TODO: loading & validation
-    registerWithEmailAndPassword(name, email, password);
+    const passwordValid = validatePassword(password);
+    const emailValid = validateEmail(email);
+    if (!passwordValid || !emailValid) {
+      return;
+    }
+    // TODO: loading
+    registerWithEmailAndPassword(name, email, password).catch((error) => {
+      toast.error(error.message);
+    });
   };
 
   useEffect(() => {
@@ -45,42 +64,68 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   }, [user, loading, navigate]);
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
 
-  const throwError = (error: Error) => {
-    error;
-    // TODO: tostify error
+  const validatePassword = (password: string): boolean => {
+    const validationStatus = passwordSchema.safeParse(password);
+    setPasswordCheck(validationStatus);
+    return validationStatus.success;
   };
+  const validateEmail = (email: string): boolean => {
+    const validationStatus = emailSchema.safeParse(email);
+    setEmailCheck(validationStatus);
+    return validationStatus.success;
+  };
+
+  const passwordErrorsElement =
+    passwordCheck?.success === false ? (
+      <ZodError checkName="password" safeParseError={passwordCheck} />
+    ) : null;
+
+  const emailErrorsElement =
+    emailCheck?.success === false ? (
+      <ZodError checkName="email" safeParseError={emailCheck} />
+    ) : null;
 
   return (
     <section className={`${styles.register} container d-flex flex-column mb-3`}>
       <h1 className="text-info text-center">{registerTitle}</h1>
       <div className="row row-cols-auto justify-content-center">
-        <input
-          className="col mx-1"
-          type="text"
+        <SignUpInput
+          namePlaceholder={namePlaceholder}
+          isSuccess={undefined}
           value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder={namePlaceholder}
-        />
-        <input
-          className="col mx-1"
-          type="text"
+          callback={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setName(e.target.value)
+          }
+          errorBlock={null}
+        ></SignUpInput>
+        <SignUpInput
+          namePlaceholder={emailPlaceholder}
+          isSuccess={emailCheck?.success}
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={emailPlaceholder}
-        />
-        <input
-          className="col mx-1"
-          type="password"
+          callback={(e) => {
+            setEmail(e.target.value);
+            validateEmail(e.target.value);
+          }}
+          errorBlock={emailErrorsElement}
+        ></SignUpInput>
+        <SignUpInput
+          namePlaceholder={passwordPlaceholder}
+          isSuccess={passwordCheck?.success}
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder={passwordPlaceholder}
-        />
-        <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
-          {registerButtonText}
-        </button>
+          callback={(e) => {
+            setPassword(e.target.value);
+            validatePassword(e.target.value);
+          }}
+          errorBlock={passwordErrorsElement}
+        ></SignUpInput>
+        <div>
+          <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
+            {registerButtonText}
+          </button>
+        </div>
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"

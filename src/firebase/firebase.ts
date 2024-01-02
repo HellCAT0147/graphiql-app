@@ -73,11 +73,7 @@ const loginWithEmailAndPassword = async (
   email: string,
   password: string
 ): Promise<void> => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    // TODO: handle error
-  }
+  await signInWithEmailAndPassword(auth, email, password);
 };
 
 const registerWithEmailAndPassword = async (
@@ -85,22 +81,18 @@ const registerWithEmailAndPassword = async (
   email: string,
   password: string
 ): Promise<void> => {
-  try {
-    const res: UserCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user: User = res.user;
-    await addDoc(collection(db, 'users'), {
-      uid: user.uid,
-      name,
-      authProvider: 'local',
-      email,
-    });
-  } catch (err) {
-    // TODO: handle error
-  }
+  const res: UserCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  const user: User = res.user;
+  await addDoc(collection(db, 'users'), {
+    uid: user.uid,
+    name,
+    authProvider: 'local',
+    email,
+  });
 };
 
 const sendPasswordReset = async (email: string): Promise<void> => {

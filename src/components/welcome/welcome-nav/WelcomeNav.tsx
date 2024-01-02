@@ -5,6 +5,7 @@ import { Context } from '../../../contexts';
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
 import Button from '../button';
+import { toast } from 'react-toastify';
 
 const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -15,13 +16,8 @@ const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
   const [user, , error] = useAuthState(auth);
 
   useEffect(() => {
-    if (error) throwError(error);
+    if (error) toast.error(error.message);
   }, [error]);
-
-  const throwError = (error: Error) => {
-    error;
-    // TODO: tostify error
-  };
 
   return (
     <div className="d-flex flex-row justify-content-end my-3 mx-3">

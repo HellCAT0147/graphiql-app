@@ -19,6 +19,35 @@ export type WithChildrenProps = {
   children: React.ReactNode;
 };
 
+export interface InputsGroupAttributes {
+  atr: {
+    id: string;
+    group: string;
+    type: string;
+    value: string;
+    classInput: string;
+    classLabel: string;
+  };
+}
+
+export interface ButtonAttributes {
+  atr: {
+    onClick: () => void;
+    className: string;
+    classIcon: string;
+  };
+}
+
+export interface PrettifyProps {
+  data: {
+    className: string;
+    width: string;
+    title: string;
+    value: string;
+    isReadOnly: boolean;
+  };
+}
+
 export interface ButtonProps {
   isLoading: boolean;
   isError: boolean;
