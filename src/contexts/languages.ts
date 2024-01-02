@@ -91,7 +91,7 @@ export const EN: Languages = {
   fieldsHeader: 'Fields',
   rootTypesHeader: 'Root Types',
   noDescription: 'Description is not available',
-  undefinedItem: 'undefined item',
+  undefinedItem: 'Undefined item',
   typeHeader: 'Type',
   argsHeader: 'Arguments',
 };
@@ -187,7 +187,7 @@ export const RU: Languages = {
   fieldsHeader: 'Поля',
   rootTypesHeader: 'Корневые типы',
   noDescription: 'Описание отсутствует',
-  undefinedItem: 'неизвестный элемент',
+  undefinedItem: 'Неизвестный элемент',
   typeHeader: 'Тип',
   argsHeader: 'Аргументы',
 };
