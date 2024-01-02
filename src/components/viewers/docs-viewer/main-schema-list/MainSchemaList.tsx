@@ -5,6 +5,7 @@ import { Context } from '../../../../contexts';
 import SchemaItem from '../schema-item';
 import { MainSchemaListProps } from '../../../types';
 import SchemaList from '../schema-list';
+import Loader from '../loader';
 
 const MainSchemaList: React.FC<MainSchemaListProps> = ({
   types,
@@ -17,6 +18,7 @@ const MainSchemaList: React.FC<MainSchemaListProps> = ({
   return (
     <>
       <h4 className="card-title">{rootTypesHeader}</h4>
+      {!types.types.length && <Loader margin="0" />}
       {types.rootTypes.query && (
         <SchemaItem data={types.rootTypes.query} isRoot={true} />
       )}
@@ -24,6 +26,7 @@ const MainSchemaList: React.FC<MainSchemaListProps> = ({
         <SchemaItem data={types.rootTypes.mutation} isRoot={true} />
       )}
       <SchemaList data={types.types} header={mainTypesHeader} />
+      {!types.types.length && <Loader margin="0" />}
     </>
   );
 };

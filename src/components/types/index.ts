@@ -38,6 +38,10 @@ export interface SchemaListProps {
   description?: string | null;
 }
 
+export interface LoaderProps {
+  margin?: string;
+}
+
 export interface Schema {
   data: {
     __schema: {

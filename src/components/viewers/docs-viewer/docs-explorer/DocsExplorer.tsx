@@ -7,10 +7,10 @@ import { DocsPage } from '../../../../store/types';
 import { isAllTypes, isField, isType } from '../../../../utils/typeguards';
 import { HistoryStep } from '../../../types';
 import Back from '../back';
-import MainSchemaList from '../main-schema-list';
 import SchemaList from '../schema-list';
 import SchemaType from '../schema-type';
 import SchemaArgs from '../schema-args';
+import MainSchemaList from '../main-schema-list';
 
 const DocsExplorer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);

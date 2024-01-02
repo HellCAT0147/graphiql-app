@@ -1,6 +1,11 @@
-const Loader: React.FC = (): JSX.Element => {
+import { LoaderProps } from '../../../types';
+
+const Loader: React.FC<LoaderProps> = ({ margin }): JSX.Element => {
   return (
-    <section className="mt-5 d-flex justify-content-center">
+    <section
+      className={`mt-${margin ? margin : '5'} d-flex justify-content-center`}
+      style={{ width: '100%' }}
+    >
       <div
         className="spinner-grow text-info"
         style={{ width: '3rem', height: '3rem' }}
