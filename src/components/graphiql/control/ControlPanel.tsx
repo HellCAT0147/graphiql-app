@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { Inputs, Options } from '../../../store/reducers';
+import { Inputs, Loading, Options } from '../../../store/reducers';
 import {
   isValidBrackets,
   isValidSyntax,
@@ -13,6 +13,7 @@ const ControlPanel: React.FC = (): ReactNode => {
   const queryInput = useAppSelector(Inputs.query.select);
   const variablesInput = useAppSelector(Inputs.variables.select);
   const headersInput = useAppSelector(Inputs.headers.select);
+  const isLoadingData = useAppSelector(Loading.select);
 
   const [isValidQuery, setIsValidQuery] = useState<boolean>(true);
 
@@ -40,6 +41,7 @@ const ControlPanel: React.FC = (): ReactNode => {
     <article>
       <ControlButton
         atr={{
+          isLoadingData,
           className: 'secondary mb-3',
           onClick: onGetData,
           classIcon: 'fa-caret-right px-1 fs-2',
@@ -47,6 +49,7 @@ const ControlPanel: React.FC = (): ReactNode => {
       />
       <ControlButton
         atr={{
+          isLoadingData: false,
           className: `outline-${isValidQuery ? 'primary' : 'danger'}`,
           onClick: onPrettifyQuery,
           classIcon: 'fa-broom-ball py-1 fs-5',

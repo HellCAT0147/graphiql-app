@@ -32,6 +32,7 @@ export interface InputsGroupAttributes {
 
 export interface ButtonAttributes {
   atr: {
+    isLoadingData: boolean;
     onClick: () => void;
     className: string;
     classIcon: string;
