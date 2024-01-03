@@ -48,6 +48,14 @@ export interface PrettifyProps {
   };
 }
 
+export interface CodeInputProps {
+  atr: {
+    value: string;
+    isReadOnly: boolean;
+    callback: (value: string) => void;
+  };
+}
+
 export interface ButtonProps {
   isLoading: boolean;
   isError: boolean;
