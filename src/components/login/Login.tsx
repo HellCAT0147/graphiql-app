@@ -44,9 +44,10 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
     });
   };
 
-  const handleSignInWithGoogle = async (): Promise<void> => {
-    const error = await signInWithGoogle();
-    if (error) toast.error(error.message);
+  const handleSignInWithGoogle = (): void => {
+    signInWithGoogle().catch((error) => {
+      toast.error(error.message);
+    });
   };
 
   useEffect(() => {

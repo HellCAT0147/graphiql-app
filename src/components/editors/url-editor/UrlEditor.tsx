@@ -1,6 +1,6 @@
 import { FormEvent, useContext } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { Docs, Inputs, Options } from '../../../store/reducers';
+import { Docs, Inputs, Options, Visibility } from '../../../store/reducers';
 import { Context } from '../../../contexts';
 
 import { LangContext } from '../../../contexts/types';
@@ -19,7 +19,10 @@ const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
 
   const onSetUrl = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!areUrlsEqual(urlApi, url)) dispatch(Docs.mainData.reset());
+    if (!areUrlsEqual(urlApi, url)) {
+      dispatch(Docs.mainData.reset());
+      dispatch(Visibility.docs.set(false));
+    }
     dispatch(Options.url.set(url));
   };
 

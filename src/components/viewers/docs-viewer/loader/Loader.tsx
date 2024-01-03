@@ -1,9 +1,7 @@
-import { LoaderProps } from '../../../types';
-
-const Loader: React.FC<LoaderProps> = ({ margin }): JSX.Element => {
+const Loader: React.FC = (): JSX.Element => {
   return (
     <section
-      className={`mt-${margin ? margin : '5'} d-flex justify-content-center`}
+      className={`mt-5 d-flex justify-content-center`}
       style={{ width: '100%' }}
     >
       <div
