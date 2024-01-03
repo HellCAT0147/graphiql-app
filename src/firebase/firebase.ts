@@ -23,6 +23,7 @@ import {
   Query,
   QuerySnapshot,
 } from 'firebase/firestore';
+import { isError } from '../utils/typeguards';
 
 interface FirebaseConfig {
   apiKey: string;
@@ -47,7 +48,7 @@ const auth: Auth = getAuth(app);
 const db: Firestore = getFirestore(app);
 
 const googleProvider: GoogleAuthProvider = new GoogleAuthProvider();
-const signInWithGoogle = async (): Promise<void> => {
+const signInWithGoogle = async (): Promise<void | Error> => {
   try {
     const res: UserCredential = await signInWithPopup(auth, googleProvider);
     const user: User = res.user;
@@ -64,8 +65,8 @@ const signInWithGoogle = async (): Promise<void> => {
         email: user.email,
       });
     }
-  } catch (err) {
-    // TODO: handle error
+  } catch (error) {
+    if (isError(error)) return error;
   }
 };
 

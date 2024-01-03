@@ -44,6 +44,11 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
     });
   };
 
+  const handleSignInWithGoogle = async (): Promise<void> => {
+    const error = await signInWithGoogle();
+    if (error) toast.error(error.message);
+  };
+
   useEffect(() => {
     if (loading) {
       // TODO: show loading indicator
@@ -78,7 +83,7 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
-        onClick={signInWithGoogle}
+        onClick={handleSignInWithGoogle}
       >
         {googleButtonText}
       </button>
