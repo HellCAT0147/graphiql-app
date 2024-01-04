@@ -1,6 +1,6 @@
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
-import { ReactNode, useContext, useEffect, useState } from 'react';
+import { FormEvent, ReactNode, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -35,8 +35,9 @@ const Login: React.FC = (): ReactNode => {
     if (error) toast.error(error.message);
   }, [error]);
 
-  const handleSignIn = (): void => {
+  const handleSignIn = (e: FormEvent): void => {
     // TODO: show loading indicator
+    e.preventDefault();
     loginWithEmailAndPassword(email, password).catch((error) => {
       toast.error(error.message);
     });
@@ -55,25 +56,32 @@ const Login: React.FC = (): ReactNode => {
   ) : (
     <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{loginTitle}</h1>
-      <div className="row row-cols-auto justify-content-center">
-        <input
-          className="col mx-1"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={emailPlaceholder}
-        />
-        <input
-          className="col mx-1"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder={passwordPlaceholder}
-        />
-        <button onClick={handleSignIn} className="col mx-1 btn btn-success">
+      <form
+        className="row row-cols-auto justify-content-center"
+        onSubmit={handleSignIn}
+      >
+        <div className="form-group">
+          <input
+            className="col mx-1 form-control"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={emailPlaceholder}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="col mx-1 form-control"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder={passwordPlaceholder}
+          />
+        </div>
+        <button className="col mx-1 btn btn-success" type="submit">
           {loginButtonText}
         </button>
-      </div>
+      </form>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
         onClick={signInWithGoogle}

@@ -14,12 +14,10 @@ function SignUpInput({
   errorBlock: ReactNode | null;
 }): ReactNode {
   return (
-    <div
-      className={isSuccess !== false ? 'form-group' : 'form-group has-danger'}
-    >
+    <div className={`form-group ${isSuccess !== false ? '' : 'has-danger'}`}>
       <input
         className={`col mx-1 form-control ${
-          isSuccess === false && 'is-invalid'
+          isSuccess !== false ? '' : 'is-invalid'
         }`}
         type="text"
         value={value}

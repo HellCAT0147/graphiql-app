@@ -97,7 +97,7 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
       >
         <SignUpInput
           namePlaceholder={namePlaceholder}
-          isSuccess={undefined}
+          isSuccess={true}
           value={name}
           callback={(e: React.ChangeEvent<HTMLInputElement>) =>
             setName(e.target.value)

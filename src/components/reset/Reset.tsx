@@ -1,14 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import { FormEvent, ReactNode, useContext, useEffect, useState } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
-import { EmptyProps } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 
-const Reset: React.FC<EmptyProps> = (): JSX.Element => {
+const Reset: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: {
@@ -35,8 +34,9 @@ const Reset: React.FC<EmptyProps> = (): JSX.Element => {
     if (error) toast.error(error.message);
   }, [error]);
 
-  const handleReset = (): void => {
+  const handleReset = (e: FormEvent): void => {
     // TODO: loading & validation
+    e.preventDefault();
     sendPasswordResetEmail(auth, email).catch((error) => {
       toast.error(error.message);
     });
@@ -45,18 +45,23 @@ const Reset: React.FC<EmptyProps> = (): JSX.Element => {
   return (
     <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{resetTitle}</h1>
-      <div className="row row-cols-auto justify-content-center">
-        <input
-          className="col mx-1"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={emailPlaceholder}
-        />
-        <button className="col mx-1 btn btn-success" onClick={handleReset}>
+      <form
+        className="row row-cols-auto justify-content-center"
+        onSubmit={handleReset}
+      >
+        <div className="form-group">
+          <input
+            className="col mx-1 form-control"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={emailPlaceholder}
+          />
+        </div>
+        <button className="col mx-1 btn btn-success" type="submit">
           {resetButtonText}
         </button>
-      </div>
+      </form>
       <p className="text-center mt-2">
         {accountNegativeText} <Link to="/register">{registerLink}</Link>
         {` ${accountSupportText}`}.
