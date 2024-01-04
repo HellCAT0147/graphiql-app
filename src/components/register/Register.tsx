@@ -1,8 +1,7 @@
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
-import styles from './Register.module.scss';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { FormEvent, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -45,7 +44,8 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  const handleSignUp = (): void => {
+  const handleSignUp = (e: FormEvent): void => {
+    e.preventDefault();
     const passwordValid = validatePassword(password);
     const emailValid = validateEmail(email);
     if (!passwordValid || !emailValid) {
@@ -89,9 +89,12 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
     ) : null;
 
   return (
-    <section className={`${styles.register} container d-flex flex-column mb-3`}>
+    <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{registerTitle}</h1>
-      <div className="row row-cols-auto justify-content-center">
+      <form
+        className="row row-cols-auto justify-content-center"
+        onSubmit={handleSignUp}
+      >
         <SignUpInput
           namePlaceholder={namePlaceholder}
           isSuccess={undefined}
@@ -121,12 +124,14 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           }}
           errorBlock={passwordErrorsElement}
         ></SignUpInput>
-        <div>
-          <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
-            {registerButtonText}
-          </button>
-        </div>
-      </div>
+        <button
+          className="col mx-1 btn btn-success"
+          type="submit"
+          style={{ height: 'fit-content' }}
+        >
+          {registerButtonText}
+        </button>
+      </form>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
         onClick={signInWithGoogle}

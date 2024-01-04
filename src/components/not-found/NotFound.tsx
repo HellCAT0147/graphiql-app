@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
-import styles from './NotFound.module.scss';
 
 const NotFound: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -11,7 +10,7 @@ const NotFound: React.FC<EmptyProps> = (): JSX.Element => {
   } = context;
 
   return (
-    <section className={styles.notFound}>
+    <section className="position-fixed top-50 start-50 translate-middle text-center">
       <h1 className="text-warning">{notFoundTitle}</h1>
       <p className="text-warning">{`(${notFoundText})`}</p>
     </section>

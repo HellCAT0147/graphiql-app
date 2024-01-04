@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
-import styles from './Reset.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { sendPasswordResetEmail } from 'firebase/auth';
@@ -44,7 +43,7 @@ const Reset: React.FC<EmptyProps> = (): JSX.Element => {
   };
 
   return (
-    <section className={`${styles.reset} container d-flex flex-column mb-3`}>
+    <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{resetTitle}</h1>
       <div className="row row-cols-auto justify-content-center">
         <input

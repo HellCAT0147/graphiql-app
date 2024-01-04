@@ -1,8 +1,6 @@
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
-import { EmptyProps } from '../types';
-import styles from './Login.module.scss';
-import { useContext, useEffect, useState } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -12,7 +10,7 @@ import {
 } from '../../firebase';
 import { toast } from 'react-toastify';
 
-const Login: React.FC<EmptyProps> = (): JSX.Element => {
+const Login: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: {
@@ -55,7 +53,7 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
   return loading || user ? (
     <h1>Loading...</h1> // TODO: add appropriate loader
   ) : (
-    <section className={`${styles.login} container d-flex flex-column mb-3`}>
+    <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{loginTitle}</h1>
       <div className="row row-cols-auto justify-content-center">
         <input
