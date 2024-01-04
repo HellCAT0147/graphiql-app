@@ -2,7 +2,7 @@ import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
 import styles from './Login.module.scss';
-import { useContext, useEffect, useState } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -11,8 +11,9 @@ import {
   signInWithGoogle,
 } from '../../firebase';
 import { toast } from 'react-toastify';
+import Loader from '../viewers/docs-viewer/loader';
 
-const Login: React.FC<EmptyProps> = (): JSX.Element => {
+const Login: React.FC<EmptyProps> = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: {
@@ -30,6 +31,7 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSending, setIsSending] = useState(false);
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -38,9 +40,10 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
   }, [error]);
 
   const handleSignIn = (): void => {
-    // TODO: show loading indicator
+    setIsSending(true);
     loginWithEmailAndPassword(email, password).catch((error) => {
       toast.error(error.message);
+      setIsSending(false);
     });
   };
 
@@ -51,15 +54,14 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (loading) {
-      // TODO: show loading indicator
-      return;
+    if (user) {
+      navigate('/', { replace: true });
+      setIsSending(false);
     }
-    if (user) navigate('/');
-  }, [user, loading, navigate]);
+  }, [user, navigate]);
 
   return loading || user ? (
-    <h1>Loading...</h1> // TODO: add appropriate loader
+    <Loader />
   ) : (
     <section className={`${styles.login} container d-flex flex-column mb-3`}>
       <h1 className="text-info text-center">{loginTitle}</h1>
@@ -78,7 +80,11 @@ const Login: React.FC<EmptyProps> = (): JSX.Element => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder={passwordPlaceholder}
         />
-        <button onClick={handleSignIn} className="col mx-1 btn btn-success">
+        <button
+          disabled={isSending}
+          onClick={handleSignIn}
+          className="col mx-1 btn btn-success"
+        >
           {loginButtonText}
         </button>
       </div>

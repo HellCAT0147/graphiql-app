@@ -23,6 +23,8 @@ import {
   Query,
   QuerySnapshot,
 } from 'firebase/firestore';
+import { ResetResponse, errorTemplate } from './types';
+import { isError } from '../utils/typeguards';
 
 interface FirebaseConfig {
   apiKey: string;
@@ -34,12 +36,12 @@ interface FirebaseConfig {
 }
 
 const firebaseConfig: FirebaseConfig = {
-  apiKey: 'AIzaSyBJ0z2Q25tx685W6i0Tw4TE0HQQBPfnLzc',
-  authDomain: 'haq-graphql.firebaseapp.com',
-  projectId: 'haq-graphql',
-  storageBucket: 'haq-graphql.appspot.com',
-  messagingSenderId: '325768776820',
-  appId: '1:325768776820:web:edf3e74d0388418c6b5521',
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 const app: FirebaseApp = initializeApp(firebaseConfig);
@@ -49,12 +51,15 @@ const db: Firestore = getFirestore(app);
 const googleProvider: GoogleAuthProvider = new GoogleAuthProvider();
 const signInWithGoogle = async (): Promise<void> => {
   const res: UserCredential = await signInWithPopup(auth, googleProvider);
+
   const user: User = res.user;
   const q: Query<DocumentData, DocumentData> = query(
     collection(db, 'users'),
     where('uid', '==', user.uid)
   );
+
   const docs: QuerySnapshot<DocumentData, DocumentData> = await getDocs(q);
+
   if (docs.docs.length === 0) {
     await addDoc(collection(db, 'users'), {
       uid: user.uid,
@@ -82,7 +87,9 @@ const registerWithEmailAndPassword = async (
     email,
     password
   );
+
   const user: User = res.user;
+
   await addDoc(collection(db, 'users'), {
     uid: user.uid,
     name,
@@ -91,12 +98,15 @@ const registerWithEmailAndPassword = async (
   });
 };
 
-const sendPasswordReset = async (email: string): Promise<void> => {
+const sendPasswordReset = async (
+  email: string
+): Promise<ResetResponse | Error> => {
   try {
     await sendPasswordResetEmail(auth, email);
-    // TODO: show message 'Password reset link sent!'
-  } catch (err) {
-    // TODO: handle error
+    const response: ResetResponse = { success: true };
+    return response;
+  } catch (error) {
+    return isError(error) ? error : errorTemplate;
   }
 };
 
