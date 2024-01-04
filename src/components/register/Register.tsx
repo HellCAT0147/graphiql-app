@@ -1,7 +1,12 @@
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
-import { EmptyProps } from '../types';
-import React, { FormEvent, useContext, useEffect, useState } from 'react';
+import React, {
+  FormEvent,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -15,8 +20,9 @@ import { SafeParseReturnType } from 'zod';
 import emailSchema from '../../utils/emailChecker.ts';
 import ZodError from '../zod-error';
 import SignUpInput from './signup-input';
+import Strength from './strength';
 
-const Register: React.FC<EmptyProps> = (): JSX.Element => {
+const Register: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: {
@@ -80,12 +86,12 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
 
   const passwordErrorsElement =
     passwordCheck?.success === false ? (
-      <ZodError checkName="password" safeParseError={passwordCheck} />
+      <ZodError safeParseError={passwordCheck} />
     ) : null;
 
   const emailErrorsElement =
     emailCheck?.success === false ? (
-      <ZodError checkName="email" safeParseError={emailCheck} />
+      <ZodError safeParseError={emailCheck} />
     ) : null;
 
   return (
@@ -123,6 +129,7 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
             validatePassword(e.target.value);
           }}
           errorBlock={passwordErrorsElement}
+          strength={<Strength checkField={passwordCheck} />}
         ></SignUpInput>
         <button
           className="col mx-1 btn btn-success"
