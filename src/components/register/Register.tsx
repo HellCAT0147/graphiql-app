@@ -1,23 +1,21 @@
+import { ReactNode } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
-import styles from './Register.module.scss';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../firebase';
+import { auth, registerWithEmailAndPassword } from '../../firebase';
 import { toast } from 'react-toastify';
 import passwordSchema from '../../utils/passwordChecker.ts';
 import { SafeParseReturnType } from 'zod';
 import emailSchema from '../../utils/emailChecker.ts';
 import ZodError from '../zod-error';
 import SignUpInput from './signup-input';
+import Loader from '../viewers/docs-viewer/loader/Loader.tsx';
+import { handleSignInWithGoogle } from '../../utils/handlers.ts';
 
-const Register: React.FC<EmptyProps> = (): JSX.Element => {
+const Register: React.FC<EmptyProps> = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: {
@@ -36,6 +34,8 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
   const [passwordCheck, setPasswordCheck] = useState<
     SafeParseReturnType<string, string> | undefined
   >(undefined);
@@ -46,22 +46,26 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
   const navigate = useNavigate();
 
   const handleSignUp = (): void => {
+    setIsSending(true);
     const passwordValid = validatePassword(password);
     const emailValid = validateEmail(email);
     if (!passwordValid || !emailValid) {
+      setIsSending(false);
       return;
     }
-    // TODO: loading
+
     registerWithEmailAndPassword(name, email, password).catch((error) => {
       toast.error(error.message);
+      setIsSending(false);
     });
   };
 
   useEffect(() => {
-    // TODO: add loading
-    if (loading) return;
-    if (user) navigate('/', { replace: true });
-  }, [user, loading, navigate]);
+    if (user) {
+      navigate('/', { replace: true });
+      setIsSending(false);
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     if (error) toast.error(error.message);
@@ -72,6 +76,7 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
     setPasswordCheck(validationStatus);
     return validationStatus.success;
   };
+
   const validateEmail = (email: string): boolean => {
     const validationStatus = emailSchema.safeParse(email);
     setEmailCheck(validationStatus);
@@ -88,8 +93,10 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
       <ZodError checkName="email" safeParseError={emailCheck} />
     ) : null;
 
-  return (
-    <section className={`${styles.register} container d-flex flex-column mb-3`}>
+  return loading || user ? (
+    <Loader />
+  ) : (
+    <section className="center-fixed container d-flex flex-column mb-3">
       <h1 className="text-info text-center">{registerTitle}</h1>
       <div className="row row-cols-auto justify-content-center">
         <SignUpInput
@@ -122,14 +129,18 @@ const Register: React.FC<EmptyProps> = (): JSX.Element => {
           errorBlock={passwordErrorsElement}
         ></SignUpInput>
         <div>
-          <button className="col mx-1 btn btn-success" onClick={handleSignUp}>
+          <button
+            disabled={isSending}
+            className="col mx-1 btn btn-success"
+            onClick={handleSignUp}
+          >
             {registerButtonText}
           </button>
         </div>
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
-        onClick={signInWithGoogle}
+        onClick={handleSignInWithGoogle}
       >
         {googleButtonText}
       </button>

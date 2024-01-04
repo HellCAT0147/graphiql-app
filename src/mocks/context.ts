@@ -1,5 +1,5 @@
-import { EN, RU } from '../../contexts/languages';
-import { LangContext } from '../../contexts/types';
+import { EN, RU } from '../contexts/languages';
+import { LangContext } from '../contexts/types';
 
 export const contextEn: LangContext = {
   lang: EN,

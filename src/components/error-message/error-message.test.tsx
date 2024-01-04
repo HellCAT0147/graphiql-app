@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import ErrorMessage from '../../../components/error-message';
-import { store } from '../../../store/store';
+import ErrorMessage from '.';
+import { store } from '../../store/store';
 import { Provider } from 'react-redux';
-import { Context } from '../../../contexts';
+import { Context } from '../../contexts';
 import { contextEn, contextRu } from '../../mocks';
 
 describe('Tests for the ErrorMessage', (): void => {

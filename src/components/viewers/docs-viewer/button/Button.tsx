@@ -18,10 +18,11 @@ const Button: React.FC<ButtonProps> = ({ isLoading, isError }): JSX.Element => {
     >
       <span
         className="spinner-border spinner-border-sm p-2"
-        role="status"
         aria-hidden="true"
       ></span>
-      <span className="sr-only">Loading...</span>
+      <span className="visually-hidden" role="status">
+        Loading...
+      </span>
     </button>
   ) : isError ? (
     <button

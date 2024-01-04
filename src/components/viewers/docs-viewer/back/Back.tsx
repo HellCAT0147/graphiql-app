@@ -18,9 +18,14 @@ const Back: React.FC<BackProps> = ({ prevPageName }): JSX.Element => {
   };
 
   return (
-    <a href="#" className="mb-2" onClick={handleClick}>
+    <button
+      type="button"
+      className="btn btn-link mb-2 px-0"
+      onClick={handleClick}
+      style={{ maxWidth: 'fit-content' }}
+    >
       <i className="fa-sharp fa-solid fa-arrow-left"></i> {prevPageName}
-    </a>
+    </button>
   );
 };
 
