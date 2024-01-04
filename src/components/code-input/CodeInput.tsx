@@ -7,10 +7,16 @@ import { CodeInputProps } from '../types';
 
 const CodeInput: React.FC<CodeInputProps> = ({ atr }): ReactNode => {
   const { value, isReadOnly, callback } = atr;
+  const isEnabled: boolean = !isReadOnly;
   return (
     <CodeMirror
       value={value}
       readOnly={isReadOnly}
+      basicSetup={{
+        lineNumbers: isEnabled,
+        highlightActiveLine: isEnabled,
+        highlightActiveLineGutter: isEnabled,
+      }}
       theme={okaidiaInit({
         settings: {
           background: '#1a0933',
