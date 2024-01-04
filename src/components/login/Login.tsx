@@ -4,13 +4,10 @@ import { EmptyProps } from '../types';
 import { ReactNode, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  auth,
-  loginWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../firebase';
+import { auth, loginWithEmailAndPassword } from '../../firebase';
 import { toast } from 'react-toastify';
 import Loader from '../viewers/docs-viewer/loader';
+import { handleSignInWithGoogle } from '../../utils/handlers';
 
 const Login: React.FC<EmptyProps> = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -43,12 +40,6 @@ const Login: React.FC<EmptyProps> = (): ReactNode => {
     loginWithEmailAndPassword(email, password).catch((error) => {
       toast.error(error.message);
       setIsSending(false);
-    });
-  };
-
-  const handleSignInWithGoogle = (): void => {
-    signInWithGoogle().catch((error) => {
-      toast.error(error.message);
     });
   };
 

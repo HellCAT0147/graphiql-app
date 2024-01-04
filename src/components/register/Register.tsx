@@ -5,11 +5,7 @@ import { EmptyProps } from '../types';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../firebase';
+import { auth, registerWithEmailAndPassword } from '../../firebase';
 import { toast } from 'react-toastify';
 import passwordSchema from '../../utils/passwordChecker.ts';
 import { SafeParseReturnType } from 'zod';
@@ -17,6 +13,7 @@ import emailSchema from '../../utils/emailChecker.ts';
 import ZodError from '../zod-error';
 import SignUpInput from './signup-input';
 import Loader from '../viewers/docs-viewer/loader/Loader.tsx';
+import { handleSignInWithGoogle } from '../../utils/handlers.ts';
 
 const Register: React.FC<EmptyProps> = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -143,7 +140,7 @@ const Register: React.FC<EmptyProps> = (): ReactNode => {
       </div>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
-        onClick={signInWithGoogle}
+        onClick={handleSignInWithGoogle}
       >
         {googleButtonText}
       </button>
