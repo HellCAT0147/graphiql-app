@@ -1,7 +1,6 @@
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
 import { EmptyProps } from '../types';
-import styles from './Login.module.scss';
 import { ReactNode, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -63,7 +62,7 @@ const Login: React.FC<EmptyProps> = (): ReactNode => {
   return loading || user ? (
     <Loader />
   ) : (
-    <section className={`${styles.login} container d-flex flex-column mb-3`}>
+    <section className="center-fixed container d-flex flex-column mb-3">
       <h1 className="text-info text-center">{loginTitle}</h1>
       <div className="row row-cols-auto justify-content-center">
         <input
