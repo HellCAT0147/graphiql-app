@@ -20,8 +20,9 @@ const Back: React.FC<BackProps> = ({ prevPageName }): ReactNode => {
 
   const handleClick = (): void => {
     if (prevPageContent) {
-      dispatch(Docs.currentData.set(prevPageContent));
+      const tempPrevPageContent: DocsPage = prevPageContent;
       dispatch(Docs.history.subtract());
+      dispatch(Docs.currentData.set(tempPrevPageContent));
     }
   };
 
