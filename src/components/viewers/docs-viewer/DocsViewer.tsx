@@ -7,18 +7,17 @@ import { Docs, Visibility, useGetSchemaQuery } from '../../../store/reducers';
 
 import { Options } from '../../../store/reducers';
 import { getSchemaItems } from '../../../utils/schema-resolvers';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { SerializedError } from '@reduxjs/toolkit';
 import { isSchema } from '../../../utils/typeguards';
 import Button from './button';
 import Loader from './loader';
+import { handleSchemaError } from '../../../utils/handlers';
 
 const DocsExplorer = lazy(() => import('./docs-explorer'));
 
 const DocsViewer: React.FC = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { docsHeader },
+    lang: { docsHeader, notSchema },
   } = context;
 
   const isDocsVisible: boolean = useAppSelector(Visibility.docs.select);
@@ -26,17 +25,11 @@ const DocsViewer: React.FC = (): JSX.Element => {
   const url: string = useAppSelector(Options.url.select);
   const { data, error, isFetching } = useGetSchemaQuery(url);
 
-  const handleError = (
-    error: FetchBaseQueryError | SerializedError | undefined
-  ): void => {
-    error; // TODO: handle error: error can be undefined if data is not "schema" like
-  };
-
   useEffect(() => {
     if (!error && isSchema(data))
       dispatch(Docs.mainData.set(getSchemaItems(data)));
-    else handleError(error);
-  }, [data, dispatch, error]);
+    else if (data) handleSchemaError(error, notSchema);
+  }, [data, dispatch, error, notSchema]);
 
   return (
     <aside className="position-relative">
