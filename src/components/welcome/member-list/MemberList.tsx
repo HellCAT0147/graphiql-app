@@ -10,7 +10,7 @@ const MemberList = (): ReactNode => {
 
   const { lang } = context;
   return (
-    <div className="d-flex flex-row m-15 justify-content-center align-items-center p-4">
+    <section className="member-list d-flex flex-row justify-content-between">
       {members.map((member) => {
         const { id, pic } = member;
         return (
@@ -22,7 +22,7 @@ const MemberList = (): ReactNode => {
           />
         );
       })}
-    </div>
+    </section>
   );
 };
 

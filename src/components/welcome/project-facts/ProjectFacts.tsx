@@ -15,7 +15,7 @@ function ProjectFacts(): ReactNode {
   } = context;
 
   return (
-    <div className="d-flex flex-column m-15 justify-content-center align-items-center">
+    <section className="d-flex flex-column m-15 justify-content-center align-items-center">
       <h2 className="text-info"> {welcomeProjectFactsTitle}</h2>
       <div className="d-flex text-center">
         <div className="p-4">
@@ -35,7 +35,7 @@ function ProjectFacts(): ReactNode {
           <span> ~30k </span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
