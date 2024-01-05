@@ -17,15 +17,17 @@ const Welcome: React.FC<EmptyProps> = (): ReactNode => {
   } = context;
 
   return (
-    <section className="welcome m-auto" style={{ maxWidth: 1200 }}>
+    <section className="welcome">
       <WelcomeNav />
-      <h1 className="text-info text-center">{welcomeTitle}</h1>
-      <TeamIntro />
-      <MemberList />
-      <ProjectFacts />
-      <BioList />
-      <Collab />
-      <MentorList />
+      <article className="content container-fluid" style={{ maxWidth: 1200 }}>
+        <h1 className="text-primary text-center">{welcomeTitle}</h1>
+        <TeamIntro />
+        <MemberList />
+        <ProjectFacts />
+        <BioList />
+        <Collab />
+        <MentorList />
+      </article>
     </section>
   );
 };
