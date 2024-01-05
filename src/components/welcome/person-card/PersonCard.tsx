@@ -10,16 +10,16 @@ function PersonCard({
   role: string;
 }): ReactNode {
   return (
-    <div className="d-flex flex-column text-center p-4 align-items-center">
+    <article className="d-flex flex-column text-center p-4 align-items-center">
       <img
-        className="rounded-circle"
+        className="rounded-circle pb-3"
         src={pic}
         alt={name}
         style={{ maxWidth: 200, maxHeight: 200 }}
       ></img>
-      <div className="fs-3"> {name}</div>
-      <div className="fs-4"> {role}</div>
-    </div>
+      <p className="fs-3 mb-0"> {name}</p>
+      <p className="fs-4 mb-0"> {role}</p>
+    </article>
   );
 }
 

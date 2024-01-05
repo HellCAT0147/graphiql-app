@@ -16,7 +16,7 @@ function ProjectFacts(): ReactNode {
 
   return (
     <section className="d-flex flex-column m-15 justify-content-center align-items-center">
-      <h2 className="text-info"> {welcomeProjectFactsTitle}</h2>
+      <h2 className="text-secondary"> {welcomeProjectFactsTitle}</h2>
       <div className="d-flex text-center">
         <div className="p-4">
           <h3> {welcomeProjectFactsPRs}</h3>

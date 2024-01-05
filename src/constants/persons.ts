@@ -22,14 +22,14 @@ export const members = [
 export const mentors = [
   {
     id: 4,
-    pic: '/member1.jpg',
+    pic: '/member4.png',
   },
   {
     id: 5,
-    pic: '/member1.jpg',
+    pic: '/member5.jpeg',
   },
   {
     id: 6,
-    pic: '/member1.jpg',
+    pic: '/member6.jpg',
   },
 ];
