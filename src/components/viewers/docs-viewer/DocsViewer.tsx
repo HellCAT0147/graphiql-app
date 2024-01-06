@@ -38,7 +38,12 @@ const DocsViewer: React.FC = (): JSX.Element => {
   }, [data, dispatch, error]);
 
   return (
-    <aside className="position-relative">
+    <aside
+      className="position-relative mb-3 transition"
+      style={{
+        width: isDocsVisible ? '20rem' : '0',
+      }}
+    >
       {data ? (
         <Button isLoading={false} isError={false} />
       ) : error ? (
@@ -48,12 +53,10 @@ const DocsViewer: React.FC = (): JSX.Element => {
       )}
       {isDocsVisible && (
         <div
-          className="card border-info mb-3"
+          className="card border-info transition"
           style={{
-            minWidth: '8rem',
-            maxWidth: '15rem',
-            minHeight: '90vh',
-            maxHeight: '90vh',
+            width: '100%',
+            height: '67vh',
             overflowY: 'auto',
           }}
         >
