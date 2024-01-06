@@ -15,7 +15,7 @@ import { EmptyProps } from '../components/types';
 import ResetPage from '../pages/reset';
 
 const AppRouter: React.FC<EmptyProps> = (): JSX.Element => {
-  const messageError: string = useAppSelector(Message.select);
+  const messageError: string = useAppSelector(Message.boundary.select);
   if (messageError) {
     throw new Error(messageError);
   }

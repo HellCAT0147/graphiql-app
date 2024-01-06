@@ -26,9 +26,12 @@ export const DocsSlice = createSlice({
     setData: (state, action: PayloadAction<DocsPage>) => {
       const newData: DocsPage = action.payload;
 
-      if (isAllTypes(newData) && !state.mainData.types.length) {
-        state.mainData = { ...newData };
-        newData.types = filterTypes(newData);
+      if (isAllTypes(newData)) {
+        if (state.history.length > 0) return;
+        if (!state.mainData.types.length) {
+          state.mainData = { ...newData };
+          newData.types = filterTypes(newData);
+        }
       }
 
       state.currentData = newData;

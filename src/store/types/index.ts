@@ -22,6 +22,7 @@ export interface ResponseApi {
 
 export interface MessageStore {
   error: string;
+  headersError: string;
 }
 
 export interface InputsStore {
