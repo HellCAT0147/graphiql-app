@@ -47,7 +47,13 @@ const EditorTools: React.FC = (): JSX.Element => {
         </button>
       </div>
       <div className="card-body">
-        <div className="form-group">
+        <div
+          className="form-group transition"
+          style={{
+            height: isToolsVisible ? '10rem' : '0',
+            overflowY: 'auto',
+          }}
+        >
           {isToolsVisible && (
             <CodeInput
               atr={{
