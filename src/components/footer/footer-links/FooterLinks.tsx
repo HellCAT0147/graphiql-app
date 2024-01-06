@@ -2,25 +2,22 @@ import { ReactNode, useContext } from 'react';
 import { members } from '../../../constants';
 import { LangContext } from '../../../contexts/types';
 import { Context } from '../../../contexts';
+import { IconLink } from '../../elements';
 
 function FooterLinks(): ReactNode {
   const context: LangContext = useContext<LangContext>(Context);
   const { lang } = context;
 
   return (
-    <div className="d-flex flex-column">
-      {members.map((member, index) => {
+    <div className="d-flex flex-column gap-1">
+      {members.map(({ gh, id }) => {
         return (
-          <a
-            href={member.gh}
-            target="_blank"
-            key={member.id}
-            className="fs-5 text-decoration-none"
-            rel="noreferrer"
-          >
-            <img src="/icon-gh.svg" alt="github icon " className="px-3" />
-            {lang[`welcomeMemberName${index + 1}`]}
-          </a>
+          <IconLink
+            key={id}
+            href={gh}
+            faCode="fa-brands fa-github"
+            text={lang[`welcomeMemberName${id}`]}
+          />
         );
       })}
     </div>

@@ -25,7 +25,7 @@ const DocsExplorer: React.FC = (): JSX.Element => {
     : null;
 
   return (
-    <section className="btn-group-vertical">
+    <section className="btn-group-vertical d-flex">
       {prevPageName && <Back prevPageName={prevPageName} />}
       {isAllTypes(data) ? (
         <MainSchemaList types={data} />

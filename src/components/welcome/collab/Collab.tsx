@@ -9,8 +9,8 @@ function Collab(): ReactNode {
   } = context;
   return (
     <div className="d-flex flex-column justify-content-center align-items-center px-3">
-      <h2 className="text-info"> {welcomeCollaborationTitle}</h2>
-      <div>{welcomeCollaborationDescription}</div>
+      <h2 className="text-secondary pb-4">{welcomeCollaborationTitle}</h2>
+      <p className="text-center">{welcomeCollaborationDescription}</p>
     </div>
   );
 }

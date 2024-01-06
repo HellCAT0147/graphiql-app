@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { ChangeEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Visibility } from '../../../store/reducers';
 
 import { Flags } from '../../../constants';
 import { ToolsForm } from '../../forms';
+import CodeInput from '../../code-input';
 
 const EditorTools: React.FC = (): JSX.Element => {
   const { resetField } = useForm();
@@ -25,9 +25,9 @@ const EditorTools: React.FC = (): JSX.Element => {
     dispatch(Visibility.tools.set(!isToolsVisible));
   }
 
-  function onSetToolsValue(e: ChangeEvent<HTMLTextAreaElement>) {
-    if (isVariables) dispatch(Inputs.variables.set(e.target.value));
-    if (isHeaders) dispatch(Inputs.headers.set(e.target.value));
+  function onSetToolsValue(value: string) {
+    if (isVariables) dispatch(Inputs.variables.set(value));
+    if (isHeaders) dispatch(Inputs.headers.set(value));
   }
 
   return (
@@ -47,14 +47,21 @@ const EditorTools: React.FC = (): JSX.Element => {
         </button>
       </div>
       <div className="card-body">
-        <div className="form-group">
+        <div
+          className="form-group transition"
+          style={{
+            height: isToolsVisible ? '10rem' : '0',
+            overflowY: 'auto',
+          }}
+        >
           {isToolsVisible && (
-            <textarea
-              className="form-control"
-              id="toolsTextarea"
-              onChange={onSetToolsValue}
-              value={isVariables ? variablesValue : headersValue}
-            ></textarea>
+            <CodeInput
+              atr={{
+                value: isVariables ? variablesValue : headersValue,
+                isReadOnly: false,
+                callback: onSetToolsValue,
+              }}
+            />
           )}
         </div>
       </div>

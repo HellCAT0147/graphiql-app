@@ -10,9 +10,15 @@ const NotFound: React.FC<EmptyProps> = (): JSX.Element => {
   } = context;
 
   return (
-    <section className="center-fixed">
-      <h1 className="text-warning">{notFoundTitle}</h1>
-      <p className="text-warning">{`(${notFoundText})`}</p>
+    <section className="not-found text-center my-3">
+      <img
+        className="not-found-image"
+        src={'/not-found.png'}
+        alt={'not-found-image'}
+        style={{ maxWidth: 300, maxHeight: 300 }}
+      ></img>
+      <h1 className="text-primary">{notFoundTitle}</h1>
+      <p className="text-secondary">{`(${notFoundText})`}</p>
     </section>
   );
 };

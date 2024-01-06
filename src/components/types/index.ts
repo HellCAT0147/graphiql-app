@@ -32,6 +32,7 @@ export interface InputsGroupAttributes {
 
 export interface ButtonAttributes {
   atr: {
+    isLoadingData: boolean;
     onClick: () => void;
     className: string;
     classIcon: string;
@@ -45,6 +46,14 @@ export interface PrettifyProps {
     title: string;
     value: string;
     isReadOnly: boolean;
+  };
+}
+
+export interface CodeInputProps {
+  atr: {
+    value: string;
+    isReadOnly: boolean;
+    callback: (value: string) => void;
   };
 }
 

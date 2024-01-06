@@ -13,7 +13,7 @@ const BioList = (): ReactNode => {
 
   const { lang } = context;
   return (
-    <>
+    <section className="bio-list d-flex flex-column gap-4">
       {members.map((member) => {
         const { id, gh, mail } = member;
         return (
@@ -30,7 +30,7 @@ const BioList = (): ReactNode => {
           />
         );
       })}
-    </>
+    </section>
   );
 };
 

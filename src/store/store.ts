@@ -3,6 +3,7 @@ import {
   messageReducer,
   optionsReducer,
   inputsReducer,
+  loadingReducer,
   visibilityReducer,
   docsReducer,
 } from './reducers';
@@ -13,6 +14,7 @@ export const store = configureStore({
     message: messageReducer,
     options: optionsReducer,
     inputs: inputsReducer,
+    loading: loadingReducer,
     visibility: visibilityReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
     docs: docsReducer,

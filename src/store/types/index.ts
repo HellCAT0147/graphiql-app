@@ -33,6 +33,10 @@ export interface InputsStore {
   variables: string;
 }
 
+export interface LoadingStore {
+  isLoadingData: boolean;
+}
+
 export interface VisibilityStore {
   tools: boolean;
   docs: boolean;

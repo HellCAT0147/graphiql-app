@@ -1,7 +1,6 @@
-import { ReactNode, useContext, useEffect, useState } from 'react';
+import { FormEvent, ReactNode, useContext, useEffect, useState } from 'react';
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
-import { EmptyProps } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
@@ -11,7 +10,7 @@ import { ResetResponse } from '../../firebase/types';
 import { isError } from '../../utils/typeguards';
 import Loader from '../viewers/docs-viewer/loader';
 
-const Reset: React.FC<EmptyProps> = (): ReactNode => {
+const Reset: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: {
@@ -38,7 +37,8 @@ const Reset: React.FC<EmptyProps> = (): ReactNode => {
     if (error) toast.error(error.message);
   }, [error]);
 
-  const handleReset = async (): Promise<void> => {
+  const handleReset = async (e: FormEvent): Promise<void> => {
+    e.preventDefault();
     setIsSending(true);
     const response: Error | ResetResponse = await sendPasswordReset(email);
     if (isError(response)) toast.error(response.message);
@@ -49,24 +49,29 @@ const Reset: React.FC<EmptyProps> = (): ReactNode => {
   return loading || user ? (
     <Loader />
   ) : (
-    <section className="center-fixed container d-flex flex-column mb-3">
+    <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{resetTitle}</h1>
-      <div className="row row-cols-auto justify-content-center">
-        <input
-          className="col mx-1"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={emailPlaceholder}
-        />
+      <form
+        className="row row-cols-auto justify-content-center"
+        onSubmit={handleReset}
+      >
+        <div className="form-group">
+          <input
+            className="col mx-1 form-control"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={emailPlaceholder}
+          />
+        </div>
         <button
-          disabled={isSending}
           className="col mx-1 btn btn-success"
-          onClick={handleReset}
+          type="submit"
+          disabled={isSending}
         >
           {resetButtonText}
         </button>
-      </div>
+      </form>
       <p className="text-center mt-2">
         {accountNegativeText} <Link to="/register">{registerLink}</Link>
         {` ${accountSupportText}`}

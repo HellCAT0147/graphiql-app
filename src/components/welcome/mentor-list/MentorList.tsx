@@ -13,9 +13,9 @@ const MentorList = (): ReactNode => {
 
   const { lang } = context;
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center px-3 mt-5">
-      <h2 className="text-info mb-3">{welcomeThanksTitle}</h2>
-      <div className="d-flex">
+    <section className="mentor-list d-flex flex-column justify-content-center align-items-center">
+      <h2 className="text-info pb-4">{welcomeThanksTitle}</h2>
+      <div className="d-flex flex-row justify-content-between w-100">
         {mentors.map((mentor) => {
           const { id, pic } = mentor;
           return (
@@ -28,8 +28,8 @@ const MentorList = (): ReactNode => {
           );
         })}
       </div>
-      <div>{welcomeMentorDescription}</div>
-    </div>
+      <p className="text-center">{welcomeMentorDescription}</p>
+    </section>
   );
 };
 

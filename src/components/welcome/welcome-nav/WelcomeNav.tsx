@@ -20,7 +20,7 @@ const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
   }, [error]);
 
   return (
-    <div className="d-flex flex-row justify-content-end my-3 mx-3">
+    <nav className="container-fluid my-3 d-flex gap-3 justify-content-end">
       {!user ? (
         <>
           <Button text={welcomeSignIn} link={'/login'} />
@@ -29,7 +29,7 @@ const WelcomeNav: React.FC<EmptyProps> = (): ReactNode => {
       ) : (
         <Button text={welcomeMain} link={'/'} />
       )}
-    </div>
+    </nav>
   );
 };
 

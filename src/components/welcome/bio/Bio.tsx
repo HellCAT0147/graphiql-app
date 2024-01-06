@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { IconLink, ParagraphJustify } from '../../elements';
 
 function Bio({
   name,
@@ -20,28 +21,24 @@ function Bio({
   info: string;
 }): ReactNode {
   return (
-    <div className="d-flex m-5 justify-content-center align-self-center">
-      <div className="d-flex flex-column m-4 col ">
-        <div className="fs-3 mb-3 text-info">{name}</div>
-        <div className="fs-4">{impactTitle}</div>
-        <div>{impact}</div>
+    <article className="bio d-flex justify-content-center align-self-center gap-4">
+      <div className="d-flex flex-column col ">
+        <h2 className="fs-3 text-primary">{name}</h2>
+        <h4 className="fs-4">{impactTitle}</h4>
+        <ParagraphJustify>{impact}</ParagraphJustify>
       </div>
-      <div className="d-flex flex-column m-4 col">
+      <div className="d-flex flex-column col">
         <div className="d-flex justify-content-between mb-3">
-          <div>
-            <a className="icon-link" href={gh}>
-              <img src="/icon-gh.svg" alt="GitHub"></img>
-            </a>
-            <a className="icon-link" href={mail}>
-              <img src="/icon-mail.svg" alt="GitHub"></img>
-            </a>
+          <div className="d-flex gap-1">
+            <IconLink href={gh} faCode="fa-brands fa-github" />
+            <IconLink href={mail} faCode="fa-solid fa-at" />
           </div>
-          <div>{location}</div>
+          <p className="mb-0">{location}</p>
         </div>
-        <div className="fs-4">{infoTitle}</div>
-        <div>{info}</div>
+        <h4 className="fs-4">{infoTitle}</h4>
+        <ParagraphJustify>{info}</ParagraphJustify>
       </div>
-    </div>
+    </article>
   );
 }
 

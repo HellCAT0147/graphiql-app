@@ -1,7 +1,6 @@
 import { Context } from '../../contexts';
 import { LangContext } from '../../contexts/types';
-import { EmptyProps } from '../types';
-import { ReactNode, useContext, useEffect, useState } from 'react';
+import { FormEvent, ReactNode, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, loginWithEmailAndPassword } from '../../firebase';
@@ -9,7 +8,7 @@ import { toast } from 'react-toastify';
 import Loader from '../viewers/docs-viewer/loader';
 import { handleSignInWithGoogle } from '../../utils/handlers';
 
-const Login: React.FC<EmptyProps> = (): ReactNode => {
+const Login: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
     lang: {
@@ -35,7 +34,8 @@ const Login: React.FC<EmptyProps> = (): ReactNode => {
     if (error) toast.error(error.message);
   }, [error]);
 
-  const handleSignIn = (): void => {
+  const handleSignIn = (e: FormEvent): void => {
+    e.preventDefault();
     setIsSending(true);
     loginWithEmailAndPassword(email, password).catch((error) => {
       toast.error(error.message);
@@ -53,31 +53,38 @@ const Login: React.FC<EmptyProps> = (): ReactNode => {
   return loading || user ? (
     <Loader />
   ) : (
-    <section className="center-fixed container d-flex flex-column mb-3">
+    <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{loginTitle}</h1>
-      <div className="row row-cols-auto justify-content-center">
-        <input
-          className="col mx-1"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={emailPlaceholder}
-        />
-        <input
-          className="col mx-1"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder={passwordPlaceholder}
-        />
+      <form
+        className="row row-cols-auto justify-content-center"
+        onSubmit={handleSignIn}
+      >
+        <div className="form-group">
+          <input
+            className="col mx-1 form-control"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={emailPlaceholder}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="col mx-1 form-control"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder={passwordPlaceholder}
+          />
+        </div>
         <button
           disabled={isSending}
-          onClick={handleSignIn}
           className="col mx-1 btn btn-success"
+          type="submit"
         >
           {loginButtonText}
         </button>
-      </div>
+      </form>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
         onClick={handleSignInWithGoogle}
