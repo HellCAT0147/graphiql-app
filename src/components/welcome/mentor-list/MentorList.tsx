@@ -4,7 +4,6 @@ import { Context } from '../../../contexts';
 
 import { LangContext } from '../../../contexts/types';
 import PersonCard from '../person-card';
-import ParagraphJustify from '../paragraph-justify';
 
 const MentorList = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -29,7 +28,7 @@ const MentorList = (): ReactNode => {
           );
         })}
       </div>
-      <ParagraphJustify content={welcomeMentorDescription} />
+      <p className="text-center">{welcomeMentorDescription}</p>
     </section>
   );
 };

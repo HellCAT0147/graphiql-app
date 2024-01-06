@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import ParagraphJustify from '../paragraph-justify';
+import { IconLink, ParagraphJustify } from '../../elements';
 
 function Bio({
   name,
@@ -25,27 +25,18 @@ function Bio({
       <div className="d-flex flex-column col ">
         <h2 className="fs-3 text-primary">{name}</h2>
         <h4 className="fs-4">{impactTitle}</h4>
-        <ParagraphJustify content={impact} />
+        <ParagraphJustify>{impact}</ParagraphJustify>
       </div>
       <div className="d-flex flex-column col">
         <div className="d-flex justify-content-between mb-3">
-          <div>
-            <a className="icon-link" href={gh} target="_blank" rel="noreferrer">
-              <img src="/icon-gh.svg" alt="GitHub"></img>
-            </a>
-            <a
-              className="icon-link"
-              href={mail}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src="/icon-mail.svg" alt="GitHub"></img>
-            </a>
+          <div className="d-flex gap-1">
+            <IconLink href={gh} faCode="fa-brands fa-github" />
+            <IconLink href={mail} faCode="fa-solid fa-at" />
           </div>
-          <p>{location}</p>
+          <p className="mb-0">{location}</p>
         </div>
         <h4 className="fs-4">{infoTitle}</h4>
-        <ParagraphJustify content={info} />
+        <ParagraphJustify>{info}</ParagraphJustify>
       </div>
     </article>
   );
