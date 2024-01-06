@@ -95,6 +95,7 @@ export const EN: Languages = {
   typeHeader: 'Type',
   argsHeader: 'Arguments',
   resetSent: 'Password reset link sent',
+  notSchema: 'This API does not provide a schema',
 };
 
 export const RU: Languages = {
@@ -192,4 +193,5 @@ export const RU: Languages = {
   typeHeader: 'Тип',
   argsHeader: 'Аргументы',
   resetSent: 'Ссылка для сброса пароля отправлена',
+  notSchema: 'Эта АПИ не предоставляет схему',
 };

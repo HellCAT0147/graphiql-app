@@ -17,7 +17,7 @@ const ErrorMessage: React.FC<ErrorProps> = (props: ErrorProps): JSX.Element => {
   const { message } = props;
 
   useEffect(() => {
-    dispatch(Message.set(message));
+    dispatch(Message.boundary.set(message));
   }, [dispatch, message]);
 
   return (

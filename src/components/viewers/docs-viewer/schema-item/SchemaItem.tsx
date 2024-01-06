@@ -18,7 +18,7 @@ const SchemaItem: React.FC<SchemaItemProps> = ({
 }): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { noDescription, docsHeader, undefinedItem },
+    lang: { noDescription, undefinedItem },
   } = context;
 
   const currentData: DocsPage = useAppSelector(Docs.currentData.select);
@@ -28,7 +28,7 @@ const SchemaItem: React.FC<SchemaItemProps> = ({
   const handleClick = (): void => {
     dispatch(
       Docs.history.add({
-        name: isAllTypes(currentData) ? docsHeader : currentData.name, // TODO: fix bug with translation
+        name: isAllTypes(currentData) ? 'docsHeader' : currentData.name,
         content: currentData || noDescription,
       })
     );
