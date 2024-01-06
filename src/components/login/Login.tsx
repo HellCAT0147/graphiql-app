@@ -3,12 +3,10 @@ import { LangContext } from '../../contexts/types';
 import { FormEvent, ReactNode, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  auth,
-  loginWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../firebase';
+import { auth, loginWithEmailAndPassword } from '../../firebase';
 import { toast } from 'react-toastify';
+import Loader from '../viewers/docs-viewer/loader';
+import { handleSignInWithGoogle } from '../../utils/handlers';
 
 const Login: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -28,6 +26,7 @@ const Login: React.FC = (): ReactNode => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSending, setIsSending] = useState(false);
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -36,23 +35,23 @@ const Login: React.FC = (): ReactNode => {
   }, [error]);
 
   const handleSignIn = (e: FormEvent): void => {
-    // TODO: show loading indicator
     e.preventDefault();
+    setIsSending(true);
     loginWithEmailAndPassword(email, password).catch((error) => {
       toast.error(error.message);
+      setIsSending(false);
     });
   };
 
   useEffect(() => {
-    if (loading) {
-      // TODO: show loading indicator
-      return;
+    if (user) {
+      navigate('/', { replace: true });
+      setIsSending(false);
     }
-    if (user) navigate('/');
-  }, [user, loading, navigate]);
+  }, [user, navigate]);
 
   return loading || user ? (
-    <h1>Loading...</h1> // TODO: add appropriate loader
+    <Loader />
   ) : (
     <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{loginTitle}</h1>
@@ -78,13 +77,17 @@ const Login: React.FC = (): ReactNode => {
             placeholder={passwordPlaceholder}
           />
         </div>
-        <button className="col mx-1 btn btn-success" type="submit">
+        <button
+          disabled={isSending}
+          className="col mx-1 btn btn-success"
+          type="submit"
+        >
           {loginButtonText}
         </button>
       </form>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
-        onClick={signInWithGoogle}
+        onClick={handleSignInWithGoogle}
       >
         {googleButtonText}
       </button>

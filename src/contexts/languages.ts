@@ -71,7 +71,7 @@ export const EN: Languages = {
   resetPasswordText: 'Forgot Password',
   accountPositiveText: 'Already have an account?',
   accountNegativeText: "Don't have an account?",
-  accountSupportText: 'now.',
+  accountSupportText: 'now',
   registerLink: 'Register',
   namePlaceholder: 'Name',
   resetButtonText: 'Send password reset email',
@@ -94,6 +94,7 @@ export const EN: Languages = {
   undefinedItem: 'Undefined item',
   typeHeader: 'Type',
   argsHeader: 'Arguments',
+  resetSent: 'Password reset link sent',
 };
 
 export const RU: Languages = {
@@ -168,7 +169,7 @@ export const RU: Languages = {
   accountPositiveText: 'Уже есть аккаунт?',
   accountNegativeText: 'Нет аккаунта?',
   registerLink: 'Зарегистрируйтесь',
-  accountSupportText: 'сейчас.',
+  accountSupportText: 'сейчас',
   namePlaceholder: 'Имя',
   resetButtonText: 'Запросить ссылку на сброс пароля',
   headersButtonName: 'Заголовки',
@@ -190,4 +191,5 @@ export const RU: Languages = {
   undefinedItem: 'Неизвестный элемент',
   typeHeader: 'Тип',
   argsHeader: 'Аргументы',
+  resetSent: 'Ссылка для сброса пароля отправлена',
 };

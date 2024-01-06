@@ -12,6 +12,7 @@ import { SerializedError } from '@reduxjs/toolkit';
 import { isSchema } from '../../../utils/typeguards';
 import Button from './button';
 import Loader from './loader';
+
 const DocsExplorer = lazy(() => import('./docs-explorer'));
 
 const DocsViewer: React.FC = (): JSX.Element => {
@@ -23,7 +24,7 @@ const DocsViewer: React.FC = (): JSX.Element => {
   const isDocsVisible: boolean = useAppSelector(Visibility.docs.select);
   const dispatch = useAppDispatch();
   const url: string = useAppSelector(Options.url.select);
-  const { data, error } = useGetSchemaQuery(url);
+  const { data, error, isFetching } = useGetSchemaQuery(url);
 
   const handleError = (
     error: FetchBaseQueryError | SerializedError | undefined
@@ -44,12 +45,12 @@ const DocsViewer: React.FC = (): JSX.Element => {
         width: isDocsVisible ? '20rem' : '0',
       }}
     >
-      {data ? (
-        <Button isLoading={false} isError={false} />
+      {isFetching ? (
+        <Button isLoading={true} isError={false} />
       ) : error ? (
         <Button isLoading={false} isError={true} />
       ) : (
-        <Button isLoading={true} isError={false} />
+        <Button isLoading={false} isError={false} />
       )}
       {isDocsVisible && (
         <div

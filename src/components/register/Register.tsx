@@ -20,6 +20,7 @@ import { SafeParseReturnType } from 'zod';
 import emailSchema from '../../utils/emailChecker.ts';
 import ZodError from '../zod-error';
 import SignUpInput from './signup-input';
+import Loader from '../viewers/docs-viewer/loader/Loader.tsx';
 import Strength from './strength';
 
 const Register: React.FC = (): ReactNode => {
@@ -41,6 +42,8 @@ const Register: React.FC = (): ReactNode => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
   const [passwordCheck, setPasswordCheck] = useState<
     SafeParseReturnType<string, string> | undefined
   >(undefined);
@@ -52,22 +55,28 @@ const Register: React.FC = (): ReactNode => {
 
   const handleSignUp = (e: FormEvent): void => {
     e.preventDefault();
+
+    setIsSending(true);
+
     const passwordValid = validatePassword(password);
     const emailValid = validateEmail(email);
     if (!passwordValid || !emailValid) {
+      setIsSending(false);
       return;
     }
-    // TODO: loading
+
     registerWithEmailAndPassword(name, email, password).catch((error) => {
       toast.error(error.message);
+      setIsSending(false);
     });
   };
 
   useEffect(() => {
-    // TODO: add loading
-    if (loading) return;
-    if (user) navigate('/', { replace: true });
-  }, [user, loading, navigate]);
+    if (user) {
+      navigate('/', { replace: true });
+      setIsSending(false);
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     if (error) toast.error(error.message);
@@ -78,6 +87,7 @@ const Register: React.FC = (): ReactNode => {
     setPasswordCheck(validationStatus);
     return validationStatus.success;
   };
+
   const validateEmail = (email: string): boolean => {
     const validationStatus = emailSchema.safeParse(email);
     setEmailCheck(validationStatus);
@@ -94,7 +104,9 @@ const Register: React.FC = (): ReactNode => {
       <ZodError safeParseError={emailCheck} />
     ) : null;
 
-  return (
+  return loading || user ? (
+    <Loader />
+  ) : (
     <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{registerTitle}</h1>
       <form
@@ -132,6 +144,7 @@ const Register: React.FC = (): ReactNode => {
           strength={<Strength checkField={passwordCheck} />}
         ></SignUpInput>
         <button
+          disabled={isSending}
           className="col mx-1 btn btn-success"
           type="submit"
           style={{ height: 'fit-content' }}
