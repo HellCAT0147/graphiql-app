@@ -13,7 +13,7 @@ const Main: React.FC = (): ReactNode => {
 
   useEffect(() => {
     if (error) toast.error(error.message);
-    if (!user) return navigate('/login');
+    if (!user) return navigate('/welcome');
   }, [user, navigate, error]);
 
   return loading || !user ? (
