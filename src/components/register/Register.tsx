@@ -9,11 +9,7 @@ import React, {
 } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../firebase';
+import { auth, registerWithEmailAndPassword } from '../../firebase';
 import { toast } from 'react-toastify';
 import passwordSchema from '../../utils/passwordChecker.ts';
 import { SafeParseReturnType } from 'zod';
@@ -22,6 +18,7 @@ import ZodError from '../zod-error';
 import SignUpInput from './signup-input';
 import Loader from '../viewers/docs-viewer/loader/Loader.tsx';
 import Strength from './strength';
+import { handleSignInWithGoogle } from '../../utils/handlers.ts';
 
 const Register: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -154,7 +151,7 @@ const Register: React.FC = (): ReactNode => {
       </form>
       <button
         className="p-2 mt-3 mx-auto btn btn-info"
-        onClick={signInWithGoogle}
+        onClick={handleSignInWithGoogle}
       >
         {googleButtonText}
       </button>

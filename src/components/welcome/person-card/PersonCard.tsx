@@ -17,8 +17,8 @@ function PersonCard({
         alt={name}
         style={{ maxWidth: 200, maxHeight: 200 }}
       ></img>
-      <p className="fs-3 mb-0"> {name}</p>
-      <p className="fs-4 mb-0"> {role}</p>
+      <p className="fs-3 mb-0">{name}</p>
+      <p className="fs-4 mb-0">{role}</p>
     </article>
   );
 }
