@@ -20,19 +20,19 @@ function ProjectFacts(): ReactNode {
       <div className="d-flex text-center">
         <div className="p-4">
           <h3> {welcomeProjectFactsPRs}</h3>
-          <span> 65 </span>
+          <span> 15 </span>
         </div>
         <div className="p-4">
           <h3> {welcomeProjectFactsCommits}</h3>
-          <span> 450 </span>
+          <span> 162 </span>
         </div>
         <div className="p-4">
           <h3> {welcomeProjectFactsBranches}</h3>
-          <span> 62 </span>
+          <span> 18 </span>
         </div>
         <div className="p-4">
           <h3> {welcomeProjectFactsLines}</h3>
-          <span> ~30k </span>
+          <span> ~14k </span>
         </div>
       </div>
     </section>
