@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Context } from '../../../contexts';
 import { LangContext } from '../../../contexts/types';
 import { EmptyProps } from '../../types';
-import { useAppSelector } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Options, useGetDataQuery } from '../../../store/reducers';
 import Prettify from '../../prettify';
+import { Message } from '../../../store/reducers/message-slice';
 
 const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -15,14 +16,20 @@ const ResponseViewer: React.FC<EmptyProps> = (): JSX.Element => {
   const url = useAppSelector(Options.url.select);
   const method = useAppSelector(Options.method.select);
   const headers = useAppSelector(Options.headers.select);
+  const headersError = useAppSelector(Message.headers.select);
   const body = useAppSelector(Options.body.select);
+  const dispatch = useAppDispatch();
 
   const { data, error } = useGetDataQuery(
     { url, method, headers, body },
     { skip: !body }
   );
-  const content = !error ? data : error;
+  const content = !error ? (!headersError ? data : headersError) : error;
   const value = JSON.stringify(content, null, '  ');
+
+  useEffect(() => {
+    // dispatch(Message.headers.set(''));
+  }, [dispatch]);
 
   return (
     <Prettify

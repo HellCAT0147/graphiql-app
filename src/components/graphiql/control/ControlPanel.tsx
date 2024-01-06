@@ -7,6 +7,8 @@ import {
   onPrettify,
 } from '../../../utils/prettify';
 import ControlButton from '../control-button';
+import { OptionsHeaders } from '../../../store/types';
+import { Message } from '../../../store/reducers/message-slice';
 
 const ControlPanel: React.FC = (): ReactNode => {
   const dispatch = useAppDispatch();
@@ -22,8 +24,17 @@ const ControlPanel: React.FC = (): ReactNode => {
       variables: variablesInput,
     });
     //TODO catch errors for incorrect headers or variables
+    let headers: OptionsHeaders = {};
     dispatch(Options.body.set(newBody));
-    dispatch(Options.headers.set(headersInput ? JSON.parse(headersInput) : {}));
+    if (headersInput) {
+      try {
+        headers = JSON.parse(headersInput);
+      } catch (error) {
+        if (error instanceof Error)
+          dispatch(Message.headers.set(error.message));
+      }
+    }
+    dispatch(Options.headers.set(headers));
   }
 
   function onPrettifyQuery() {
