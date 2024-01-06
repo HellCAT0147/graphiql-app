@@ -5,7 +5,7 @@ import { IconLink, ImgLink } from '../elements';
 
 function Footer(): ReactNode {
   return (
-    <footer className="d-flex justify-content-around align-items-center my-5 justify-self-end">
+    <footer className="d-flex justify-content-between align-items-center pb-3 pt-5 px-3">
       <FooterLinks />
       <div>
         <p style={{ color: '#FFFFFF' }}>HAQ © 2023</p>
