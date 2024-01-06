@@ -34,7 +34,7 @@ export const EN: Languages = {
   welcomeBioLocation2: 'Omsk, Russia',
   welcomeBioLocation3: 'Gomel, Belarus',
   welcomeBioContribution1:
-    'Ilya managed the project, set tasks, reflected them in Trello cards, worked with project logic and documentation, information and error handling.',
+    'Ilya managed the project, set tasks, reflected them in Jira cards, worked with project logic and documentation, information and error handling.',
   welcomeBioContribution2:
     'Camilla handled filling out the welcome page and validating data on the client side using Zod, outputting errors via Toastify',
   welcomeBioContribution3:
@@ -132,7 +132,7 @@ export const RU: Languages = {
   welcomeBioLocation2: 'Омск, Россия',
   welcomeBioLocation3: 'Гомель, Беларусь',
   welcomeBioContribution1:
-    'Илья руководил проектом, ставил задачи, отражал их в карточках Trello, работал с логикой проекта и документацией, обработкой информации и ошибок',
+    'Илья руководил проектом, ставил задачи, отражал их в карточках Jira, работал с логикой проекта и документацией, обработкой информации и ошибок',
   welcomeBioContribution2:
     'Камилла занималась заполнением страницы приветствия и валидацией данных на стороне клиента при помощи Zod, выводила ошибки через Toastify',
   welcomeBioContribution3:
