@@ -3,11 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Loading, Options } from '../../../store/reducers';
 import { Message } from '../../../store/reducers/message-slice';
 import { Context } from '../../../contexts';
-import {
-  isValidBrackets,
-  isValidSyntax,
-  onPrettify,
-} from '../../../utils/prettify';
+import { isValidBrackets, onPrettify } from '../../../utils/prettify';
 import ControlButton from '../control-button';
 
 import { Body, OptionsHeaders, OptionsVariables } from '../../../store/types';
@@ -67,7 +63,7 @@ const ControlPanel: React.FC = (): ReactNode => {
 
   function onPrettifyQuery(): void {
     const prettifiedQuery = onPrettify(queryInput);
-    if (isValidBrackets(queryInput) && isValidSyntax(prettifiedQuery)) {
+    if (isValidBrackets(queryInput)) {
       dispatch(Inputs.query.set(prettifiedQuery));
       setIsValidQuery(true);
     } else {
