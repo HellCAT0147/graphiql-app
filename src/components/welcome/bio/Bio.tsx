@@ -21,7 +21,7 @@ function Bio({
   info: string;
 }): ReactNode {
   return (
-    <article className="bio d-flex justify-content-center align-self-center gap-4">
+    <article className="bio d-flex flex-column flex-md-row justify-content-center align-self-center gap-4">
       <div className="d-flex flex-column col ">
         <h2 className="fs-3 text-primary">{name}</h2>
         <h4 className="fs-4">{impactTitle}</h4>
