@@ -31,7 +31,7 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
 
   return (
     <nav
-      className={`navbar navbar-expand-lg sticky-top ${navClass}`}
+      className={`navbar navbar-expand sticky-top ${navClass}`}
       data-bs-theme="dark"
       style={{ transitionDuration: '0.3s' }}
     >
