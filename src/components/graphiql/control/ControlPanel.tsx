@@ -36,12 +36,16 @@ const ControlPanel: React.FC = (): ReactNode => {
       try {
         const variables: OptionsVariables = JSON.parse(variablesInput);
         newBody.variables = variables;
+        dispatch(Message.variables.reset());
         dispatch(Options.body.set(JSON.stringify(newBody)));
       } catch (error) {
         if (error instanceof Error)
-          dispatch(Message.tools.set(`${invalidVariables} ${error.message}`));
+          dispatch(
+            Message.variables.set(`${invalidVariables} ${error.message}`)
+          );
       }
     } else {
+      dispatch(Message.variables.reset());
       dispatch(Options.body.set(JSON.stringify(newBody)));
     }
   }
@@ -50,12 +54,14 @@ const ControlPanel: React.FC = (): ReactNode => {
     if (headersInput) {
       try {
         const headers: OptionsHeaders = JSON.parse(headersInput);
+        dispatch(Message.headers.reset());
         dispatch(Options.headers.set(headers));
       } catch (error) {
         if (error instanceof Error)
-          dispatch(Message.tools.set(`${invalidHeaders} ${error.message}`));
+          dispatch(Message.headers.set(`${invalidHeaders} ${error.message}`));
       }
     } else {
+      dispatch(Message.headers.reset());
       dispatch(Options.headers.set(Base.headers));
     }
   }

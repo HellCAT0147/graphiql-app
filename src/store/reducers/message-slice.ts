@@ -5,7 +5,8 @@ import { MessageStore, SelectString } from '../types';
 
 const initialState: MessageStore = {
   error: '',
-  toolsError: '',
+  headersError: '',
+  variablesError: '',
 };
 
 export const MessageSlice = createSlice({
@@ -15,18 +16,35 @@ export const MessageSlice = createSlice({
     setMessage: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
     },
-    setToolsMessage: (state, action: PayloadAction<string>) => {
-      state.toolsError = action.payload;
+    setHeadersMessage: (state, action: PayloadAction<string>) => {
+      state.headersError = action.payload;
+    },
+    resetHeadersError: (state) => {
+      state.headersError = '';
+    },
+    setVariablesMessage: (state, action: PayloadAction<string>) => {
+      state.variablesError = action.payload;
+    },
+    resetVariablesError: (state) => {
+      state.variablesError = '';
     },
   },
 });
 
-const { setMessage, setToolsMessage } = MessageSlice.actions;
+const {
+  setMessage,
+  setHeadersMessage,
+  resetHeadersError,
+  setVariablesMessage,
+  resetVariablesError,
+} = MessageSlice.actions;
 
 export const selectMessage: SelectString = (state: RootState) =>
   state.message.error;
-export const selectToolsMessage: SelectString = (state: RootState) =>
-  state.message.toolsError;
+export const selectHeadersMessage: SelectString = (state: RootState) =>
+  state.message.headersError;
+export const selectVariablesMessage: SelectString = (state: RootState) =>
+  state.message.variablesError;
 
 export default MessageSlice.reducer;
 
@@ -35,8 +53,14 @@ export const Message = {
     set: setMessage,
     select: selectMessage,
   },
-  tools: {
-    set: setToolsMessage,
-    select: selectToolsMessage,
+  headers: {
+    set: setHeadersMessage,
+    select: selectHeadersMessage,
+    reset: resetHeadersError,
+  },
+  variables: {
+    set: setVariablesMessage,
+    select: selectVariablesMessage,
+    reset: resetVariablesError,
   },
 };
