@@ -4,7 +4,7 @@ import {
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
 import { ResponseApi } from '../types';
-import { querySchema } from '../../constants';
+import { Base, querySchema } from '../../constants';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -23,8 +23,8 @@ export const apiSlice = createApi({
     getSchema: builder.query<ResponseApi, string>({
       query: (url) => ({
         url,
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        method: Base.method,
+        headers: Base.headers,
         body: JSON.stringify({
           query: querySchema,
         }),

@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Loading, Options, useGetDataQuery } from '../../../store/reducers';
 import Prettify from '../../prettify';
 import { Message } from '../../../store/reducers/message-slice';
+import { isErrorData } from '../../../utils/typeguards';
 
 const ResponseViewer: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
@@ -17,6 +18,7 @@ const ResponseViewer: React.FC = (): ReactNode => {
   const method = useAppSelector(Options.method.select);
   const headers = useAppSelector(Options.headers.select);
   const headersError = useAppSelector(Message.headers.select);
+  const variablesError = useAppSelector(Message.variables.select);
   const body = useAppSelector(Options.body.select);
 
   const { data, error, isFetching } = useGetDataQuery(
@@ -28,7 +30,15 @@ const ResponseViewer: React.FC = (): ReactNode => {
     dispatch(Loading.set(isFetching));
   }, [dispatch, isFetching]);
 
-  const content = !error ? (!headersError ? data : headersError) : error;
+  const errorTools: string = headersError ? headersError : variablesError;
+
+  const content = !error
+    ? !errorTools
+      ? data
+      : errorTools
+    : isErrorData(error)
+      ? error.data
+      : error;
   const value = JSON.stringify(content, null, '  ');
 
   return (
@@ -37,7 +47,7 @@ const ResponseViewer: React.FC = (): ReactNode => {
         className: 'responseViewer card border-light mb-3',
         width: '45%',
         title: responseViewerHeader,
-        value,
+        value: isFetching ? '' : value,
         isReadOnly: true,
       }}
     />

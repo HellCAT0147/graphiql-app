@@ -4,7 +4,7 @@ import {
   SchemaItem,
   SchemaType,
 } from '../components/types';
-import { AllTypes } from '../store/types';
+import { AllTypes, ErrorData } from '../store/types';
 
 export function isError(obj: unknown): obj is Error {
   return obj instanceof Error;
@@ -68,4 +68,8 @@ export function isAllTypes(obj: unknown): obj is AllTypes {
     'types' in obj &&
     'rootTypes' in obj
   );
+}
+
+export function isErrorData(obj: unknown): obj is ErrorData {
+  return !!(typeof obj === 'object' && obj && 'data' in obj);
 }
