@@ -5,22 +5,22 @@ import { store } from '../../store/store.ts';
 import { Context } from '../../contexts';
 import { contextEn, contextRu } from '../../mocks';
 import { MemoryRouter } from 'react-router-dom';
-import Login from '.';
+import Register from '.';
 
-describe('Tests for the Login', (): void => {
+describe('Tests for the Register', (): void => {
   test('Showing english words drawn correctly', async () => {
     await waitFor(() =>
       render(
         <Provider store={store}>
           <Context.Provider value={contextEn}>
             <MemoryRouter>
-              <Login />
+              <Register />
             </MemoryRouter>
           </Context.Provider>
         </Provider>
       )
     );
-    expect(screen.getByText(contextEn.lang.loginButtonText)).toBeDefined();
+    expect(screen.getByText(contextEn.lang.registerButtonText)).toBeDefined();
   });
   test('Showing russian words drawn correctly', async () => {
     await waitFor(() =>
@@ -28,12 +28,12 @@ describe('Tests for the Login', (): void => {
         <Provider store={store}>
           <Context.Provider value={contextRu}>
             <MemoryRouter>
-              <Login />
+              <Register />
             </MemoryRouter>
           </Context.Provider>
         </Provider>
       )
     );
-    expect(screen.getByText(contextRu.lang.loginButtonText)).toBeDefined();
+    expect(screen.getByText(contextRu.lang.registerButtonText)).toBeDefined();
   });
 });

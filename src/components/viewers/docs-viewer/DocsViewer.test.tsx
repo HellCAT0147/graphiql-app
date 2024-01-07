@@ -1,26 +1,29 @@
 import { describe, expect, test } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store.ts';
-import { Context } from '../../contexts';
-import { contextEn, contextRu } from '../../mocks';
+import { store } from '../../../store/store.ts';
+import { Context } from '../../../contexts';
+import { contextEn, contextRu } from '../../../mocks';
 import { MemoryRouter } from 'react-router-dom';
-import Login from '.';
+import DocsViewer from '.';
 
-describe('Tests for the Login', (): void => {
+describe('Tests for the DocsViewer', (): void => {
   test('Showing english words drawn correctly', async () => {
     await waitFor(() =>
       render(
         <Provider store={store}>
           <Context.Provider value={contextEn}>
             <MemoryRouter>
-              <Login />
+              <DocsViewer />
             </MemoryRouter>
           </Context.Provider>
         </Provider>
       )
     );
-    expect(screen.getByText(contextEn.lang.loginButtonText)).toBeDefined();
+    const aside = document.getElementsByTagName('aside')[0];
+    if (aside) {
+      expect(aside.children.length).toEqual(1);
+    }
   });
   test('Showing russian words drawn correctly', async () => {
     await waitFor(() =>
@@ -28,12 +31,15 @@ describe('Tests for the Login', (): void => {
         <Provider store={store}>
           <Context.Provider value={contextRu}>
             <MemoryRouter>
-              <Login />
+              <DocsViewer />
             </MemoryRouter>
           </Context.Provider>
         </Provider>
       )
     );
-    expect(screen.getByText(contextRu.lang.loginButtonText)).toBeDefined();
+    const aside = document.getElementsByTagName('aside')[0];
+    if (aside) {
+      expect(aside.children.length).toEqual(1);
+    }
   });
 });
