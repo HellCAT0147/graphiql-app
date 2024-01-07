@@ -76,6 +76,15 @@ export interface SchemaListProps {
   description?: string | null;
 }
 
+export interface LoaderProps {
+  isInCenter?: boolean;
+}
+
+export interface LoaderStyles {
+  width: string;
+  height?: string;
+}
+
 export interface Schema {
   data: {
     __schema: {

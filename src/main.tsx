@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ToastContainer position="bottom-right" theme="colored" />
     <Provider store={store}>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader isInCenter={true} />}>
         <App />
       </Suspense>
     </Provider>
