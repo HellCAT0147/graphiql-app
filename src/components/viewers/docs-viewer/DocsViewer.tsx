@@ -35,7 +35,7 @@ const DocsViewer: React.FC = (): JSX.Element => {
     <aside
       className="position-relative mb-3 transition order-1 order-lg-0"
       style={{
-        width: isDocsVisible ? '20rem' : '0',
+        width: isDocsVisible ? '19rem' : '0',
       }}
     >
       {isFetching ? (
