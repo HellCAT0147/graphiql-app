@@ -27,7 +27,7 @@ const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
   };
 
   return (
-    <section className="card-header d-flex justify-content-between">
+    <section className="card-header d-flex flex-column flex-md-row justify-content-between">
       <h5
         style={{
           maxWidth: '30rem',
@@ -39,7 +39,7 @@ const UrlEditor: React.FC<EmptyProps> = (): JSX.Element => {
         {urlApi}
       </h5>
       <form
-        className="input-group mb-3"
+        className="input-group mb-3 align-self-end"
         style={{ maxWidth: '20rem' }}
         onSubmit={(e) => onSetUrl(e)}
       >
