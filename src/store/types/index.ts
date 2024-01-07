@@ -79,3 +79,7 @@ export interface Body {
   variables?: OptionsVariables;
   operationName?: string;
 }
+
+export interface ErrorData {
+  data: object;
+}
