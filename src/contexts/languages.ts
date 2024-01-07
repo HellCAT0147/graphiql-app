@@ -34,11 +34,11 @@ export const EN: Languages = {
   welcomeBioLocation2: 'Omsk, Russia',
   welcomeBioLocation3: 'Gomel, Belarus',
   welcomeBioContribution1:
-    'Ilya mostly managed the project, assigned tasks, reflected them in Trello cards, worked with project logic such as validation, information processing, and in the last sprint the API part.',
+    'Ilya managed the project, set tasks, reflected them in Jira cards, worked with project logic and documentation, information and error handling.',
   welcomeBioContribution2:
-    'Kamilla was mainly dealing with API interaction and catalog page. Besides, she spent much time in Commercetools website, filling in product info and pictures and setting up project settings.',
+    'Camilla handled filling out the welcome page and validating data on the client side using Zod, outputting errors via Toastify',
   welcomeBioContribution3:
-    'Alexander developed the routing on pure TS and created a MVC for each page of the project. He worked with the design and developed Builder class that generates HTML elements with classes according to BEM methodology. He customized the project structure, configs, scripts and env.',
+    'Alexander worked with the main logical part of the project, dealing with GraphQL window customization as well as design',
   welcomeBioAbout1:
     'Ilya started this course from stage-0 with basic knowledge of HTML/CSS, all the time he was trying to break into the top positions, he studied hard for 60 hours a week for it. At the initial stages, when there was enough time to close tasks - he was very much engaged in theory, which helped in the future in the course interviews. Ilya loves playing guitar, Dota 2 and Diablo (3-4). He also enjoys the adrenaline of high speed racing a car and setting records on a bike. In the future he really wants to become a Team Leader and make a lot of money.',
   welcomeBioAbout2:
@@ -47,14 +47,14 @@ export const EN: Languages = {
     'Just like his colleagues, Alexander started learning JS in December last year on a basic course from RS school. Within the first two weeks he realized that frontend was what he was looking for. He dedicated about 70% of his time to learning, which allowed him to rank at the top. His work Minesweeper made it to the list of top 10 best jobs. One of the toughest assignments was Clean Code, but it was after that - he fell in love with clean code and continues to improve this skill. He loves development and wants it to be his job.',
   welcomeCollaborationTitle: 'Collaboration',
   welcomeCollaborationDescription:
-    'The developers of our team met here at the RSS course. Kamilla and Ilya first met while discussing the GIT test in the thematic Discord channel, and later, while working on the OOP test and developing the Minesweeper, they met Alexander. Ilya and Alexander immediately agreed on code cleanliness and neatness of development, while Kamilla took a supporting role and search for quick solutions. The team stayed in touch almost around the clock, immediately responding to problems arising during development. Every idea and subsequent solution was discussed with the entire team beforehand, and no pull-request was merged without the approval of the entire team. During the development HAQ faced various difficulties, which were mainly due to the inexperience of the team members. Mentors Aleksei and Andrei were immediately coming to the rescue, who, with their impressive experience in IT, could tell us exactly in which direction to look for a solution to a problem that arose. During the development of the project, the team members became friends and hope to continue their cooperation, or at least maintain contact, in the future.',
+    'The developers of our team met on the RSS-JS course. Ilya and Alexander immediately agreed on the cleanliness of the code and neatness of development, while Camilla took on a supporting role and the search for quick solutions. The team stayed in touch almost around the clock, responding instantly to problems arising during the development process. Every idea and subsequent solution was discussed with the entire team in advance, and no pull-request was merged without the approval of the entire team. HAQ faced various challenges during the development process, which were mostly due to the inexperience of the team members. Mentors came to the rescue immediately, who, with their impressive IT experience, were able to suggest where to look for a solution to the problem',
   welcomeThanksTitle: 'Special Thanks',
   welcomeMentorName4: 'Dmitry',
   welcomeMentorName5: 'Valeria',
   welcomeMentorName6: 'Oleg',
   welcomeMentorRole: 'Mentor',
   welcomeMentorDescription:
-    "Our mentors played a far from insignificant role in the creation of this app. LoremIpsum is a master of his craft, a virtuoso of the front-end, friendly and attentive to detail. Throughout the whole mentorship, he tried to keep abreast of his mentee's affairs, his interviews; when contacting him, he always tried to get in touch as soon as possible and help to solve the issue. LoremIpsum is a fullstack developer, a GitHub sorcerer, capable of destroying your code problems and your self-esteem with one breath. These awesome guys guided our young inexperienced team through the thorns to stardom. Thank you!!",
+    "Many thanks for helping us build the app to our mentors - masters of their craft, frontend virtuosos, friendly and attentive to detail. Throughout the mentorship, they made sure to stay on top of their mentees' business. These amazing guys guided our young inexperienced team through the thorns to the stars.",
   queryEditorTitle: 'Query Editor',
   responseViewerHeader: 'Response',
   setApi: 'set Api',
@@ -96,6 +96,10 @@ export const EN: Languages = {
   argsHeader: 'Arguments',
   resetSent: 'Password reset link sent',
   notSchema: 'This API does not provide a schema',
+  invalidVariables: 'Variables are invalid JSON:',
+  invalidHeaders: 'Headers are invalid JSON:',
+  forbiddenHeaders:
+    'You have entered forbidden headers. More detailed: https://fetch.spec.whatwg.org/#forbidden-header-name',
 };
 
 export const RU: Languages = {
@@ -132,11 +136,11 @@ export const RU: Languages = {
   welcomeBioLocation2: 'Омск, Россия',
   welcomeBioLocation3: 'Гомель, Беларусь',
   welcomeBioContribution1:
-    'Илья в основном руководил проектом, ставил задачи, отражал их в карточках Trello, работал с логикой проекта, такой как валидация, обработка информации, а в последнем спринте - с API-частью.',
+    'Илья руководил проектом, ставил задачи, отражал их в карточках Jira, работал с логикой проекта и документацией, обработкой информации и ошибок',
   welcomeBioContribution2:
-    'Камилла в основном занималась взаимодействием с API и страницей каталога. Кроме того, она проводила много времени на сайте Commercetools, заполняя информацию и фотографии продуктов и настраивая параметры проекта',
+    'Камилла занималась заполнением страницы приветствия и валидацией данных на стороне клиента при помощи Zod, выводила ошибки через Toastify',
   welcomeBioContribution3:
-    'Александр разработал маршрутизацию на чистом TS и создал MVC для каждой страницы проекта. Он работал с дизайном и разработал класс Builder, который генерирует HTML-элементы с классами в соответствии с методологией BEM. Он настроил структуру проекта, конфиги, скрипты и env.',
+    'Александр работал с основной логической частью проекта, занимаясь настройкой окна GraphQL, а также дизайном',
   welcomeBioAbout1:
     'Илья начал этот курс со Stage-0 с базовыми знаниями HTML/CSS, все это время он пытался пробиться в топ-позиции, усердно занимался по 60 часов в неделю. На начальных этапах, когда было достаточно времени на закрытие заданий - он очень много занимался теорией, что помогло в дальнейшем на собеседованиях. Илья любит играть на гитаре, в Dota 2 и Diablo (3-4). Также ему нравится получать адреналин от скоростных гонок на автомобиле и ставить рекорды на велосипеде. В будущем он очень хочет стать тим-лидом и зарабатывать много денег.',
   welcomeBioAbout2:
@@ -145,14 +149,14 @@ export const RU: Languages = {
     'Как и его коллеги, Александр начал изучать JS в декабре прошлого года на базовом курсе от школы RS. В течение первых двух недель он понял, что фронтенд - это то, что он искал. Он посвятил изучению около 70 % своего времени, что позволило ему занять первое место. Его работа Minesweeper попала в список 10 лучших заданий. Одним из самых сложных заданий был "Чистый код", но именно после него он полюбил чистый код и продолжает совершенствовать этот навык. Он любит разработку и хочет, чтобы она стала его работой.',
   welcomeCollaborationTitle: 'Сотрудничество',
   welcomeCollaborationDescription:
-    'Разработчики нашей команды познакомились здесь, на курсе RSS. Камилла и Илья впервые встретились при обсуждении GIT-теста в тематическом Discord-канале, а позже, во время работы над ООП-тестом и разработки Minesweeper, они познакомились с Александром. Илья и Александр сразу сошлись на чистоте кода и аккуратности разработки, а Камилла взяла на себя вспомогательную роль и поиск быстрых решений. Команда оставалась на связи практически круглосуточно, мгновенно реагируя на возникающие в процессе разработки проблемы. Каждая идея и последующее решение обсуждались со всей командой заранее, и ни один pull-request не объединялся без одобрения всей команды. В процессе разработки HAQ столкнулся с различными трудностями, которые в основном были связаны с неопытностью членов команды. На помощь сразу же приходили наставники Алексей и Андрей, которые, обладая внушительным опытом работы в IT, могли подсказать, в каком направлении искать решение возникшей проблемы. За время работы над проектом члены команды подружились и надеемся продолжить сотрудничество или хотя бы поддерживать контакт в будущем.',
+    'Разработчики нашей команды познакомились на курсе RSS-JS. Илья и Александр сразу сошлись на чистоте кода и аккуратности разработки, а Камилла взяла на себя вспомогательную роль и поиск быстрых решений. Команда оставалась на связи практически круглосуточно, мгновенно реагируя на возникающие в процессе разработки проблемы. Каждая идея и последующее решение обсуждались со всей командой заранее, и ни один pull-request не объединялся без одобрения всей команды. В процессе разработки HAQ столкнулся с различными трудностями, которые в основном были связаны с неопытностью членов команды. На помощь сразу же приходили менторы, которые, обладая внушительным опытом работы в IT, могли подсказать, в каком направлении искать решение возникшей проблемы',
   welcomeThanksTitle: 'Особое спасибо',
   welcomeMentorName4: 'Дмитрий',
   welcomeMentorName5: 'Валерия',
   welcomeMentorName6: 'Олег',
   welcomeMentorRole: 'Ментор',
   welcomeMentorDescription:
-    'Наши наставники сыграли далеко не последнюю роль в создании этого приложения. LoremIpsum - мастер своего дела, виртуоз фронтенда, дружелюбный и внимательный к деталям. На протяжении всего менторства он старался быть в курсе дел своего подопечного, его интервью; при обращении к нему он всегда старался как можно быстрее связаться и помочь решить вопрос. LoremIpsum - fullstack-разработчик, волшебник GitHub, способный на одном дыхании уничтожить ваши проблемы с кодом и вашу самооценку. Эти потрясающие ребята провели нашу молодую неопытную команду через тернии к звездам. Спасибо!!!',
+    'Большое спасибо за помощь в создании приложения нашим менторам - мастерам своего дела, виртуозам фронтенда, дружелюбным и внимательным к деталям. На протяжении всего менторства они старались быть в курсе дел своих подопечных. Эти потрясающие ребята провели нашу молодую неопытную команду через тернии к звездам.',
   queryEditorTitle: 'Редактор запросов',
   responseViewerHeader: 'Ответ',
   setApi: 'задать Api',
@@ -194,4 +198,8 @@ export const RU: Languages = {
   argsHeader: 'Аргументы',
   resetSent: 'Ссылка для сброса пароля отправлена',
   notSchema: 'Эта АПИ не предоставляет схему',
+  invalidVariables: 'Переменные не соответствуют формату JSON:',
+  invalidHeaders: 'Заголовки не соответствуют формату JSON:',
+  forbiddenHeaders:
+    'Вы ввели запрещенные заголовки. Подробнее: https://fetch.spec.whatwg.org/#forbidden-header-name',
 };
