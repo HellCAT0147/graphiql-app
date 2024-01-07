@@ -52,7 +52,7 @@ const Reset: React.FC = (): ReactNode => {
     <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{resetTitle}</h1>
       <form
-        className="row row-cols-auto justify-content-center"
+        className="row row-cols-auto justify-content-center gap-3"
         onSubmit={handleReset}
       >
         <div className="form-group">
@@ -65,7 +65,7 @@ const Reset: React.FC = (): ReactNode => {
           />
         </div>
         <button
-          className="col mx-1 btn btn-success"
+          className="col ms-2 btn btn-success"
           type="submit"
           disabled={isSending}
         >
