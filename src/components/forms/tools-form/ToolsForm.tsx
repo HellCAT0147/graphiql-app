@@ -23,7 +23,7 @@ const ToolsForm: React.FC = (): JSX.Element => {
 
   return (
     <form
-      className="btn-group flex-wrap"
+      className="btn-group flex-wrap me-2"
       role="group"
       onChange={(e) => onChangeTools(e)}
     >

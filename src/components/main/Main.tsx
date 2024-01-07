@@ -19,7 +19,7 @@ const Main: React.FC = (): ReactNode => {
   return loading || !user ? (
     <Loader />
   ) : (
-    <main className="main container-fluid d-flex py-3 flex-grow-1">
+    <main className="main container-fluid-lg d-flex flex-column flex-lg-row py-3 flex-grow-1">
       <DocsViewer />
       <GraphiQl />
     </main>

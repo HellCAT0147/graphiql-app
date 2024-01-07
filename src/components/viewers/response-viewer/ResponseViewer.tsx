@@ -35,7 +35,7 @@ const ResponseViewer: React.FC = (): ReactNode => {
     <Prettify
       data={{
         className: 'responseViewer card border-light mb-3',
-        width: '45%',
+        width: '100%',
         title: responseViewerHeader,
         value,
         isReadOnly: true,

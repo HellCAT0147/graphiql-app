@@ -38,6 +38,7 @@ const EditorTools: React.FC = (): JSX.Element => {
           type="button"
           className="btn btn-dark"
           onClick={onToggleToolsVisible}
+          style={{ height: 'fit-content' }}
         >
           <i
             className={`px-1 fa-sharp fa-solid fa-caret-${
