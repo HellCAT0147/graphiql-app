@@ -14,6 +14,7 @@ import { Body, OptionsHeaders, OptionsVariables } from '../../../store/types';
 import { Base } from '../../../constants';
 import { LangContext } from '../../../contexts/types';
 import { isValidHeaders } from '../../../utils/headersCheker';
+
 const ControlPanel: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
@@ -95,11 +96,11 @@ const ControlPanel: React.FC = (): ReactNode => {
   }
 
   return (
-    <article>
+    <article className="control-panel d-flex flex-md-column gap-3 mb-3 justify-content-center">
       <ControlButton
         atr={{
           isLoadingData,
-          className: 'secondary mb-3',
+          className: 'secondary',
           onClick: onGetData,
           classIcon: 'fa-caret-right px-1 fs-2',
         }}

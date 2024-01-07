@@ -10,12 +10,12 @@ function TeamIntro(): ReactNode {
   } = context;
 
   return (
-    <section className="team-intro d-flex flex-row justify-content-center">
+    <section className="team-intro d-flex flex-column flex-sm-row justify-content-center">
       <div className="d-flex flex-column w-50">
         <h2 className="text-secondary">{welcomeTeamTitle}</h2>
         <p>{welcomeTeamIntro}</p>
       </div>
-      <div className="d-flex flex-column align-items-center justify-content-center text-center">
+      <div className="d-flex flex-column align-items-end justify-content-center text-center">
         <ImgLink href="https://rs.school/" src="/logo-rs.svg" alt="logo" />
         <div className="text-secondary fs-2"> & RS School</div>
       </div>

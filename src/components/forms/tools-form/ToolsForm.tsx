@@ -22,7 +22,11 @@ const ToolsForm: React.FC = (): JSX.Element => {
   }
 
   return (
-    <form className="btn-group" role="group" onChange={(e) => onChangeTools(e)}>
+    <form
+      className="btn-group flex-wrap me-2"
+      role="group"
+      onChange={(e) => onChangeTools(e)}
+    >
       {inputs.map((input) => {
         const id = `${input.value}-${input.type}`;
         return <InputGroup key={id} atr={{ ...input, id, group }} />;

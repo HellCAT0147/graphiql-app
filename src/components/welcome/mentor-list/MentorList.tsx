@@ -15,7 +15,7 @@ const MentorList = (): ReactNode => {
   return (
     <section className="mentor-list d-flex flex-column justify-content-center align-items-center">
       <h2 className="text-info pb-4">{welcomeThanksTitle}</h2>
-      <div className="d-flex flex-row justify-content-between w-100">
+      <div className="d-flex flex-row justify-content-center justify-content-lg-between flex-wrap w-100">
         {mentors.map((mentor) => {
           const { id, pic } = mentor;
           return (

@@ -10,7 +10,7 @@ const MemberList = (): ReactNode => {
 
   const { lang } = context;
   return (
-    <section className="member-list d-flex flex-row justify-content-between">
+    <section className="member-list d-flex flex-row justify-content-center justify-content-lg-between flex-wrap">
       {members.map((member) => {
         const { id, pic } = member;
         return (

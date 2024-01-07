@@ -107,7 +107,7 @@ const Register: React.FC = (): ReactNode => {
     <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{registerTitle}</h1>
       <form
-        className="row row-cols-auto justify-content-center"
+        className="d-flex flex-column flex-md-row justify-content-center gap-3 flex-wrap"
         onSubmit={handleSignUp}
       >
         <SignUpInput
@@ -142,9 +142,9 @@ const Register: React.FC = (): ReactNode => {
         ></SignUpInput>
         <button
           disabled={isSending}
-          className="col mx-1 btn btn-success"
+          className="col mx-1 btn btn-success align-self-end align-self-md-start"
           type="submit"
-          style={{ height: 'fit-content' }}
+          style={{ maxWidth: 'fit-content', height: 'fit-content' }}
         >
           {registerButtonText}
         </button>

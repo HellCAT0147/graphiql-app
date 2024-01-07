@@ -9,7 +9,7 @@ const ControlButton: React.FC<ButtonAttributes> = ({ atr }): ReactNode => {
       type="button"
       className={`btn d-block btn-${className}`}
       onClick={onClick}
-      style={{ minWidth: 50, minHeight: 50 }}
+      style={{ width: 50, height: 50 }}
       disabled={isLoadingData}
     >
       {isLoadingData ? (

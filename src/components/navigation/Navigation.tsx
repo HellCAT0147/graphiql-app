@@ -31,12 +31,12 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
 
   return (
     <nav
-      className={`navbar navbar-expand-lg sticky-top ${navClass}`}
+      className={`navbar navbar-expand sticky-top ${navClass}`}
       data-bs-theme="dark"
       style={{ transitionDuration: '0.3s' }}
     >
       <div className="container-fluid">
-        <div className="collapse navbar-collapse" id="navbarColor02">
+        <div className="collapse navbar-collapse flex-wrap justify-content-end">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <NavLink
@@ -59,24 +59,26 @@ const Navigation: React.FC<EmptyProps> = (): JSX.Element => {
               </NavLink>
             </li>
           </ul>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={onToggleLang}
-          >
-            {lang.toUpperCase()}
-          </button>
-          {user ? (
+          <div className="d-flex justify-content-end">
             <button
               type="button"
-              className="btn btn-secondary mx-2"
-              onClick={logout}
+              className="btn btn-secondary"
+              onClick={onToggleLang}
             >
-              {signOut}
+              {lang.toUpperCase()}
             </button>
-          ) : (
-            <></>
-          )}
+            {user ? (
+              <button
+                type="button"
+                className="btn btn-secondary ms-2"
+                onClick={logout}
+              >
+                {signOut}
+              </button>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </div>
     </nav>
