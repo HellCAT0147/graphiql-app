@@ -99,7 +99,7 @@ export const EN: Languages = {
   invalidVariables: 'Variables are invalid JSON:',
   invalidHeaders: 'Headers are invalid JSON:',
   forbiddenHeaders:
-    'You have entered forbidden headers. More detailed: https://fetch.spec.whatwg.org/#forbidden-header-name',
+    'You have entered forbidden headers. More details: https://fetch.spec.whatwg.org/#forbidden-header-name',
 };
 
 export const RU: Languages = {
