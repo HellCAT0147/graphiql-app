@@ -98,6 +98,8 @@ export const EN: Languages = {
   notSchema: 'This API does not provide a schema',
   invalidVariables: 'Variables are invalid JSON:',
   invalidHeaders: 'Headers are invalid JSON:',
+  forbiddenHeaders:
+    'You have entered forbidden headers. More detailed: https://fetch.spec.whatwg.org/#forbidden-header-name',
 };
 
 export const RU: Languages = {
@@ -198,4 +200,6 @@ export const RU: Languages = {
   notSchema: 'Эта АПИ не предоставляет схему',
   invalidVariables: 'Переменные не соответствуют формату JSON:',
   invalidHeaders: 'Заголовки не соответствуют формату JSON:',
+  forbiddenHeaders:
+    'Вы ввели запрещенные заголовки. Подробнее: https://fetch.spec.whatwg.org/#forbidden-header-name',
 };

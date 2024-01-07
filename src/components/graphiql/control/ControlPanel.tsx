@@ -13,10 +13,11 @@ import ControlButton from '../control-button';
 import { Body, OptionsHeaders, OptionsVariables } from '../../../store/types';
 import { Base } from '../../../constants';
 import { LangContext } from '../../../contexts/types';
+import { isValidHeaders } from '../../../utils/headersCheker';
 const ControlPanel: React.FC = (): ReactNode => {
   const context: LangContext = useContext<LangContext>(Context);
   const {
-    lang: { invalidVariables, invalidHeaders },
+    lang: { invalidVariables, invalidHeaders, forbiddenHeaders },
   } = context;
 
   const dispatch = useAppDispatch();
@@ -54,8 +55,12 @@ const ControlPanel: React.FC = (): ReactNode => {
     if (headersInput) {
       try {
         const headers: OptionsHeaders = JSON.parse(headersInput);
-        dispatch(Message.headers.reset());
-        dispatch(Options.headers.set(headers));
+        if (isValidHeaders(headers)) {
+          dispatch(Message.headers.reset());
+          dispatch(Options.headers.set(headers));
+        } else {
+          dispatch(Message.headers.set(`${forbiddenHeaders}`));
+        }
       } catch (error) {
         if (error instanceof Error)
           dispatch(Message.headers.set(`${invalidHeaders} ${error.message}`));
