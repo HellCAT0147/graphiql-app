@@ -38,7 +38,7 @@ export const EN: Languages = {
   welcomeBioContribution2:
     'Camilla handled filling out the welcome page and validating data on the client side using Zod, outputting errors via Toastify',
   welcomeBioContribution3:
-    'Alexander worked with the main logical part of the project, dealing with GraphQL window customization as well as design and proxy',
+    'Alexander worked with the main logical part of the project, dealing with GraphQL window customization as well as design',
   welcomeBioAbout1:
     'Ilya started this course from stage-0 with basic knowledge of HTML/CSS, all the time he was trying to break into the top positions, he studied hard for 60 hours a week for it. At the initial stages, when there was enough time to close tasks - he was very much engaged in theory, which helped in the future in the course interviews. Ilya loves playing guitar, Dota 2 and Diablo (3-4). He also enjoys the adrenaline of high speed racing a car and setting records on a bike. In the future he really wants to become a Team Leader and make a lot of money.',
   welcomeBioAbout2:
@@ -136,7 +136,7 @@ export const RU: Languages = {
   welcomeBioContribution2:
     'Камилла занималась заполнением страницы приветствия и валидацией данных на стороне клиента при помощи Zod, выводила ошибки через Toastify',
   welcomeBioContribution3:
-    'Александр работал с основной логической частью проекта, занимаясь настройкой окна GraphQL, а также дизайном и прокси',
+    'Александр работал с основной логической частью проекта, занимаясь настройкой окна GraphQL, а также дизайном',
   welcomeBioAbout1:
     'Илья начал этот курс со Stage-0 с базовыми знаниями HTML/CSS, все это время он пытался пробиться в топ-позиции, усердно занимался по 60 часов в неделю. На начальных этапах, когда было достаточно времени на закрытие заданий - он очень много занимался теорией, что помогло в дальнейшем на собеседованиях. Илья любит играть на гитаре, в Dota 2 и Diablo (3-4). Также ему нравится получать адреналин от скоростных гонок на автомобиле и ставить рекорды на велосипеде. В будущем он очень хочет стать тим-лидом и зарабатывать много денег.',
   welcomeBioAbout2:
