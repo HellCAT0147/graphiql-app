@@ -56,21 +56,21 @@ const Login: React.FC = (): ReactNode => {
     <section className="container d-flex flex-column my-3">
       <h1 className="text-info text-center">{loginTitle}</h1>
       <form
-        className="row row-cols-auto justify-content-center"
+        className="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3 flex-wrap"
         onSubmit={handleSignIn}
       >
-        <div className="form-group">
+        <div className="form-group flex-shrink-0">
           <input
-            className="col mx-1 form-control"
+            className="form-control"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={emailPlaceholder}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group flex-shrink-0">
           <input
-            className="col mx-1 form-control"
+            className="form-control"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -79,8 +79,9 @@ const Login: React.FC = (): ReactNode => {
         </div>
         <button
           disabled={isSending}
-          className="col mx-1 btn btn-success"
+          className="btn btn-success"
           type="submit"
+          style={{ maxWidth: 'fit-content' }}
         >
           {loginButtonText}
         </button>
