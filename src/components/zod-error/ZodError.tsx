@@ -13,12 +13,9 @@ function ZodError({
 
   return (
     <div className="text-danger fs-3">
-      <div className="d-flex justify-content-evenly"></div>
-      {safeParseError.error.formErrors.formErrors.map((error) => (
-        <div key={error} className="fs-6">
-          <label>{lang[error]}</label>
-        </div>
-      ))}
+      <div className="fs-6">
+        <label>{lang[safeParseError.error.formErrors.formErrors[0]]}</label>
+      </div>
     </div>
   );
 }

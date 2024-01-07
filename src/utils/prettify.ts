@@ -120,7 +120,7 @@ export function isValidBrackets(query: string): boolean {
   return !stackBrackets.length;
 }
 
-function searchOperationName(query: string): string {
+export function searchOperationName(query: string): string {
   let operationName = '';
   const firstRoundBracket: number = query.indexOf('(');
   const firstCurlyBracket: number = query.indexOf('{');
