@@ -3,7 +3,11 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Loading, Options } from '../../../store/reducers';
 import { Message } from '../../../store/reducers/message-slice';
 import { Context } from '../../../contexts';
-import { isValidBrackets, onPrettify } from '../../../utils/prettify';
+import {
+  getOperationName,
+  isValidBrackets,
+  onPrettify,
+} from '../../../utils/prettify';
 import ControlButton from '../control-button';
 
 import { Body, OptionsHeaders, OptionsVariables } from '../../../store/types';
@@ -23,14 +27,14 @@ const ControlPanel: React.FC = (): ReactNode => {
 
   const [isValidQuery, setIsValidQuery] = useState<boolean>(true);
 
+  const newBody: Body = {
+    query: queryInput,
+  };
+
   function onSetVariables(): void {
-    const newBody: Body = {
-      query: queryInput,
-    };
     if (variablesInput) {
       try {
         const variables: OptionsVariables = JSON.parse(variablesInput);
-        //TODO check and add operationName
         newBody.variables = variables;
         dispatch(Options.body.set(JSON.stringify(newBody)));
       } catch (error) {
@@ -56,14 +60,22 @@ const ControlPanel: React.FC = (): ReactNode => {
     }
   }
 
+  function setOperationName(query: string) {
+    const operationName = getOperationName(query);
+    if (operationName) {
+      newBody.operationName = operationName;
+    }
+  }
+
   function onGetData(): void {
+    setOperationName(queryInput);
     onSetVariables();
     onSetHeaders();
   }
 
   function onPrettifyQuery(): void {
-    const prettifiedQuery = onPrettify(queryInput);
     if (isValidBrackets(queryInput)) {
+      const prettifiedQuery = onPrettify(queryInput);
       dispatch(Inputs.query.set(prettifiedQuery));
       setIsValidQuery(true);
     } else {

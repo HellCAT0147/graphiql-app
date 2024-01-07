@@ -69,7 +69,13 @@ export function onPrettify(string: string): string {
     }
   }
 
-  return prettifiedString.trim();
+  const trimmedQuery = prettifiedString.trim();
+  const operationName = searchOperationName(trimmedQuery);
+  if (!operationName && trimmedQuery.split(' ')[0] === 'query') {
+    return trimmedQuery.split('query ')[1];
+  }
+
+  return trimmedQuery;
 }
 
 interface CloseBrackets {
@@ -112,4 +118,29 @@ export function isValidBrackets(query: string): boolean {
   }
 
   return !stackBrackets.length;
+}
+
+function searchOperationName(query: string): string {
+  let operationName = '';
+  const firstRoundBracket: number = query.indexOf('(');
+  const firstCurlyBracket: number = query.indexOf('{');
+  const positionFirstBracket: number =
+    firstRoundBracket !== -1 && firstRoundBracket < firstCurlyBracket
+      ? firstRoundBracket
+      : firstCurlyBracket;
+  if (firstRoundBracket && firstCurlyBracket)
+    operationName = query.slice(0, positionFirstBracket).split(' ')[1];
+  return operationName;
+}
+
+export function getOperationName(query: string): string {
+  let operationName = '';
+  if (isValidBrackets(query)) {
+    const prettifiedQuery = onPrettify(query);
+    operationName = searchOperationName(prettifiedQuery);
+  } else {
+    return operationName;
+  }
+
+  return operationName;
 }

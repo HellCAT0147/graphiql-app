@@ -76,4 +76,5 @@ export interface AllTypes {
 export interface Body {
   query: string;
   variables?: OptionsVariables;
+  operationName?: string;
 }
