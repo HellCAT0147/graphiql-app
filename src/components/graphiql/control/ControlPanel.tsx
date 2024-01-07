@@ -1,16 +1,24 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useContext, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Inputs, Loading, Options } from '../../../store/reducers';
+import { Message } from '../../../store/reducers/message-slice';
+import { Context } from '../../../contexts';
 import {
   isValidBrackets,
   isValidSyntax,
   onPrettify,
 } from '../../../utils/prettify';
 import ControlButton from '../control-button';
-import { OptionsHeaders } from '../../../store/types';
-import { Message } from '../../../store/reducers/message-slice';
 
+import { Body, OptionsHeaders, OptionsVariables } from '../../../store/types';
+import { Base } from '../../../constants';
+import { LangContext } from '../../../contexts/types';
 const ControlPanel: React.FC = (): ReactNode => {
+  const context: LangContext = useContext<LangContext>(Context);
+  const {
+    lang: { invalidVariables, invalidHeaders },
+  } = context;
+
   const dispatch = useAppDispatch();
   const queryInput = useAppSelector(Inputs.query.select);
   const variablesInput = useAppSelector(Inputs.variables.select);
@@ -19,26 +27,45 @@ const ControlPanel: React.FC = (): ReactNode => {
 
   const [isValidQuery, setIsValidQuery] = useState<boolean>(true);
 
-  function onGetData() {
-    const newBody = JSON.stringify({
+  function onSetVariables(): void {
+    const newBody: Body = {
       query: queryInput,
-      variables: variablesInput,
-    });
-    //TODO catch errors for incorrect headers or variables
-    let headers: OptionsHeaders = {};
-    dispatch(Options.body.set(newBody));
-    if (headersInput) {
+    };
+    if (variablesInput) {
       try {
-        headers = JSON.parse(headersInput);
+        const variables: OptionsVariables = JSON.parse(variablesInput);
+        //TODO check and add operationName
+        newBody.variables = variables;
+        dispatch(Options.body.set(JSON.stringify(newBody)));
       } catch (error) {
         if (error instanceof Error)
-          dispatch(Message.headers.set(error.message));
+          dispatch(Message.tools.set(`${invalidVariables} ${error.message}`));
       }
+    } else {
+      dispatch(Options.body.set(JSON.stringify(newBody)));
     }
-    dispatch(Options.headers.set(headers));
   }
 
-  function onPrettifyQuery() {
+  function onSetHeaders(): void {
+    if (headersInput) {
+      try {
+        const headers: OptionsHeaders = JSON.parse(headersInput);
+        dispatch(Options.headers.set(headers));
+      } catch (error) {
+        if (error instanceof Error)
+          dispatch(Message.tools.set(`${invalidHeaders} ${error.message}`));
+      }
+    } else {
+      dispatch(Options.headers.set(Base.headers));
+    }
+  }
+
+  function onGetData(): void {
+    onSetVariables();
+    onSetHeaders();
+  }
+
+  function onPrettifyQuery(): void {
     const prettifiedQuery = onPrettify(queryInput);
     if (isValidBrackets(queryInput) && isValidSyntax(prettifiedQuery)) {
       dispatch(Inputs.query.set(prettifiedQuery));

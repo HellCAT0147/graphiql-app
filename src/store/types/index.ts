@@ -2,11 +2,13 @@ import { HistoryStep, SchemaField, SchemaItem } from '../../components/types';
 import { RootState } from '../store';
 
 export type OptionsMethod = string | undefined;
-export type OptionsHeaders =
-  | Headers
+
+export type OptionsVariables =
   | string[][]
   | Record<string, string | undefined>
   | undefined;
+
+export type OptionsHeaders = Headers | OptionsVariables;
 
 export type SelectString = (state: RootState) => string;
 export type SelectBoolean = (state: RootState) => boolean;
@@ -22,7 +24,7 @@ export interface ResponseApi {
 
 export interface MessageStore {
   error: string;
-  headersError: string;
+  toolsError: string;
 }
 
 export interface InputsStore {
@@ -69,4 +71,9 @@ export interface AllTypes {
     query: SchemaItem | null;
     mutation: SchemaItem | null;
   };
+}
+
+export interface Body {
+  query: string;
+  variables?: OptionsVariables;
 }

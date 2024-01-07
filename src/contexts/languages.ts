@@ -96,6 +96,8 @@ export const EN: Languages = {
   argsHeader: 'Arguments',
   resetSent: 'Password reset link sent',
   notSchema: 'This API does not provide a schema',
+  invalidVariables: 'Variables are invalid JSON:',
+  invalidHeaders: 'Headers are invalid JSON:',
 };
 
 export const RU: Languages = {
@@ -194,4 +196,6 @@ export const RU: Languages = {
   argsHeader: 'Аргументы',
   resetSent: 'Ссылка для сброса пароля отправлена',
   notSchema: 'Эта АПИ не предоставляет схему',
+  invalidVariables: 'Переменные не соответствуют формату JSON:',
+  invalidHeaders: 'Заголовки не соответствуют формату JSON:',
 };

@@ -5,7 +5,7 @@ import { MessageStore, SelectString } from '../types';
 
 const initialState: MessageStore = {
   error: '',
-  headersError: '',
+  toolsError: '',
 };
 
 export const MessageSlice = createSlice({
@@ -15,18 +15,18 @@ export const MessageSlice = createSlice({
     setMessage: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
     },
-    setHeadersMessage: (state, action: PayloadAction<string>) => {
-      state.headersError = action.payload;
+    setToolsMessage: (state, action: PayloadAction<string>) => {
+      state.toolsError = action.payload;
     },
   },
 });
 
-const { setMessage, setHeadersMessage } = MessageSlice.actions;
+const { setMessage, setToolsMessage } = MessageSlice.actions;
 
 export const selectMessage: SelectString = (state: RootState) =>
   state.message.error;
-export const selectHeadersMessage: SelectString = (state: RootState) =>
-  state.message.headersError;
+export const selectToolsMessage: SelectString = (state: RootState) =>
+  state.message.toolsError;
 
 export default MessageSlice.reducer;
 
@@ -35,8 +35,8 @@ export const Message = {
     set: setMessage,
     select: selectMessage,
   },
-  headers: {
-    set: setHeadersMessage,
-    select: selectHeadersMessage,
+  tools: {
+    set: setToolsMessage,
+    select: selectToolsMessage,
   },
 };

@@ -16,7 +16,7 @@ const ResponseViewer: React.FC = (): ReactNode => {
   const url = useAppSelector(Options.url.select);
   const method = useAppSelector(Options.method.select);
   const headers = useAppSelector(Options.headers.select);
-  const headersError = useAppSelector(Message.headers.select);
+  const toolsError = useAppSelector(Message.tools.select);
   const body = useAppSelector(Options.body.select);
 
   const { data, error, isFetching } = useGetDataQuery(
@@ -28,7 +28,7 @@ const ResponseViewer: React.FC = (): ReactNode => {
     dispatch(Loading.set(isFetching));
   }, [dispatch, isFetching]);
 
-  const content = !error ? (!headersError ? data : headersError) : error;
+  const content = !error ? (!toolsError ? data : toolsError) : error;
   const value = JSON.stringify(content, null, '  ');
 
   return (
